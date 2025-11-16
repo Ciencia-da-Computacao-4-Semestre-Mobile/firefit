@@ -11,29 +11,40 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
+import android.content.Intent
+import android.os.Handler
+import android.os.Looper
+
+
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_splash)
 
         val texto = findViewById<TextView>(R.id.titulo)
         val palavra = "FireFit"
         val span = SpannableString(palavra)
 
+        // Text tela Splash
         // "Fire" = #FF4601
         span.setSpan(
             ForegroundColorSpan(Color.parseColor("#FF4601")),
             0, 4,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-
         // "Fit" = #FFFFFF
         span.setSpan(
             ForegroundColorSpan(Color.parseColor("#FFFFFF")),
             4, palavra.length,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+
+        //Timer para passar a tela
+        Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }, 1500) // 1,5 segundos de espera
 
         texto.text = span
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
