@@ -6,17 +6,21 @@ import android.util.Patterns
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityForgotPasswordBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityForgotPasswordBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ← Voltar ao Login (Splash)
+        auth = FirebaseAuth.getInstance()
+
+        // Voltar ao Login
         binding.btnVoltarLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
@@ -32,7 +36,13 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            Toast.makeText(this, "Link de recuperação enviado!", Toast.LENGTH_LONG).show()
+            auth.sendPasswordResetEmail(email)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Link enviado! Verifique seu e-mail.", Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro: ${it.message}", Toast.LENGTH_LONG).show()
+                }
         }
     }
 }
