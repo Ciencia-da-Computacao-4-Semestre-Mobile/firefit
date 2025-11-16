@@ -19,7 +19,9 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.edtEmail.text.toString()
             val senha = binding.edtSenha.text.toString()
 
-            // aqui você coloca a lógica de login
+            // Lógica de login aqui
+
+
         }
 
         // BOTÃO REGISTRAR
@@ -28,9 +30,13 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // ESQUECI MINHA SENHA
+        // 👉 ESQUECI MINHA SENHA (vai para ForgotPasswordActivity)
         binding.txtForgot.setOnClickListener {
-            // abrir tela de recuperar senha se quiser
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+
+            // Animação de transição suave (fade)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }
 }
