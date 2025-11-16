@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
         val palavra = "FireFit"
         val span = SpannableString(palavra)
 
-        // Text tela Splash
+        // Text dividido 2 cores
         // "Fire" = #FF4601
         span.setSpan(
             ForegroundColorSpan(Color.parseColor("#FF4601")),
