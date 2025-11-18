@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityRegisterBinding
-import com.google.firebase.auth.FirebaseAuth
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()
 
         // BOTÃO REGISTRAR
         binding.btnRegistrar.setOnClickListener {
@@ -36,17 +33,6 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            auth.createUserWithEmailAndPassword(email, senha)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show()
-
-                    startActivity(Intent(this, LoginActivity::class.java))
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                    finish()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Erro: ${it.message}", Toast.LENGTH_LONG).show()
-                }
         }
 
         // BOTÃO ENTRAR

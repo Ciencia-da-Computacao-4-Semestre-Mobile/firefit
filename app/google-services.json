@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:836850795406:android:54d0e13cb6fbf2257c9adf",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxxzS7fq5vPOX0QFhX_YTflXlt0a9_h7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:836850795406:android:33a26bb757bf420b7c9adf",
         "android_client_info": {
           "package_name": "com.meuapp.firefit"
