@@ -9,3 +9,23 @@
     <color name="light_gray2">#B9B9B9</color>
     <color name="text_white">#E0E0E0</color>
 </resources>
+
+    <?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- Cores do tema (pode variar dependendo do seu tema base) -->
+<color name="black">#FF000000</color>
+<color name="white">#FFFFFFFF</color>
+
+<!-- Cores customizadas baseadas na imagem -->
+<color name="dark_gray_background">#1C1C1C</color>
+<color name="orange_accent">#FF8C00</color> <!-- Laranja/Vermelho usado para destaque -->
+<color name="red_disconnect">#FF4500</color> <!-- Vermelho para o botão Desconectar -->
+<color name="input_border_color">#FF8C00</color>
+<color name="input_text_color">#FFFFFF</color>
+<color name="label_text_color">#AAAAAA</color>
+
+<!-- Cores da Barra de Navegação Inferior -->
+<color name="bottom_nav_color">#1C1C1C</color>
+<color name="bottom_nav_item_selected">#FF8C00</color>
+<color name="bottom_nav_item_unselected">#AAAAAA</color>
+</resources>
