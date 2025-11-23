@@ -191,7 +191,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:src="@drawable/ic_calendar" />
+                android:src="@drawable/ic_calendar1" />
 
             <TextView
                 android:text="Meus Eventos"
