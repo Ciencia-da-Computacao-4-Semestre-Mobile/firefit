@@ -254,7 +254,7 @@
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:background="@color/fire_card"
+        android:background="@color/fire_cardd"
         app:itemIconTint="@color/nav_icon_inactive"
         app:itemTextColor="@color/nav_icon_active"
         app:menu="@menu/bottom_menu"
