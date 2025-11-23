@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/scrollHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         android:background="@color/fire_background"
-        android:padding="@dimen/padding_default">
+        android:padding="@dimen/padding_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,9 +55,9 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp">
 
-                <TextView
+                <View
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_weight="1"/>
 
                 <TextView
@@ -66,7 +73,8 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:overScrollMode="never">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -75,12 +83,12 @@
 
                     <!-- CARD 1 -->
                     <LinearLayout
-                        android:layout_width="200dp"
-                        android:layout_height="150dp"
+                        android:layout_width="167dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="12dp"
                         android:background="@drawable/card_bg"
                         android:orientation="vertical"
-                        android:padding="@dimen/card_padding"
-                        android:layout_marginRight="12dp">
+                        android:padding="@dimen/card_padding">
 
                         <ImageView
                             android:layout_width="match_parent"
@@ -100,23 +108,22 @@
                             android:layout_height="wrap_content"
                             android:text="@string/stop"
                             android:textColor="@color/fire_text"
-                            android:textStyle="bold"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <!-- CARD 2 -->
                     <LinearLayout
-                        android:layout_width="200dp"
+                        android:layout_width="178dp"
                         android:layout_height="match_parent"
                         android:background="@drawable/card_bg"
                         android:orientation="vertical"
                         android:padding="@dimen/card_padding">
 
                         <ImageView
-                            android:layout_width="match_parent"
+                            android:layout_width="164dp"
                             android:layout_height="100dp"
-                            android:contentDescription="@string/todo"
                             android:scaleType="centerCrop"
                             android:src="@drawable/event2" />
 
@@ -134,7 +141,6 @@
                             android:textColor="@color/fire_text"
                             android:textSize="14sp"
                             android:textStyle="bold" />
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -159,15 +165,14 @@
                 android:padding="@dimen/card_padding"
                 android:layout_marginTop="8dp">
 
-                <!-- Barra de Progresso -->
                 <ProgressBar
                     android:id="@+id/weekProgress"
                     style="@android:style/Widget.ProgressBar.Horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:progress="70"
+                    android:layout_width="282dp"
+                    android:layout_height="wrap_content"
                     android:max="100"
-                    android:progressDrawable="@drawable/progress_week"/>
+                    android:progress="70"
+                    android:progressDrawable="@drawable/progress_week" />
 
                 <TextView
                     android:layout_width="wrap_content"
