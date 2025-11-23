@@ -5,17 +5,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.example.myapplication.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth   // IMPORTANTE!!
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-
+    private lateinit var auth: FirebaseAuth   // DECLARAÇÃO DO AUTH
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // INICIALIZA O FIREBASE AUTH
+        auth = FirebaseAuth.getInstance()
 
         // BOTÃO ENTRAR
         binding.btnEntrar.setOnClickListener {
@@ -26,12 +29,24 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            // LOGIN FIREBASE
+            auth.signInWithEmailAndPassword(email, senha)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Login realizado!", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Erro: ${e.message}", Toast.LENGTH_LONG).show()
+                }
         }
 
         // BOTÃO REGISTRAR
         binding.btnRegistrar.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         // ESQUECI MINHA SENHA

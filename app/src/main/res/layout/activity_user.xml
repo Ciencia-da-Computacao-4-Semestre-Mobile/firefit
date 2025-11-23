@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#111111">
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -11,70 +12,218 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- HEADER: Foto + Nome -->
+
+        <!-- PERFIL -->
         <LinearLayout
+            android:layout_marginTop="40dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/profileImage"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:background="@drawable/circle"
-                android:padding="2dp"
+                android:id="@+id/imgUser"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_user_placeholder"
+                android:background="@drawable/rounded_image"
                 android:scaleType="centerCrop"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="16dp" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
 
                 <TextView
-                    android:id="@+id/profileName"
+                    android:id="@+id/txtUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="4dp"
                     android:text="Pedro da Silva Xavier"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginTop="17dp" />
 
                 <TextView
-                    android:id="@+id/changeImc"
-                    android:text="ALTERAR IMC >"
-                    android:textColor="#FF8A65"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
+                    android:id="@+id/txtAlterarImc"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="ALTERAR IMC  >"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF6A00"
+                    android:layout_marginTop="4dp" />
+
+
             </LinearLayout>
         </LinearLayout>
 
+        <!-- Espaço -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
         <!-- TÍTULO -->
         <TextView
-            android:layout_marginTop="30dp"
             android:text="Minha Conta"
             android:textColor="#FFFFFF"
+            android:textStyle="bold"
             android:textSize="18sp"
-            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
 
+        <!-- ITEM 1 -->
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="#151515"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="8dp">
 
-        <!-- DESLOGAR -->
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_user" />
+
+            <TextView
+                android:text="Dados Pessoais"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp" />
+
+            <ImageView
+                android:src="@drawable/ic_arrow_right"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- ITEM 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="11dp"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="#151515"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_plan" />
+
+            <TextView
+                android:text="Planos"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp" />
+
+            <ImageView
+                android:src="@drawable/ic_arrow_right"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- ITEM 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="11dp"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="#151515"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_bookmark" />
+
+            <TextView
+                android:text="Treinos Salvos"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"/>
+
+            <ImageView
+                android:src="@drawable/ic_arrow_right"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:tint="#FFFFFF"/>
+        </LinearLayout>
+
+        <!-- ITEM 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="11dp"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="#151515"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_calendar" />
+
+            <TextView
+                android:text="Meus Eventos"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="12dp"/>
+
+            <ImageView
+                android:src="@drawable/ic_arrow_right"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                app:tint="#FFFFFF"/>
+        </LinearLayout>
+
+        <!-- Logout -->
         <TextView
-            android:id="@+id/btnLogout"
-            android:layout_marginTop="20dp"
-            android:text="Desconectar"
-            android:textColor="#FF5722"
-            android:textStyle="bold"
+            android:id="@+id/txtDesconectar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="Desconectar"
+            android:textColor="#FF6A00"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginTop="30dp"
+            />
+
 
     </LinearLayout>
 
-</androidx.core.widget.NestedScrollView>
+
+
+</ScrollView>
