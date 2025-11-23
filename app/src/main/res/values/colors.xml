@@ -8,4 +8,12 @@
     <color name="light_gray1">#808080</color>
     <color name="light_gray2">#B9B9B9</color>
     <color name="text_white">#E0E0E0</color>
+    <!--colors main page-->
+    <color name="fire_primary">#FF4500</color>
+    <color name="fire_card">#2A2A2A</color>
+    <color name="fire_background">#121212</color>
+    <color name="fire_text">#FFFFFF</color>
+    <color name="fire_gray">#B8B8B8</color>
+
+
 </resources>

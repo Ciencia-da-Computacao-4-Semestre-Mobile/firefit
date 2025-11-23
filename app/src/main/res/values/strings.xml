@@ -3,4 +3,15 @@
     <string name="possui_conta">
     Já possui uma <font color='#FF4601'>conta?</font>
 </string>
+    <string name="beba_2l_de_gua_por_dia">Beba 2L de água por dia</string>
+    <string name="durma_8h_para_melhorar_sua_recupera_o">Durma 8h para melhorar sua recuperação</string>
+    <string name="metas">Metas</string>
+    <string name="text1">Parabéns, você está quase lá!</string>
+    <string name="text2">5/7 Dias</string>
+    <string name="text3">Treinos da Semana</string>
+    <string name="text4">FIT DANCE</string>
+    <string name="text5">22:00 - 14 Dez.</string>
+    <string name="todo">TODO</string>
+    <string name="stop">STOP BIKE</string>
+    <string name="text6">21:45 - 11 Dez.</string>
 </resources>
