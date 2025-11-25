@@ -1,229 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#111111">
+    android:layout_height="match_parent">
 
+    <!-- SCROLL PRINCIPAL -->
+    <ScrollView
+        android:id="@+id/scrollUser"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#111111"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:padding="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <!-- PERFIL -->
         <LinearLayout
-            android:layout_marginTop="40dp"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imgUser"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_user_placeholder"
-                android:background="@drawable/rounded_image"
-                android:scaleType="centerCrop"
-                android:layout_marginRight="16dp" />
 
+            <!-- PERFIL -->
             <LinearLayout
-                android:orientation="vertical"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical">
+                android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/imgUser"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_user_placeholder"
+                    android:background="@drawable/rounded_image"
+                    android:scaleType="centerCrop"
+                    android:layout_marginRight="16dp" />
 
-                <TextView
-                    android:id="@+id/txtUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="4dp"
-                    android:text="Pedro da Silva Xavier"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="17dp" />
-
-                <TextView
-                    android:id="@+id/txtAlterarImc"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ALTERAR IMC  >"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="#FF6A00"
-                    android:layout_marginTop="4dp" />
+                    android:gravity="center_vertical">
 
+                    <TextView
+                        android:id="@+id/txtUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="4dp"
+                        android:text="Pedro da Silva Xavier"
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="17dp" />
 
+                    <TextView
+                        android:id="@+id/txtAlterarImc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALTERAR IMC  >"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF6A00"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-        <!-- Espaço -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            <!-- Espaço -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
 
-        <!-- TÍTULO -->
-        <TextView
-            android:text="Minha Conta"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-
-        <!-- ITEM 1 -->
-        <LinearLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#151515"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginBottom="8dp">
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_user" />
-
+            <!-- TÍTULO -->
             <TextView
-                android:text="Dados Pessoais"
+                android:text="Minha Conta"
                 android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12dp" />
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-            <ImageView
-                android:src="@drawable/ic_arrow_right"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:tint="#FFFFFF" />
-        </LinearLayout>
 
-        <!-- ITEM 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="11dp"
-            android:layout_height="55dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#151515"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginBottom="8dp">
+            <!-- ITEM 1 -->
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="#151515"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="8dp">
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_plan" />
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_user" />
 
+                <TextView
+                    android:text="Dados Pessoais"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp" />
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- ITEM 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="11dp"
+                android:layout_height="55dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="#151515"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_plan" />
+
+                <TextView
+                    android:text="Planos"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp" />
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- ITEM 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="11dp"
+                android:layout_height="55dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="#151515"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_bookmark" />
+
+                <TextView
+                    android:text="Treinos Salvos"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"/>
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- ITEM 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="11dp"
+                android:layout_height="55dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="#151515"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_calendar1" />
+
+                <TextView
+                    android:text="Meus Eventos"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"/>
+
+                <ImageView
+                    android:src="@drawable/ic_arrow_right"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    app:tint="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Logout -->
             <TextView
-                android:text="Planos"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
+                android:id="@+id/txtDesconectar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="12dp" />
+                android:text="Desconectar"
+                android:textColor="#FF6A00"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginTop="30dp"
+                />
 
-            <ImageView
-                android:src="@drawable/ic_arrow_right"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:tint="#FFFFFF" />
         </LinearLayout>
 
-        <!-- ITEM 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="11dp"
-            android:layout_height="55dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#151515"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginBottom="8dp">
+    </ScrollView>
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_bookmark" />
+    <!-- BOTTOM NAVIGATION VIEW -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@color/fire_cardd"
+        app:itemIconTint="@color/nav_icon_inactive"
+        app:itemTextColor="@color/nav_icon_active"
+        app:menu="@menu/bottom_menu"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:text="Treinos Salvos"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12dp"/>
-
-            <ImageView
-                android:src="@drawable/ic_arrow_right"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:tint="#FFFFFF"/>
-        </LinearLayout>
-
-        <!-- ITEM 4 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="11dp"
-            android:layout_height="55dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#151515"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:layout_marginBottom="8dp">
-
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/ic_calendar1" />
-
-            <TextView
-                android:text="Meus Eventos"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12dp"/>
-
-            <ImageView
-                android:src="@drawable/ic_arrow_right"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                app:tint="#FFFFFF"/>
-        </LinearLayout>
-
-        <!-- Logout -->
-        <TextView
-            android:id="@+id/txtDesconectar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Desconectar"
-            android:textColor="#FF6A00"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginTop="30dp"
-            />
-
-
-    </LinearLayout>
-
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
