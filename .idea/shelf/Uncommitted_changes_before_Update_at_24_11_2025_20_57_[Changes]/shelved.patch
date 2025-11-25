@@ -1,0 +1,40 @@
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"black\">#FF000000</color>\r\n    <color name=\"white\">#FFFFFFFF</color>\r\n    <color name=\"background\">#18171A</color>\r\n    <color name=\"background2\">#333333</color>\r\n    <color name=\"orange\">#FF7043</color>\r\n    <color name=\"light_gray1\">#808080</color>\r\n    <color name=\"light_gray2\">#B9B9B9</color>\r\n\r\n    <color name=\"dark_gray_background\">#1C1C1C</color>\r\n    <color name=\"orange_accent\">#FF8C00</color> <!-- Laranja/Vermelho usado para destaque -->\r\n    <color name=\"red_disconnect\">#FF4500</color> <!-- Vermelho para o botão Desconectar -->\r\n    <color name=\"input_border_color\">#FF8C00</color>\r\n    <color name=\"input_text_color\">#FFFFFF</color>\r\n    <color name=\"label_text_color\">#AAAAAA</color>\r\n\r\n    <color name=\"bottom_nav_color\">#1C1C1C</color>\r\n    <color name=\"bottom_nav_item_selected\">#FF8C00</color>\r\n    <color name=\"bottom_nav_item_unselected\">#AAAAAA</color>\r\n\r\n    <color name=\"text_white\">#E0E0E0</color>\r\n</resources>\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/app/src/main/res/values/colors.xml	(date 1763780979420)
+@@ -9,8 +9,8 @@
+     <color name="light_gray2">#B9B9B9</color>
+ 
+     <color name="dark_gray_background">#1C1C1C</color>
+-    <color name="orange_accent">#FF8C00</color> <!-- Laranja/Vermelho usado para destaque -->
+-    <color name="red_disconnect">#FF4500</color> <!-- Vermelho para o botão Desconectar -->
++    <color name="orange_accent">#FF8C00</color>
++    <color name="red_disconnect">#FF4500</color>
+     <color name="input_border_color">#FF8C00</color>
+     <color name="input_text_color">#FFFFFF</color>
+     <color name="label_text_color">#AAAAAA</color>
+Index: .idea/deploymentTargetSelector.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetSelector\">\r\n    <selectionStates>\r\n      <SelectionState runConfigName=\"app\">\r\n        <option name=\"selectionMode\" value=\"DROPDOWN\" />\r\n      </SelectionState>\r\n    </selectionStates>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+--- a/.idea/deploymentTargetSelector.xml	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/.idea/deploymentTargetSelector.xml	(date 1764028615973)
+@@ -2,7 +2,7 @@
+ <project version="4">
+   <component name="deploymentTargetSelector">
+     <selectionStates>
+-      <SelectionState runConfigName="app">
++      <SelectionState runConfigName="Unnamed">
+         <option name="selectionMode" value="DROPDOWN" />
+       </SelectionState>
+     </selectionStates>

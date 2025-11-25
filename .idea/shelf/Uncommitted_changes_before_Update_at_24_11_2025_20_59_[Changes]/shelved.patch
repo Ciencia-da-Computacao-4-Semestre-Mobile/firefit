@@ -1,0 +1,1333 @@
+Index: app/src/main/res/values/colors.xml
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+deleted file mode 100644
+--- a/app/src/main/res/values/colors.xml	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ /dev/null	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
+@@ -1,26 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<resources>
+-    <color name="black">#FF000000</color>
+-    <color name="white">#FFFFFFFF</color>
+-    <color name="background">#18171A</color>
+-    <color name="background2">#333333</color>
+-    <color name="orange">#FF7043</color>
+-    <color name="light_gray1">#808080</color>
+-    <color name="light_gray2">#B9B9B9</color>
+-
+-    <color name="dark_gray_background">#1C1C1C</color>
+-    <color name="orange_accent">#FF8C00</color> <!-- Laranja/Vermelho usado para destaque -->
+-    <color name="red_disconnect">#FF4500</color> <!-- Vermelho para o botão Desconectar -->
+-    <color name="input_border_color">#FF8C00</color>
+-    <color name="input_text_color">#FFFFFF</color>
+-    <color name="label_text_color">#AAAAAA</color>
+-
+-    <color name="bottom_nav_color">#1C1C1C</color>
+-    <color name="bottom_nav_item_selected">#FF8C00</color>
+-    <color name="bottom_nav_item_unselected">#AAAAAA</color>
+-
+-    <color name="text_white">#E0E0E0</color>
+-</resources>
+-
+-
+-
+Index: app/src/main/res/drawable/ic_user_placeholder.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_user_placeholder.xml b/app/src/main/res/drawable/ic_user_placeholder.xml
+new file mode 100644
+--- /dev/null	(date 1764028662163)
++++ b/app/src/main/res/drawable/ic_user_placeholder.xml	(date 1764028662163)
+@@ -0,0 +1,16 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="80dp"
++    android:height="80dp"
++    android:viewportWidth="100"
++    android:viewportHeight="100">
++
++    <path
++        android:fillColor="#333333"
++        android:pathData="M50,50m-50,0a50,50 0 1,0 100,0a50,50 0 1,0 -100,0"/>
++    <path
++        android:fillColor="#666666"
++        android:pathData="M50,28a15,15 0 1,1 0,30a15,15 0 1,1 0,-30z"/>
++    <path
++        android:fillColor="#666666"
++        android:pathData="M20,78c0,-15 15,-22 30,-22s30,7 30,22H20z"/>
++</vector>
+Index: app/src/main/java/com/example/myapplication/LoginActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.Toast\r\nimport com.example.myapplication.databinding.ActivityLoginBinding\r\n\r\nclass LoginActivity : AppCompatActivity() {\r\n\r\n    private lateinit var binding: ActivityLoginBinding\r\n\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityLoginBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n\r\n        // BOTÃO ENTRAR\r\n        binding.btnEntrar.setOnClickListener {\r\n            val email = binding.edtEmail.text.toString().trim()\r\n            val senha = binding.edtSenha.text.toString().trim()\r\n\r\n            if (email.isEmpty() || senha.isEmpty()) {\r\n                Toast.makeText(this, \"Preencha todos os campos\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n        }\r\n\r\n        // BOTÃO REGISTRAR\r\n        binding.btnRegistrar.setOnClickListener {\r\n            val intent = Intent(this, RegisterActivity::class.java)\r\n            startActivity(intent)\r\n        }\r\n\r\n        // ESQUECI MINHA SENHA\r\n        binding.txtForgot.setOnClickListener {\r\n            val intent = Intent(this, ForgotPasswordActivity::class.java)\r\n            startActivity(intent)\r\n            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/LoginActivity.kt b/app/src/main/java/com/example/myapplication/LoginActivity.kt
+--- a/app/src/main/java/com/example/myapplication/LoginActivity.kt	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/app/src/main/java/com/example/myapplication/LoginActivity.kt	(date 1764028662153)
+@@ -5,17 +5,20 @@
+ import android.os.Bundle
+ import android.widget.Toast
+ import com.example.myapplication.databinding.ActivityLoginBinding
++import com.google.firebase.auth.FirebaseAuth   // IMPORTANTE!!
+ 
+ class LoginActivity : AppCompatActivity() {
+ 
+     private lateinit var binding: ActivityLoginBinding
+-
++    private lateinit var auth: FirebaseAuth   // DECLARAÇÃO DO AUTH
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         binding = ActivityLoginBinding.inflate(layoutInflater)
+         setContentView(binding.root)
+ 
++        // INICIALIZA O FIREBASE AUTH
++        auth = FirebaseAuth.getInstance()
+ 
+         // BOTÃO ENTRAR
+         binding.btnEntrar.setOnClickListener {
+@@ -26,12 +29,24 @@
+                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+                 return@setOnClickListener
+             }
++
++            // LOGIN FIREBASE
++            auth.signInWithEmailAndPassword(email, senha)
++                .addOnSuccessListener {
++                    Toast.makeText(this, "Login realizado!", Toast.LENGTH_SHORT).show()
++
++                    val intent = Intent(this, HomeActivity::class.java)
++                    startActivity(intent)
++                    finish()
++                }
++                .addOnFailureListener { e ->
++                    Toast.makeText(this, "Erro: ${e.message}", Toast.LENGTH_LONG).show()
++                }
+         }
+ 
+         // BOTÃO REGISTRAR
+         binding.btnRegistrar.setOnClickListener {
+-            val intent = Intent(this, RegisterActivity::class.java)
+-            startActivity(intent)
++            startActivity(Intent(this, RegisterActivity::class.java))
+         }
+ 
+         // ESQUECI MINHA SENHA
+Index: app/src/main/java/com/example/myapplication/RegisterActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.widget.Toast\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.example.myapplication.databinding.ActivityRegisterBinding\r\n\r\nclass RegisterActivity : AppCompatActivity() {\r\n\r\n    private lateinit var binding: ActivityRegisterBinding\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityRegisterBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n\r\n        // BOTÃO REGISTRAR\r\n        binding.btnRegistrar.setOnClickListener {\r\n            val nome = binding.edtNome.text.toString()\r\n            val dataNasc = binding.edtNascimento.text.toString()\r\n            val email = binding.edtEmail.text.toString().trim()\r\n            val senha = binding.edtSenha.text.toString().trim()\r\n\r\n            if (email.isEmpty() || senha.isEmpty() || nome.isEmpty() || dataNasc.isEmpty()) {\r\n                Toast.makeText(this, \"Preencha todos os campos\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n            if (senha.length < 6) {\r\n                Toast.makeText(this, \"A senha deve ter ao menos 6 caracteres\", Toast.LENGTH_SHORT).show()\r\n                return@setOnClickListener\r\n            }\r\n\r\n        }\r\n\r\n        // BOTÃO ENTRAR\r\n        binding.btnEntrar.setOnClickListener {\r\n            val intent = Intent(this, LoginActivity::class.java)\r\n            startActivity(intent)\r\n            finish()\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/RegisterActivity.kt b/app/src/main/java/com/example/myapplication/RegisterActivity.kt
+--- a/app/src/main/java/com/example/myapplication/RegisterActivity.kt	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/app/src/main/java/com/example/myapplication/RegisterActivity.kt	(date 1764028662154)
+@@ -5,16 +5,22 @@
+ import android.widget.Toast
+ import androidx.appcompat.app.AppCompatActivity
+ import com.example.myapplication.databinding.ActivityRegisterBinding
++import com.google.firebase.auth.FirebaseAuth
++import com.google.firebase.firestore.FirebaseFirestore
+ 
+ class RegisterActivity : AppCompatActivity() {
+ 
+     private lateinit var binding: ActivityRegisterBinding
++    private lateinit var auth: FirebaseAuth
++    private lateinit var db: FirebaseFirestore
+ 
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         binding = ActivityRegisterBinding.inflate(layoutInflater)
+         setContentView(binding.root)
+ 
++        auth = FirebaseAuth.getInstance()
++        db = FirebaseFirestore.getInstance()
+ 
+         // BOTÃO REGISTRAR
+         binding.btnRegistrar.setOnClickListener {
+@@ -33,13 +39,50 @@
+                 return@setOnClickListener
+             }
+ 
++            registrarUsuario(nome, dataNasc, email, senha)
+         }
+ 
+         // BOTÃO ENTRAR
+         binding.btnEntrar.setOnClickListener {
+-            val intent = Intent(this, LoginActivity::class.java)
+-            startActivity(intent)
++            startActivity(Intent(this, LoginActivity::class.java))
+             finish()
+         }
+     }
++
++    private fun registrarUsuario(nome: String, nasc: String, email: String, senha: String) {
++
++        auth.createUserWithEmailAndPassword(email, senha)
++            .addOnCompleteListener { task ->
++                if (task.isSuccessful) {
++
++                    val uid = auth.currentUser!!.uid
++
++                    val dados = hashMapOf(
++                        "nome" to nome,
++                        "nascimento" to nasc,
++                        "email" to email
++                    )
++
++                    db.collection("usuarios")
++                        .document(uid)
++                        .set(dados)
++                        .addOnSuccessListener {
++                            Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
++
++                            startActivity(Intent(this, HomeActivity::class.java))
++                            finish()
++                        }
++                        .addOnFailureListener {
++                            Toast.makeText(this, "Erro ao salvar dados", Toast.LENGTH_SHORT).show()
++                        }
++
++                } else {
++                    Toast.makeText(
++                        this,
++                        "Erro ao registrar: ${task.exception?.message}",
++                        Toast.LENGTH_LONG
++                    ).show()
++                }
++            }
++    }
+ }
+Index: app/build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n\r\n    id(\"com.android.application\")\r\n    id(\"com.google.gms.google-services\")\r\n    alias(libs.plugins.kotlin.android)\r\n}\r\n\r\nandroid {\r\n    namespace = \"com.example.myapplication\"\r\n    compileSdk = 36\r\n\r\n    defaultConfig {\r\n        applicationId = \"com.example.myapplication\"\r\n        minSdk = 24\r\n        targetSdk = 36\r\n        versionCode = 1\r\n        versionName = \"1.0\"\r\n    }\r\n\r\n    buildFeatures {\r\n        viewBinding = true\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            isMinifyEnabled = false\r\n            proguardFiles(\r\n                getDefaultProguardFile(\"proguard-android-optimize.txt\"),\r\n                \"proguard-rules.pro\"\r\n            )\r\n        }\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility = JavaVersion.VERSION_11\r\n        targetCompatibility = JavaVersion.VERSION_11\r\n    }\r\n\r\n    kotlinOptions {\r\n        jvmTarget = \"11\"\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation(platform(\"com.google.firebase:firebase-bom:34.6.0\"))\r\n    implementation(\"com.google.firebase:firebase-analytics\")\r\n\r\n    implementation(libs.androidx.core.ktx)\r\n    implementation(libs.androidx.appcompat)\r\n    implementation(libs.material)\r\n    implementation(libs.androidx.activity)\r\n    implementation(libs.androidx.constraintlayout)\r\n    testImplementation(libs.junit)\r\n    androidTestImplementation(libs.androidx.junit)\r\n    androidTestImplementation(libs.androidx.espresso.core)\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle.kts b/app/build.gradle.kts
+--- a/app/build.gradle.kts	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/app/build.gradle.kts	(date 1764028662151)
+@@ -1,5 +1,4 @@
+ plugins {
+-
+     id("com.android.application")
+     id("com.google.gms.google-services")
+     alias(libs.plugins.kotlin.android)
+@@ -44,14 +43,19 @@
+ dependencies {
+ 
+     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
++
+     implementation("com.google.firebase:firebase-analytics")
++    implementation("com.google.firebase:firebase-auth")
++    implementation("com.google.firebase:firebase-firestore")  // <-- FALTAVA ISSO
+ 
+     implementation(libs.androidx.core.ktx)
+     implementation(libs.androidx.appcompat)
+     implementation(libs.material)
+     implementation(libs.androidx.activity)
+     implementation(libs.androidx.constraintlayout)
++
+     testImplementation(libs.junit)
+     androidTestImplementation(libs.androidx.junit)
+     androidTestImplementation(libs.androidx.espresso.core)
++    implementation("com.google.android.material:material:1.11.0")
+ }
+Index: app/src/main/res/drawable/ic_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_user.xml b/app/src/main/res/drawable/ic_user.xml
+new file mode 100644
+--- /dev/null	(date 1764028662163)
++++ b/app/src/main/res/drawable/ic_user.xml	(date 1764028662163)
+@@ -0,0 +1,12 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++
++    <path
++        android:fillColor="#00000000"
++        android:strokeColor="#FFFFFF"
++        android:strokeWidth="2"
++        android:pathData="M12,12c2.2,0 4,-1.8 4,-4s-1.8,-4 -4,-4 -4,1.8 -4,4 1.8,4 4,4zM4,20c0,-4 3.6,-6 8,-6s8,2 8,6v1H4v-1z"/>
++</vector>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">My Application</string>\r\n    <string name=\"possui_conta\">\r\n    Já possui uma <font color='#FF4601'>conta?</font>\r\n</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/app/src/main/res/values/strings.xml	(date 1764028662171)
+@@ -3,4 +3,15 @@
+     <string name="possui_conta">
+     Já possui uma <font color='#FF4601'>conta?</font>
+ </string>
++    <string name="beba_2l_de_gua_por_dia">Beba 2L de água por dia</string>
++    <string name="durma_8h_para_melhorar_sua_recupera_o">Durma 8h para melhorar sua recuperação</string>
++    <string name="metas">Metas</string>
++    <string name="text1">Parabéns, você está quase lá!</string>
++    <string name="text2">5/7 Dias</string>
++    <string name="text3">Treinos da Semana</string>
++    <string name="text4">FIT DANCE</string>
++    <string name="text5">22:00 - 14 Dez.</string>
++    <string name="todo">TODO</string>
++    <string name="stop">STOP BIKE</string>
++    <string name="text6">21:45 - 11 Dez.</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/drawable/rounded_image.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/rounded_image.xml b/app/src/main/res/drawable/rounded_image.xml
+new file mode 100644
+--- /dev/null	(date 1764028662164)
++++ b/app/src/main/res/drawable/rounded_image.xml	(date 1764028662164)
+@@ -0,0 +1,10 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="80dp"
++    android:height="80dp"
++    android:viewportWidth="100"
++    android:viewportHeight="100">
++
++    <path
++        android:pathData="M50,50m-50,0a50,50 0 1,0 100,0a50,50 0 1,0 -100,0"
++        android:fillColor="#00000000"/>
++</vector>
+Index: app/src/main/res/drawable/card_bg.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/card_bg.xml b/app/src/main/res/drawable/card_bg.xml
+new file mode 100644
+--- /dev/null	(date 1764028662156)
++++ b/app/src/main/res/drawable/card_bg.xml	(date 1764028662156)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="utf-8"?>
++    <shape xmlns:android="http://schemas.android.com/apk/res/android"
++        android:shape="rectangle">
++        <solid android:color="@color/fire_card" />
++        <corners android:radius="@dimen/card_radius" />
++    </shape>
+Index: app/src/main/res/drawable/ic_plan.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_plan.xml b/app/src/main/res/drawable/ic_plan.xml
+new file mode 100644
+--- /dev/null	(date 1764028662162)
++++ b/app/src/main/res/drawable/ic_plan.xml	(date 1764028662162)
+@@ -0,0 +1,12 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++
++    <path
++        android:strokeColor="#FFFFFF"
++        android:fillColor="#00000000"
++        android:strokeWidth="2"
++        android:pathData="M4,6h16M4,12h16M4,18h16"/>
++</vector>
+Index: app/src/main/res/layout/activity_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_user.xml b/app/src/main/res/layout/activity_user.xml
+new file mode 100644
+--- /dev/null	(date 1764028662166)
++++ b/app/src/main/res/layout/activity_user.xml	(date 1764028662166)
+@@ -0,0 +1,229 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="#111111">
++
++
++    <LinearLayout
++        android:orientation="vertical"
++        android:padding="20dp"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content">
++
++
++        <!-- PERFIL -->
++        <LinearLayout
++            android:layout_marginTop="40dp"
++            android:orientation="horizontal"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content">
++
++            <ImageView
++                android:id="@+id/imgUser"
++                android:layout_width="80dp"
++                android:layout_height="80dp"
++                android:src="@drawable/ic_user_placeholder"
++                android:background="@drawable/rounded_image"
++                android:scaleType="centerCrop"
++                android:layout_marginRight="16dp" />
++
++            <LinearLayout
++                android:orientation="vertical"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:gravity="center_vertical">
++
++
++                <TextView
++                    android:id="@+id/txtUserName"
++                    android:layout_width="wrap_content"
++                    android:layout_height="match_parent"
++                    android:layout_marginBottom="4dp"
++                    android:text="Pedro da Silva Xavier"
++                    android:textColor="#FFFFFF"
++                    android:textSize="20sp"
++                    android:textStyle="bold"
++                    android:layout_marginTop="17dp" />
++
++                <TextView
++                    android:id="@+id/txtAlterarImc"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="ALTERAR IMC  >"
++                    android:textSize="12sp"
++                    android:textStyle="bold"
++                    android:textColor="#FF6A00"
++                    android:layout_marginTop="4dp" />
++
++
++            </LinearLayout>
++        </LinearLayout>
++
++        <!-- Espaço -->
++        <View
++            android:layout_width="match_parent"
++            android:layout_height="30dp" />
++
++        <!-- TÍTULO -->
++        <TextView
++            android:text="Minha Conta"
++            android:textColor="#FFFFFF"
++            android:textStyle="bold"
++            android:textSize="18sp"
++            android:layout_marginBottom="20dp"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content" />
++
++
++        <!-- ITEM 1 -->
++        <LinearLayout
++            android:layout_marginTop="30dp"
++            android:layout_width="match_parent"
++            android:layout_height="55dp"
++            android:gravity="center_vertical"
++            android:orientation="horizontal"
++            android:background="#151515"
++            android:paddingLeft="10dp"
++            android:paddingRight="10dp"
++            android:layout_marginBottom="8dp">
++
++            <ImageView
++                android:layout_width="22dp"
++                android:layout_height="22dp"
++                android:src="@drawable/ic_user" />
++
++            <TextView
++                android:text="Dados Pessoais"
++                android:textColor="#FFFFFF"
++                android:textSize="16sp"
++                android:layout_weight="1"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:paddingLeft="12dp" />
++
++            <ImageView
++                android:src="@drawable/ic_arrow_right"
++                android:layout_width="18dp"
++                android:layout_height="18dp"
++                app:tint="#FFFFFF" />
++        </LinearLayout>
++
++        <!-- ITEM 2 -->
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_marginTop="11dp"
++            android:layout_height="55dp"
++            android:gravity="center_vertical"
++            android:orientation="horizontal"
++            android:background="#151515"
++            android:paddingLeft="10dp"
++            android:paddingRight="10dp"
++            android:layout_marginBottom="8dp">
++
++            <ImageView
++                android:layout_width="22dp"
++                android:layout_height="22dp"
++                android:src="@drawable/ic_plan" />
++
++            <TextView
++                android:text="Planos"
++                android:textColor="#FFFFFF"
++                android:textSize="16sp"
++                android:layout_weight="1"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:paddingLeft="12dp" />
++
++            <ImageView
++                android:src="@drawable/ic_arrow_right"
++                android:layout_width="18dp"
++                android:layout_height="18dp"
++                app:tint="#FFFFFF" />
++        </LinearLayout>
++
++        <!-- ITEM 3 -->
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_marginTop="11dp"
++            android:layout_height="55dp"
++            android:gravity="center_vertical"
++            android:orientation="horizontal"
++            android:background="#151515"
++            android:paddingLeft="10dp"
++            android:paddingRight="10dp"
++            android:layout_marginBottom="8dp">
++
++            <ImageView
++                android:layout_width="22dp"
++                android:layout_height="22dp"
++                android:src="@drawable/ic_bookmark" />
++
++            <TextView
++                android:text="Treinos Salvos"
++                android:textColor="#FFFFFF"
++                android:textSize="16sp"
++                android:layout_weight="1"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:paddingLeft="12dp"/>
++
++            <ImageView
++                android:src="@drawable/ic_arrow_right"
++                android:layout_width="18dp"
++                android:layout_height="18dp"
++                app:tint="#FFFFFF"/>
++        </LinearLayout>
++
++        <!-- ITEM 4 -->
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_marginTop="11dp"
++            android:layout_height="55dp"
++            android:gravity="center_vertical"
++            android:orientation="horizontal"
++            android:background="#151515"
++            android:paddingLeft="10dp"
++            android:paddingRight="10dp"
++            android:layout_marginBottom="8dp">
++
++            <ImageView
++                android:layout_width="22dp"
++                android:layout_height="22dp"
++                android:src="@drawable/ic_calendar1" />
++
++            <TextView
++                android:text="Meus Eventos"
++                android:textColor="#FFFFFF"
++                android:textSize="16sp"
++                android:layout_weight="1"
++                android:layout_width="0dp"
++                android:layout_height="wrap_content"
++                android:paddingLeft="12dp"/>
++
++            <ImageView
++                android:src="@drawable/ic_arrow_right"
++                android:layout_width="18dp"
++                android:layout_height="18dp"
++                app:tint="#FFFFFF"/>
++        </LinearLayout>
++
++        <!-- Logout -->
++        <TextView
++            android:id="@+id/txtDesconectar"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Desconectar"
++            android:textColor="#FF6A00"
++            android:textStyle="bold"
++            android:textSize="14sp"
++            android:layout_marginTop="30dp"
++            />
++
++
++    </LinearLayout>
++
++
++
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_home.xml b/app/src/main/res/layout/activity_home.xml
+new file mode 100644
+--- /dev/null	(date 1764028662165)
++++ b/app/src/main/res/layout/activity_home.xml	(date 1764028662165)
+@@ -0,0 +1,265 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent">
++
++    <ScrollView
++        android:id="@+id/scrollHome"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++        android:fillViewport="true"
++        android:background="@color/fire_background"
++        android:padding="@dimen/padding_default"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintEnd_toEndOf="parent">
++
++        <LinearLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:orientation="vertical">
++
++            <!-- ========== CABEÇALHO ========== -->
++            <TextView
++                android:id="@+id/tvWelcome"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Bem vindo,"
++                android:textColor="@color/fire_gray"
++                android:textSize="18sp" />
++
++            <TextView
++                android:id="@+id/tvUserName"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Pedro!"
++                android:textColor="@color/fire_primary"
++                android:textStyle="bold"
++                android:textSize="26sp"
++                android:layout_marginBottom="20dp" />
++
++            <!-- ========== EVENTOS ========== -->
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:text="Eventos"
++                android:textColor="@color/fire_text"
++                android:textStyle="bold"
++                android:textSize="20sp" />
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:layout_marginTop="8dp">
++
++                <View
++                    android:layout_width="0dp"
++                    android:layout_height="1dp"
++                    android:layout_weight="1"/>
++
++                <TextView
++                    android:id="@+id/tvSeeAllEvents"
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Ver Todos"
++                    android:textColor="@color/fire_primary"
++                    android:textSize="14sp" />
++            </LinearLayout>
++
++            <!-- Cards de eventos -->
++            <HorizontalScrollView
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginTop="10dp"
++                android:overScrollMode="never">
++
++                <LinearLayout
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:orientation="horizontal">
++
++                    <!-- CARD 1 -->
++                    <LinearLayout
++                        android:layout_width="167dp"
++                        android:layout_height="match_parent"
++                        android:layout_marginRight="12dp"
++                        android:background="@drawable/card_bg"
++                        android:orientation="vertical"
++                        android:padding="@dimen/card_padding">
++
++                        <ImageView
++                            android:layout_width="match_parent"
++                            android:layout_height="100dp"
++                            android:scaleType="centerCrop"
++                            android:src="@drawable/event1" />
++
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="@string/text6"
++                            android:textColor="@color/fire_gray"
++                            android:textSize="12sp" />
++
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="@string/stop"
++                            android:textColor="@color/fire_text"
++                            android:textSize="14sp"
++                            android:textStyle="bold" />
++
++                    </LinearLayout>
++
++                    <!-- CARD 2 -->
++                    <LinearLayout
++                        android:layout_width="178dp"
++                        android:layout_height="match_parent"
++                        android:background="@drawable/card_bg"
++                        android:orientation="vertical"
++                        android:padding="@dimen/card_padding">
++
++                        <ImageView
++                            android:layout_width="164dp"
++                            android:layout_height="100dp"
++                            android:scaleType="centerCrop"
++                            android:src="@drawable/event2" />
++
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="@string/text5"
++                            android:textColor="@color/fire_gray"
++                            android:textSize="12sp" />
++
++                        <TextView
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="@string/text4"
++                            android:textColor="@color/fire_text"
++                            android:textSize="14sp"
++                            android:textStyle="bold" />
++                    </LinearLayout>
++
++                </LinearLayout>
++
++            </HorizontalScrollView>
++
++            <!-- ========== TREINOS DA SEMANA ========== -->
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:text="@string/text3"
++                android:textColor="@color/fire_text"
++                android:textStyle="bold"
++                android:textSize="20sp"
++                android:layout_marginTop="20dp" />
++
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="100dp"
++                android:background="@drawable/card_bg"
++                android:orientation="vertical"
++                android:padding="@dimen/card_padding"
++                android:layout_marginTop="8dp">
++
++                <ProgressBar
++                    android:id="@+id/weekProgress"
++                    style="@android:style/Widget.ProgressBar.Horizontal"
++                    android:layout_width="290dp"
++                    android:layout_height="wrap_content"
++                    android:max="100"
++                    android:progress="70"
++                    android:progressDrawable="@drawable/progress_week" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/text2"
++                    android:textColor="@color/fire_primary"
++                    android:textStyle="bold"
++                    android:layout_marginTop="6dp"/>
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/text1"
++                    android:textColor="@color/fire_gray"
++                    android:textSize="12sp"/>
++
++            </LinearLayout>
++
++            <!-- ========== METAS ========== -->
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:text="@string/metas"
++                android:textColor="@color/fire_text"
++                android:textStyle="bold"
++                android:textSize="20sp"
++                android:layout_marginTop="20dp" />
++
++            <!-- Meta 1 -->
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="60dp"
++                android:background="@drawable/card_bg"
++                android:orientation="horizontal"
++                android:gravity="center_vertical"
++                android:padding="@dimen/card_padding"
++                android:layout_marginTop="10dp">
++
++                <ImageView
++                    android:layout_width="30dp"
++                    android:layout_height="30dp"
++                    android:src="@drawable/sleep_icon" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/durma_8h_para_melhorar_sua_recupera_o"
++                    android:textColor="@color/fire_text"
++                    android:layout_marginStart="12dp" />
++            </LinearLayout>
++
++            <!-- Meta 2 -->
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="60dp"
++                android:background="@drawable/card_bg"
++                android:orientation="horizontal"
++                android:gravity="center_vertical"
++                android:padding="@dimen/card_padding"
++                android:layout_marginTop="10dp">
++
++                <ImageView
++                    android:layout_width="30dp"
++                    android:layout_height="30dp"
++                    android:src="@drawable/water_icon" />
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="@string/beba_2l_de_gua_por_dia"
++                    android:textColor="@color/fire_text"
++                    android:layout_marginStart="12dp" />
++            </LinearLayout>
++
++        </LinearLayout>
++
++    </ScrollView>
++    <com.google.android.material.bottomnavigation.BottomNavigationView
++        android:id="@+id/bottomNav"
++        android:layout_width="match_parent"
++        android:layout_height="65dp"
++        android:background="@color/fire_cardd"
++        app:itemIconTint="@color/nav_icon_inactive"
++        app:itemTextColor="@color/nav_icon_active"
++        app:menu="@menu/bottom_menu"
++        app:labelVisibilityMode="unlabeled"
++        app:layout_constraintBottom_toBottomOf="parent"/>
++
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/dimens.xml b/app/src/main/res/values/dimens.xml
+new file mode 100644
+--- /dev/null	(date 1764028662170)
++++ b/app/src/main/res/values/dimens.xml	(date 1764028662170)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <dimen name="padding_default">16dp</dimen>
++    <dimen name="card_radius">16dp</dimen>
++    <dimen name="card_padding">12dp</dimen>
++
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_calendar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_calendar.xml b/app/src/main/res/drawable/ic_calendar.xml
+new file mode 100644
+--- /dev/null	(date 1764028662160)
++++ b/app/src/main/res/drawable/ic_calendar.xml	(date 1764028662160)
+@@ -0,0 +1,12 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++
++    <path
++        android:fillColor="#00000000"
++        android:strokeColor="#FFFFFF"
++        android:strokeWidth="2"
++        android:pathData="M3,8h18M7,4v4M17,4v4M5,20h14a2,2 0 0 0 2,-2V6a2,2 0 0 0 -2,-2H5a2,2 0 0 0 -2,2v12a2,2 0 0 0 2,2z"/>
++</vector>
+Index: app/src/main/res/drawable/ic_bookmark.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_bookmark.xml b/app/src/main/res/drawable/ic_bookmark.xml
+new file mode 100644
+--- /dev/null	(date 1764028662160)
++++ b/app/src/main/res/drawable/ic_bookmark.xml	(date 1764028662160)
+@@ -0,0 +1,12 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++
++    <path
++        android:fillColor="#00000000"
++        android:strokeWidth="2"
++        android:strokeColor="#FFFFFF"
++        android:pathData="M6,3h12a1,1 0 0 1 1,1v16l-7,-4l-7,4V4a1,1 0 0 1 1,-1z"/>
++</vector>
+\ No newline at end of file
+Index: .kotlin/errors/errors-1763908859155.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.kotlin/errors/errors-1763908859155.log b/.kotlin/errors/errors-1763908859155.log
+new file mode 100644
+--- /dev/null	(date 1764028662151)
++++ b/.kotlin/errors/errors-1763908859155.log	(date 1764028662151)
+@@ -0,0 +1,76 @@
++kotlin version: 2.0.21
++error message: org.jetbrains.kotlin.util.FileAnalysisException: While analysing C:/Users/pedro/AndroidStudioProjects/firefit/app/src/main/java/com/example/myapplication/ForgotPasswordActivity.kt:14:5: java.lang.IllegalArgumentException: source must not be null
++	at org.jetbrains.kotlin.util.AnalysisExceptionsKt.wrapIntoFileAnalysisExceptionIfNeeded(AnalysisExceptions.kt:57)
++	at org.jetbrains.kotlin.fir.FirCliExceptionHandler.handleExceptionOnFileAnalysis(Utils.kt:249)
++	at org.jetbrains.kotlin.fir.pipeline.AnalyseKt.runCheckers(analyse.kt:46)
++	at org.jetbrains.kotlin.fir.pipeline.FirUtilsKt.resolveAndCheckFir(firUtils.kt:77)
++	at org.jetbrains.kotlin.fir.pipeline.FirUtilsKt.buildResolveAndCheckFirViaLightTree(firUtils.kt:88)
++	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModuleToAnalyzedFir(jvmCompilerPipeline.kt:319)
++	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:118)
++	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:148)
++	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:43)
++	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:103)
++	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:49)
++	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
++	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:464)
++	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:73)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
++	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:675)
++	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
++	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1660)
++	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
++	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
++	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
++	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
++	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
++	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
++	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
++	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
++	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
++	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
++	at java.base/java.lang.Thread.run(Unknown Source)
++Caused by: java.lang.IllegalArgumentException: source must not be null
++	at org.jetbrains.kotlin.diagnostics.KtDiagnosticReportHelpersKt.requireNotNull(KtDiagnosticReportHelpers.kt:68)
++	at org.jetbrains.kotlin.diagnostics.KtDiagnosticReportHelpersKt.reportOn(KtDiagnosticReportHelpers.kt:39)
++	at org.jetbrains.kotlin.diagnostics.KtDiagnosticReportHelpersKt.reportOn$default(KtDiagnosticReportHelpers.kt:31)
++	at org.jetbrains.kotlin.fir.analysis.checkers.expression.FirIncompatibleClassExpressionChecker.checkSourceElement(FirIncompatibleClassExpressionChecker.kt:50)
++	at org.jetbrains.kotlin.fir.analysis.checkers.expression.FirIncompatibleClassExpressionChecker.checkType$checkers(FirIncompatibleClassExpressionChecker.kt:42)
++	at org.jetbrains.kotlin.fir.analysis.checkers.type.FirIncompatibleClassTypeChecker.check(FirIncompatibleClassTypeChecker.kt:17)
++	at org.jetbrains.kotlin.fir.analysis.collectors.components.TypeCheckersDiagnosticComponent.check(TypeCheckersDiagnosticComponent.kt:81)
++	at org.jetbrains.kotlin.fir.analysis.collectors.components.TypeCheckersDiagnosticComponent.visitResolvedTypeRef(TypeCheckersDiagnosticComponent.kt:53)
++	at org.jetbrains.kotlin.fir.analysis.collectors.components.TypeCheckersDiagnosticComponent.visitResolvedTypeRef(TypeCheckersDiagnosticComponent.kt:19)
++	at org.jetbrains.kotlin.fir.types.FirResolvedTypeRef.accept(FirResolvedTypeRef.kt:28)
++	at org.jetbrains.kotlin.fir.analysis.collectors.CheckerRunningDiagnosticCollectorVisitor.checkElement(CheckerRunningDiagnosticCollectorVisitor.kt:24)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitResolvedTypeRef(AbstractDiagnosticCollectorVisitor.kt:248)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitResolvedTypeRef(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.types.FirResolvedTypeRef.accept(FirResolvedTypeRef.kt:28)
++	at org.jetbrains.kotlin.fir.declarations.impl.FirSimpleFunctionImpl.acceptChildren(FirSimpleFunctionImpl.kt:63)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitNestedElements(AbstractDiagnosticCollectorVisitor.kt:38)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitWithDeclarationAndReceiver(AbstractDiagnosticCollectorVisitor.kt:311)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitSimpleFunction(AbstractDiagnosticCollectorVisitor.kt:118)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitSimpleFunction(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.declarations.FirSimpleFunction.accept(FirSimpleFunction.kt:51)
++	at org.jetbrains.kotlin.fir.declarations.impl.FirRegularClassImpl.acceptChildren(FirRegularClassImpl.kt:63)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitNestedElements(AbstractDiagnosticCollectorVisitor.kt:38)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitWithDeclarationAndReceiver(AbstractDiagnosticCollectorVisitor.kt:311)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitClassAndChildren(AbstractDiagnosticCollectorVisitor.kt:87)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitRegularClass(AbstractDiagnosticCollectorVisitor.kt:92)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitRegularClass(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.declarations.FirRegularClass.accept(FirRegularClass.kt:48)
++	at org.jetbrains.kotlin.fir.declarations.impl.FirFileImpl.acceptChildren(FirFileImpl.kt:57)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitNestedElements(AbstractDiagnosticCollectorVisitor.kt:38)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitFile(AbstractDiagnosticCollectorVisitor.kt:1151)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitFile(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.declarations.FirFile.accept(FirFile.kt:42)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollector.collectDiagnostics(AbstractDiagnosticCollector.kt:36)
++	at org.jetbrains.kotlin.fir.pipeline.AnalyseKt.runCheckers(analyse.kt:34)
++	... 33 more
++
++
+Index: app/src/main/java/com/example/myapplication/HomeActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/HomeActivity.kt b/app/src/main/java/com/example/myapplication/HomeActivity.kt
+new file mode 100644
+--- /dev/null	(date 1764028662153)
++++ b/app/src/main/java/com/example/myapplication/HomeActivity.kt	(date 1764028662153)
+@@ -0,0 +1,13 @@
++package com.example.myapplication
++
++
++import androidx.appcompat.app.AppCompatActivity
++import android.os.Bundle
++
++class HomeActivity : AppCompatActivity() {
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++        setContentView(R.layout.activity_home)
++    }
++}
+Index: app/src/main/java/com/example/myapplication/UserActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/UserActivity.kt b/app/src/main/java/com/example/myapplication/UserActivity.kt
+new file mode 100644
+--- /dev/null	(date 1764028662154)
++++ b/app/src/main/java/com/example/myapplication/UserActivity.kt	(date 1764028662154)
+@@ -0,0 +1,15 @@
++package com.seuprojeto.firefit
++
++import android.content.Intent
++import android.os.Bundle
++import androidx.appcompat.app.AppCompatActivity
++import com.google.android.material.bottomnavigation.BottomNavigationView
++
++class UserActivity : AppCompatActivity() {
++
++    override fun onCreate(savedInstanceState: Bundle?) {
++        super.onCreate(savedInstanceState)
++
++        }
++    }
++
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.MyApplication\">\r\n\r\n        <activity\r\n            android:name=\".SplashActivity\"\r\n            android:exported=\"true\">\r\n\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n        </activity>\r\n\r\n        <activity\r\n            android:name=\".LoginActivity\"\r\n            android:exported=\"false\" />\r\n\r\n        <!-- Register -->\r\n        <activity\r\n            android:name=\".RegisterActivity\"\r\n            android:exported=\"false\" />\r\n\r\n        <activity android:name=\".ForgotPasswordActivity\" />\r\n\r\n    </application>\r\n\r\n</manifest>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/app/src/main/AndroidManifest.xml	(date 1764028662152)
+@@ -20,6 +20,7 @@
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+ 
++
+         </activity>
+ 
+         <activity
+@@ -33,6 +34,12 @@
+ 
+         <activity android:name=".ForgotPasswordActivity" />
+ 
++        <!-- Home -->
++        <activity
++            android:name=".HomeActivity"
++            android:exported="false" />
++
++
+     </application>
+ 
+ </manifest>
+Index: .idea/appInsightsSettings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/appInsightsSettings.xml b/.idea/appInsightsSettings.xml
+new file mode 100644
+--- /dev/null	(date 1764028662149)
++++ b/.idea/appInsightsSettings.xml	(date 1764028662149)
+@@ -0,0 +1,26 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AppInsightsSettings">
++    <option name="tabSettings">
++      <map>
++        <entry key="Firebase Crashlytics">
++          <value>
++            <InsightsFilterSettings>
++              <option name="connection">
++                <ConnectionSetting>
++                  <option name="appId" value="com.example.myapplication" />
++                  <option name="mobileSdkAppId" value="1:836850795406:android:54d0e13cb6fbf2257c9adf" />
++                  <option name="projectId" value="firefit-be6db" />
++                  <option name="projectNumber" value="836850795406" />
++                </ConnectionSetting>
++              </option>
++              <option name="signal" value="SIGNAL_UNSPECIFIED" />
++              <option name="timeIntervalDays" value="THIRTY_DAYS" />
++              <option name="visibilityType" value="ALL" />
++            </InsightsFilterSettings>
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .kotlin/errors/errors-1763908842412.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.kotlin/errors/errors-1763908842412.log b/.kotlin/errors/errors-1763908842412.log
+new file mode 100644
+--- /dev/null	(date 1764028662150)
++++ b/.kotlin/errors/errors-1763908842412.log	(date 1764028662150)
+@@ -0,0 +1,76 @@
++kotlin version: 2.0.21
++error message: org.jetbrains.kotlin.util.FileAnalysisException: While analysing C:/Users/pedro/AndroidStudioProjects/firefit/app/src/main/java/com/example/myapplication/ForgotPasswordActivity.kt:14:5: java.lang.IllegalArgumentException: source must not be null
++	at org.jetbrains.kotlin.util.AnalysisExceptionsKt.wrapIntoFileAnalysisExceptionIfNeeded(AnalysisExceptions.kt:57)
++	at org.jetbrains.kotlin.fir.FirCliExceptionHandler.handleExceptionOnFileAnalysis(Utils.kt:249)
++	at org.jetbrains.kotlin.fir.pipeline.AnalyseKt.runCheckers(analyse.kt:46)
++	at org.jetbrains.kotlin.fir.pipeline.FirUtilsKt.resolveAndCheckFir(firUtils.kt:77)
++	at org.jetbrains.kotlin.fir.pipeline.FirUtilsKt.buildResolveAndCheckFirViaLightTree(firUtils.kt:88)
++	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModuleToAnalyzedFir(jvmCompilerPipeline.kt:319)
++	at org.jetbrains.kotlin.cli.jvm.compiler.pipeline.JvmCompilerPipelineKt.compileModulesUsingFrontendIrAndLightTree(jvmCompilerPipeline.kt:118)
++	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:148)
++	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecute(K2JVMCompiler.kt:43)
++	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:103)
++	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:49)
++	at org.jetbrains.kotlin.cli.common.CLITool.exec(CLITool.kt:101)
++	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:464)
++	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunner.runCompiler(IncrementalJvmCompilerRunner.kt:73)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:506)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:423)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileNonIncrementally(IncrementalCompilerRunner.kt:301)
++	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:129)
++	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:675)
++	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:92)
++	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1660)
++	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
++	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
++	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
++	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
++	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
++	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
++	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
++	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
++	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
++	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
++	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
++	at java.base/java.lang.Thread.run(Unknown Source)
++Caused by: java.lang.IllegalArgumentException: source must not be null
++	at org.jetbrains.kotlin.diagnostics.KtDiagnosticReportHelpersKt.requireNotNull(KtDiagnosticReportHelpers.kt:68)
++	at org.jetbrains.kotlin.diagnostics.KtDiagnosticReportHelpersKt.reportOn(KtDiagnosticReportHelpers.kt:39)
++	at org.jetbrains.kotlin.diagnostics.KtDiagnosticReportHelpersKt.reportOn$default(KtDiagnosticReportHelpers.kt:31)
++	at org.jetbrains.kotlin.fir.analysis.checkers.expression.FirIncompatibleClassExpressionChecker.checkSourceElement(FirIncompatibleClassExpressionChecker.kt:50)
++	at org.jetbrains.kotlin.fir.analysis.checkers.expression.FirIncompatibleClassExpressionChecker.checkType$checkers(FirIncompatibleClassExpressionChecker.kt:42)
++	at org.jetbrains.kotlin.fir.analysis.checkers.type.FirIncompatibleClassTypeChecker.check(FirIncompatibleClassTypeChecker.kt:17)
++	at org.jetbrains.kotlin.fir.analysis.collectors.components.TypeCheckersDiagnosticComponent.check(TypeCheckersDiagnosticComponent.kt:81)
++	at org.jetbrains.kotlin.fir.analysis.collectors.components.TypeCheckersDiagnosticComponent.visitResolvedTypeRef(TypeCheckersDiagnosticComponent.kt:53)
++	at org.jetbrains.kotlin.fir.analysis.collectors.components.TypeCheckersDiagnosticComponent.visitResolvedTypeRef(TypeCheckersDiagnosticComponent.kt:19)
++	at org.jetbrains.kotlin.fir.types.FirResolvedTypeRef.accept(FirResolvedTypeRef.kt:28)
++	at org.jetbrains.kotlin.fir.analysis.collectors.CheckerRunningDiagnosticCollectorVisitor.checkElement(CheckerRunningDiagnosticCollectorVisitor.kt:24)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitResolvedTypeRef(AbstractDiagnosticCollectorVisitor.kt:248)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitResolvedTypeRef(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.types.FirResolvedTypeRef.accept(FirResolvedTypeRef.kt:28)
++	at org.jetbrains.kotlin.fir.declarations.impl.FirSimpleFunctionImpl.acceptChildren(FirSimpleFunctionImpl.kt:63)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitNestedElements(AbstractDiagnosticCollectorVisitor.kt:38)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitWithDeclarationAndReceiver(AbstractDiagnosticCollectorVisitor.kt:311)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitSimpleFunction(AbstractDiagnosticCollectorVisitor.kt:118)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitSimpleFunction(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.declarations.FirSimpleFunction.accept(FirSimpleFunction.kt:51)
++	at org.jetbrains.kotlin.fir.declarations.impl.FirRegularClassImpl.acceptChildren(FirRegularClassImpl.kt:63)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitNestedElements(AbstractDiagnosticCollectorVisitor.kt:38)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitWithDeclarationAndReceiver(AbstractDiagnosticCollectorVisitor.kt:311)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitClassAndChildren(AbstractDiagnosticCollectorVisitor.kt:87)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitRegularClass(AbstractDiagnosticCollectorVisitor.kt:92)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitRegularClass(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.declarations.FirRegularClass.accept(FirRegularClass.kt:48)
++	at org.jetbrains.kotlin.fir.declarations.impl.FirFileImpl.acceptChildren(FirFileImpl.kt:57)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitNestedElements(AbstractDiagnosticCollectorVisitor.kt:38)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitFile(AbstractDiagnosticCollectorVisitor.kt:1151)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollectorVisitor.visitFile(AbstractDiagnosticCollectorVisitor.kt:30)
++	at org.jetbrains.kotlin.fir.declarations.FirFile.accept(FirFile.kt:42)
++	at org.jetbrains.kotlin.fir.analysis.collectors.AbstractDiagnosticCollector.collectDiagnostics(AbstractDiagnosticCollector.kt:36)
++	at org.jetbrains.kotlin.fir.pipeline.AnalyseKt.runCheckers(analyse.kt:34)
++	... 33 more
++
++
+Index: app/src/main/res/drawable/circle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/circle.xml b/app/src/main/res/drawable/circle.xml
+new file mode 100644
+--- /dev/null	(date 1764028662157)
++++ b/app/src/main/res/drawable/circle.xml	(date 1764028662157)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <shape xmlns:android="http://schemas.android.com/apk/res/android"
++        android:shape="oval">
++
++        <size
++            android:width="60dp"
++            android:height="60dp" />
++
++        <solid android:color="#FFFFFF" />
++
++    </shape>
++
++</resources>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_arrow_right.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_arrow_right.xml b/app/src/main/res/drawable/ic_arrow_right.xml
+new file mode 100644
+--- /dev/null	(date 1764028662159)
++++ b/app/src/main/res/drawable/ic_arrow_right.xml	(date 1764028662159)
+@@ -0,0 +1,14 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24">
++
++    <path
++        android:strokeColor="#FFFFFF"
++        android:fillColor="#00000000"
++        android:strokeWidth="2"
++        android:strokeLineCap="round"
++        android:strokeLineJoin="round"
++        android:pathData="M9,6l6,6l-6,6"/>
++</vector>
+Index: build.gradle.kts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id(\"com.google.gms.google-services\") version \"4.4.4\" apply false\r\n    alias(libs.plugins.android.application) apply false\r\n    alias(libs.plugins.kotlin.android) apply false\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle.kts b/build.gradle.kts
+--- a/build.gradle.kts	(revision ed7b5548778de6d9c1cd97034401ea336ce03d92)
++++ b/build.gradle.kts	(date 1764028662171)
+@@ -3,3 +3,4 @@
+     alias(libs.plugins.android.application) apply false
+     alias(libs.plugins.kotlin.android) apply false
+ }
++
+Index: app/src/main/res/color/nav_item_color.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/color/nav_item_color.xml b/app/src/main/res/color/nav_item_color.xml
+new file mode 100644
+--- /dev/null	(date 1764028662155)
++++ b/app/src/main/res/color/nav_item_color.xml	(date 1764028662155)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="utf-8"?>
++
++    <selector xmlns:android="http://schemas.android.com/apk/res/android">
++
++        <!-- Item selecionado -->
++        <item android:color="@color/nav_icon_active" android:state_checked="true"/>
++
++        <!-- Item NÃO selecionado -->
++        <item android:color="@color/nav_icon_inactive"/>
++
++    </selector>
+Index: app/src/main/res/menu/bottom_menu.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/bottom_menu.xml b/app/src/main/res/menu/bottom_menu.xml
+new file mode 100644
+--- /dev/null	(date 1764028662168)
++++ b/app/src/main/res/menu/bottom_menu.xml	(date 1764028662168)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="utf-8"?>
++    <menu xmlns:android="http://schemas.android.com/apk/res/android">
++
++        <item
++            android:id="@+id/nav_home"
++            android:icon="@drawable/ic_home"
++            android:title="Home" />
++
++        <item
++            android:id="@+id/nav_events"
++            android:icon="@drawable/ic_calendar"
++            android:title="Calendar" />
++
++        <item
++            android:id="@+id/nav_training"
++            android:icon="@drawable/ic_training"
++            android:title="Training" />
++
++        <item
++            android:id="@+id/nav_profile"
++            android:icon="@drawable/ic_profile"
++            android:title="Profile" />
++
++    </menu>
++
