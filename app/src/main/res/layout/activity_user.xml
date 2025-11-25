@@ -9,7 +9,7 @@
         android:id="@+id/scrollUser"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#111111"
+        android:background="@color/background"
         android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav"
@@ -21,6 +21,7 @@
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
 
             <!-- PERFIL -->
             <LinearLayout
