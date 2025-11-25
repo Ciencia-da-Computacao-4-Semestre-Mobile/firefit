@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- SCROLLVIEW | para ANTES da bottomNav -->
     <ScrollView
         android:id="@+id/scrollHome"
         android:layout_width="0dp"
@@ -12,16 +13,16 @@
         android:background="@color/fire_background"
         android:padding="@dimen/padding_default"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <!-- ========== CABEÇALHO ========== -->
+            <!-- CABEÇALHO -->
             <TextView
                 android:id="@+id/tvWelcome"
                 android:layout_width="wrap_content"
@@ -40,20 +41,21 @@
                 android:textSize="26sp"
                 android:layout_marginBottom="20dp" />
 
-            <!-- ========== EVENTOS ========== -->
+            <!-- EVENTOS -->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Eventos"
                 android:textColor="@color/fire_text"
-                android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
+                android:orientation="horizontal">
 
                 <View
                     android:layout_width="0dp"
@@ -69,17 +71,16 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- Cards de eventos -->
             <HorizontalScrollView
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:overScrollMode="never">
 
                 <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content">
 
                     <!-- CARD 1 -->
                     <LinearLayout
@@ -147,23 +148,23 @@
 
             </HorizontalScrollView>
 
-            <!-- ========== TREINOS DA SEMANA ========== -->
+            <!-- TREINOS DA SEMANA -->
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/text3"
                 android:textColor="@color/fire_text"
                 android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp" />
+                android:textSize="20sp" />
 
             <LinearLayout
+                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/card_bg"
                 android:orientation="vertical"
-                android:padding="@dimen/card_padding"
-                android:layout_marginTop="8dp">
+                android:padding="@dimen/card_padding">
 
                 <ProgressBar
                     android:id="@+id/weekProgress"
@@ -175,41 +176,41 @@
                     android:progressDrawable="@drawable/progress_week" />
 
                 <TextView
+                    android:layout_marginTop="6dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text2"
                     android:textColor="@color/fire_primary"
-                    android:textStyle="bold"
-                    android:layout_marginTop="6dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text1"
                     android:textColor="@color/fire_gray"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
-            <!-- ========== METAS ========== -->
+            <!-- METAS -->
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/metas"
                 android:textColor="@color/fire_text"
                 android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp" />
+                android:textSize="20sp" />
 
             <!-- Meta 1 -->
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/card_bg"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="@dimen/card_padding"
-                android:layout_marginTop="10dp">
+                android:padding="@dimen/card_padding">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -217,22 +218,22 @@
                     android:src="@drawable/sleep_icon" />
 
                 <TextView
+                    android:layout_marginStart="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/durma_8h_para_melhorar_sua_recupera_o"
-                    android:textColor="@color/fire_text"
-                    android:layout_marginStart="12dp" />
+                    android:textColor="@color/fire_text" />
             </LinearLayout>
 
             <!-- Meta 2 -->
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/card_bg"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="@dimen/card_padding"
-                android:layout_marginTop="10dp">
+                android:padding="@dimen/card_padding">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -240,26 +241,28 @@
                     android:src="@drawable/water_icon" />
 
                 <TextView
+                    android:layout_marginStart="12dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/beba_2l_de_gua_por_dia"
-                    android:textColor="@color/fire_text"
-                    android:layout_marginStart="12dp" />
+                    android:textColor="@color/fire_text" />
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <!-- BOTTOM NAV FIXO -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="75dp"
         android:background="@color/fire_cardd"
-        app:itemIconTint="@color/nav_icon_inactive"
-        app:itemTextColor="@color/nav_icon_active"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:itemActiveIndicatorStyle="@style/NavActiveIndicatorStyle"
         app:menu="@menu/bottom_menu"
         app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
