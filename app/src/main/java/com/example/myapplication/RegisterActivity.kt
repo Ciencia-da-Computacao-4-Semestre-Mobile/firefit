@@ -19,6 +19,8 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var edtNascimento: EditText
     private lateinit var edtEmail: EditText
     private lateinit var edtSenha: EditText
+    private lateinit var edtConfirmarSenha: EditText      // 🔥 ADICIONADO
+
     private lateinit var btnRegistrar: Button
     private lateinit var btnEntrar: Button
     private lateinit var txtPossuiConta: TextView
@@ -27,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register) // Certifique-se de que este é o nome correto do seu XML
+        setContentView(R.layout.activity_register)
 
         auth = FirebaseAuth.getInstance()
 
@@ -36,6 +38,7 @@ class RegisterActivity : AppCompatActivity() {
         edtNascimento = findViewById(R.id.edtNascimento)
         edtEmail = findViewById(R.id.edtEmail)
         edtSenha = findViewById(R.id.edtSenha)
+        edtConfirmarSenha = findViewById(R.id.edtConfirmarSenha)   // 🔥 ADICIONADO
         btnRegistrar = findViewById(R.id.btnRegistrar)
         btnEntrar = findViewById(R.id.btnEntrar)
         txtPossuiConta = findViewById(R.id.txtPossuiConta)
@@ -96,9 +99,15 @@ class RegisterActivity : AppCompatActivity() {
         btnRegistrar.setOnClickListener {
             val email = edtEmail.text.toString().trim()
             val senha = edtSenha.text.toString().trim()
+            val confirmarSenha = edtConfirmarSenha.text.toString().trim() // 🔥 ADICIONADO
 
-            if (email.isEmpty() || senha.isEmpty()) {
+            if (email.isEmpty() || senha.isEmpty() || confirmarSenha.isEmpty()) {
                 Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (senha != confirmarSenha) {   // 🔥 VALIDAÇÃO ADICIONADA
+                Toast.makeText(this, "As senhas não correspondem!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

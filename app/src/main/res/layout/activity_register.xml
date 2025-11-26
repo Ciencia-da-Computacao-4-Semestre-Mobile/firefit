@@ -99,6 +99,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
+    <!-- INPUT CONFIRMAR SENHA -->
+    <EditText
+        android:id="@+id/edtConfirmarSenha"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="12dp"
+        android:hint="Confirmar Senha"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#AAAAAA"
+        android:background="@drawable/input_box"
+        app:layout_constraintTop_toBottomOf="@id/edtSenha"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <!-- BOTÃO REGISTRAR (BORDA LARANJA) -->
     <Button
         android:id="@+id/btnRegistrar"
@@ -113,7 +132,7 @@
         android:textColor="#FF4601"
         android:background="@drawable/btn_secondary"
         app:backgroundTint="@null"
-        app:layout_constraintTop_toBottomOf="@id/edtSenha"
+        app:layout_constraintTop_toBottomOf="@id/edtConfirmarSenha"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
