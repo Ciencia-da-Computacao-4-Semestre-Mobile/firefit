@@ -14,4 +14,19 @@
     <string name="todo">TODO</string>
     <string name="stop">STOP BIKE</string>
     <string name="text6">21:45 - 11 Dez.</string>
+
+    <string name="treinos">Treinos</string>
+    <string name="desc_voltar">Botão voltar</string>
+    <string name="desc_logo_treino">Ícone do treino</string>
+    <string name="desc_tempo">Tempo estimado do treino</string>
+
+    <string name="forca_total">Força Total</string>
+    <string name="treino_completo">Treino Completo</string>
+
+    <string name="tempo_45">45 minutos</string>
+    <string name="nivel_avancado">Nível: Avançado</string>
+
+    <string name="iniciar">INICIAR</string>
+    <string name="ver_mais">VER MAIS</string>
+
 </resources>
