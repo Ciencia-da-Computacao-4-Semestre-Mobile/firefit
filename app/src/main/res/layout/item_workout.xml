@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_marginBottom="20dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="6dp"
+    android:backgroundTint="#FF4A1E">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="18dp">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/logo"
+            android:layout_alignParentEnd="true"
+            android:tint="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cardio Matinal"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:text="TREINO DE RESISTÊNCIA"
+            android:textColor="#F5F5F5"
+            android:textSize="11sp"
+            android:layout_marginTop="2dp"/>
+
+        <ImageView
+            android:id="@+id/time"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_hourglass"
+            android:tint="#FFFFFF"
+            android:layout_below="@id/sub"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/nivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nível: Iniciante"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:layout_toEndOf="@id/time"
+            android:layout_alignBottom="@id/time"
+            android:layout_marginStart="8dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@id/time">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="CANCELAR"
+                android:textSize="11sp"
+                android:background="@drawable/btn_outline_workouts"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="VER MAIS"
+                android:textSize="11sp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_outline_workouts"/>
+        </LinearLayout>
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:max="100"
+            android:progress="70"
+            android:progressTint="#FFFFFF"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

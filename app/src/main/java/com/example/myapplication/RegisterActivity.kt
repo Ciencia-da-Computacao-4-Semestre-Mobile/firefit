@@ -67,6 +67,11 @@ class RegisterActivity : AppCompatActivity() {
                         .document(uid)
                         .set(dados)
                         .addOnSuccessListener {
+
+                            // 👉 Salvar o nome localmente
+                            val prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                            prefs.edit().putString("username", nome).apply()
+
                             Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
 
                             startActivity(Intent(this, HomeActivity::class.java))

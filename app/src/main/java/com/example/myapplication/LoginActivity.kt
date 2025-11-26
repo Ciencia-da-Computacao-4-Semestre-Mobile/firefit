@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth   // IMPORTANTE!!
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
@@ -33,7 +34,26 @@ class LoginActivity : AppCompatActivity() {
             // LOGIN FIREBASE
             auth.signInWithEmailAndPassword(email, senha)
                 .addOnSuccessListener {
+
                     Toast.makeText(this, "Login realizado!", Toast.LENGTH_SHORT).show()
+
+
+                    val uid = auth.currentUser!!.uid
+                    val db = FirebaseFirestore.getInstance()
+
+                    db.collection("usuarios").document(uid).get()
+                        .addOnSuccessListener { document ->
+                            if (document.exists()) {
+                                val nome = document.getString("nome") ?: "Usuario"
+
+                                val prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                                prefs.edit().putString("username", nome).apply()
+                            }
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Erro ao buscar nome do usuário", Toast.LENGTH_SHORT).show()
+                        }
+
 
                     val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)

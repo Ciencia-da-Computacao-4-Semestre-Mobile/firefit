@@ -23,18 +23,35 @@ class UserActivity : AppCompatActivity() {
             when (item.itemId) {
 
                 R.id.nav_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    overridePendingTransition(0, 0)
-                    finish()
-                    return@setOnItemSelectedListener true
+                    if (this !is HomeActivity) {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
+                }
+
+
+                R.id.nav_training -> {
+                    if (this !is WorkoutsActivity) {
+                        startActivity(Intent(this, WorkoutsActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
                 }
 
                 R.id.nav_user -> {
-                    // Já está na tela de usuário
-                    return@setOnItemSelectedListener true
+                    if (this !is UserActivity) {
+                        startActivity(Intent(this, UserActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
                 }
+
+                else -> false
             }
-            false
         }
 
         // 🔥 LOGOUT

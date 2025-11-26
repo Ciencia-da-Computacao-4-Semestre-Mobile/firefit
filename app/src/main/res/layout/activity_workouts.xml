@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <!-- SCROLLVIEW EXISTENTE -->
+        <ScrollView
+            android:id="@+id/scrollArea"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="90dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNav">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- TÍTULO + SETA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_back"
+                        android:tint="#FFFFFF"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Treinos"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginStart="14dp"/>
+                </LinearLayout>
+
+                <!-- ESPAÇAMENTO -->
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <!--- CARD 1: Força Total  -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="4dp"
+                    android:backgroundTint="#2A2A2D">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="18dp">
+
+                        <!-- Ícone chama -->
+                        <ImageView
+                            android:id="@+id/icon_fire1"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/logo"
+                            android:layout_alignParentEnd="true"
+                            android:tint="#80303030"/>
+
+                        <!-- Título -->
+                        <TextView
+                            android:id="@+id/title1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Força Total"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
+
+                        <!-- Tipo -->
+                        <TextView
+                            android:id="@+id/sub1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/title1"
+                            android:text="TREINO COMPLETO"
+                            android:textColor="#BDBDBD"
+                            android:textSize="11sp"
+                            android:layout_marginTop="2dp"/>
+
+                        <!-- Ícone tempo -->
+                        <ImageView
+                            android:id="@+id/time1"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/ic_hourglass"
+                            android:tint="#BDBDBD"
+                            android:layout_below="@id/sub1"
+                            android:layout_marginTop="10dp"/>
+
+                        <!-- Nível -->
+                        <TextView
+                            android:id="@+id/nivel1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nível: Avançado"
+                            android:textColor="#C8C8C8"
+                            android:textSize="12sp"
+                            android:layout_toEndOf="@id/time1"
+                            android:layout_alignBottom="@id/time1"
+                            android:layout_marginStart="8dp"/>
+
+                        <!-- Botões -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignBottom="@id/time1">
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:text="INICIAR"
+                                android:textSize="11sp"
+                                android:background="@drawable/btn_outline_workouts"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:text="VER MAIS"
+                                android:textSize="11sp"
+                                android:layout_marginStart="8dp"
+                                android:background="@drawable/btn_outline_workouts"/>
+                        </LinearLayout>
+
+                        <!-- Barra de progresso -->
+                        <ProgressBar
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:max="100"
+                            android:progress="100"
+                            android:progressTint="#FFFFFF"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"/>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- - OS PRÓXIMOS CARDS - -->
+                <include
+                    layout="@layout/item_workout"
+                    android:id="@+id/card2"/>
+
+                <include
+                    layout="@layout/item_workout"
+                    android:id="@+id/card3"/>
+
+                <include
+                    layout="@layout/item_workout"
+                    android:id="@+id/card4"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!-- 📌 BOTTOM NAV GERAL (ADICIONADO AQUI) -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@color/fire_cardd"
+            app:itemIconTint="@color/nav_item_color"
+            app:itemTextColor="@color/nav_item_color"
+            app:itemActiveIndicatorStyle="@style/NavActiveIndicatorStyle"
+            app:menu="@menu/bottom_menu"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

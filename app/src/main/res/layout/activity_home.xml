@@ -2,16 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <!-- SCROLLVIEW | para ANTES da bottomNav -->
+    <!-- SCROLL PRINCIPAL -->
     <ScrollView
         android:id="@+id/scrollHome"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        android:background="@color/background"
-        android:padding="@dimen/padding_default"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,47 +19,68 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
+            android:padding="20dp"
             android:layout_height="wrap_content">
 
-            <!-- CABEÇALHO -->
-            <TextView
-                android:id="@+id/tvWelcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bem vindo,"
-                android:textColor="@color/fire_gray"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvUserName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pedro!"
-                android:textColor="@color/fire_primary"
-                android:textStyle="bold"
-                android:textSize="26sp"
-                android:layout_marginBottom="20dp" />
-
-            <!-- EVENTOS -->
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Eventos"
-                android:textColor="@color/fire_text"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
+            <!-- TÍTULO -->
             <LinearLayout
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"/>
+
+                <!-- Logo -->
+                <ImageView
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:src="@drawable/logo" />
+
+                <!-- Container vertical para os textos -->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp">
+
+                    <TextView
+                        android:text="Bem vindo,"
+                        android:textColor="@color/fire_gray"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pedro!"
+                        android:textColor="@color/fire_primary"
+                        android:textStyle="bold"
+                        android:textSize="28sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <!-- TÍTULO EVENTOS -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvEventosTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eventos"
+                    android:textColor="@color/fire_text"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvSeeAllEvents"
@@ -68,9 +88,12 @@
                     android:layout_height="wrap_content"
                     android:text="Ver Todos"
                     android:textColor="@color/fire_primary"
-                    android:textSize="14sp" />
-            </LinearLayout>
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tvEventosTitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- CARDS DE EVENTOS -->
             <HorizontalScrollView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
@@ -82,177 +105,189 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
-                    <!-- CARD 1 -->
+                    <!-- EVENTO 1 -->
                     <LinearLayout
-                        android:layout_width="167dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="12dp"
-                        android:background="@drawable/card_bg"
+                        android:layout_width="180dp"
+                        android:layout_height="195dp"
                         android:orientation="vertical"
-                        android:padding="@dimen/card_padding">
+                        android:background="@drawable/card_bg"
+                        android:layout_marginEnd="12dp">
 
                         <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="100dp"
+                            android:layout_height="120dp"
+                            android:background="@drawable/rounded_image_home"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/event1" />
+                            android:clipToOutline="true"
+                            android:src="@drawable/event1"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text6"
+                            android:text="21:45 | 11 DEZ."
                             android:textColor="@color/fire_gray"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:text="STOP BIKE"
+                            android:textStyle="bold"
+                            android:textColor="@color/fire_text"
+                            android:textSize="15sp"
+                            android:layout_marginLeft="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/stop"
-                            android:textColor="@color/fire_text"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="8dp"/>
 
                     </LinearLayout>
 
-                    <!-- CARD 2 -->
+                    <!-- EVENTO 2 -->
                     <LinearLayout
-                        android:layout_width="178dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/card_bg"
+                        android:layout_width="180dp"
+                        android:layout_height="195dp"
                         android:orientation="vertical"
-                        android:padding="@dimen/card_padding">
+                        android:background="@drawable/card_bg">
 
                         <ImageView
-                            android:layout_width="164dp"
-                            android:layout_height="100dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:background="@drawable/rounded_image_home"
                             android:scaleType="centerCrop"
+                            android:clipToOutline="true"
                             android:src="@drawable/event2" />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/text5"
+                            android:text="22:00 | 14 DEZ."
                             android:textColor="@color/fire_gray"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:text="FIT DANCE"
+                            android:textStyle="bold"
+                            android:textColor="@color/fire_text"
+                            android:textSize="15sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/text4"
-                            android:textColor="@color/fire_text"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="6dp"/>
                     </LinearLayout>
 
                 </LinearLayout>
-
             </HorizontalScrollView>
 
             <!-- TREINOS DA SEMANA -->
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/text3"
+                android:layout_marginTop="22dp"
+                android:text="Treinos da Semana"
                 android:textColor="@color/fire_text"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:background="@drawable/card_bg"
                 android:orientation="vertical"
-                android:padding="@dimen/card_padding">
+                android:padding="14dp">
 
                 <ProgressBar
                     android:id="@+id/weekProgress"
                     style="@android:style/Widget.ProgressBar.Horizontal"
-                    android:layout_width="290dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
                     android:max="100"
                     android:progress="70"
                     android:progressDrawable="@drawable/progress_week" />
 
                 <TextView
-                    android:layout_marginTop="6dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text2"
+                    android:layout_marginTop="10dp"
+                    android:text="5/7 Dias"
                     android:textColor="@color/fire_primary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text1"
+                    android:text="Parabéns, você está quase lá!"
                     android:textColor="@color/fire_gray"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
             <!-- METAS -->
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/metas"
+                android:layout_marginTop="22dp"
+                android:text="Metas"
                 android:textColor="@color/fire_text"
                 android:textStyle="bold"
-                android:textSize="20sp" />
-
-            <!-- Meta 1 -->
-            <LinearLayout
-                android:layout_marginTop="10dp"
+                android:textSize="20sp"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content" />
+
+            <!-- META 1 -->
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
                 android:background="@drawable/card_bg"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="@dimen/card_padding">
+                android:orientation="horizontal"
+                android:padding="16dp">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/sleep_icon" />
 
                 <TextView
-                    android:layout_marginStart="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/durma_8h_para_melhorar_sua_recupera_o"
-                    android:textColor="@color/fire_text" />
+                    android:layout_marginStart="14dp"
+                    android:text="Durma 8h para melhorar sua recuperação"
+                    android:textColor="@color/fire_text"
+                    android:textSize="14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"/>
             </LinearLayout>
 
-            <!-- Meta 2 -->
+            <!-- META 2 -->
             <LinearLayout
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:background="@drawable/card_bg"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:padding="@dimen/card_padding">
+                android:orientation="horizontal"
+                android:padding="16dp">
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@drawable/water_icon" />
 
                 <TextView
-                    android:layout_marginStart="12dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/beba_2l_de_gua_por_dia"
-                    android:textColor="@color/fire_text" />
+                    android:layout_marginStart="14dp"
+                    android:text="Beba 2L de água por dia"
+                    android:textColor="@color/fire_text"
+                    android:textSize="14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"/>
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
 
-    <!-- BOTTOM NAV FIXO -->
+    <!-- BOTTOM NAV -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
