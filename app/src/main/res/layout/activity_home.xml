@@ -195,33 +195,52 @@
                 android:layout_height="110dp"
                 android:background="@drawable/card_bg"
                 android:orientation="vertical"
-                android:padding="14dp">
+                android:padding="14dp"
+                android:clipToPadding="false"
+                android:clipChildren="false">
 
-                <ProgressBar
-                    android:id="@+id/weekProgress"
-                    style="@android:style/Widget.ProgressBar.Horizontal"
+                <!-- 🔥 AGORA COM FRAME PARA PERMITIR SOBREPOR O FOGO -->
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="16dp"
-                    android:max="100"
-                    android:progress="70"
-                    android:progressDrawable="@drawable/progress_week" />
+                    android:layout_height="35dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressWeek"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:max="7"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/progress_week" />
+
+                    <!-- 🔥 FOGO POR CIMA DA BARRA -->
+                    <ImageView
+                        android:id="@+id/imgFire"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/logo"
+                        android:layout_marginTop="-10dp"
+                        android:elevation="20dp" />
+
+                </FrameLayout>
 
                 <TextView
-                    android:layout_marginTop="10dp"
-                    android:text="5/7 Dias"
-                    android:textColor="@color/fire_primary"
-                    android:textStyle="bold"
+                    android:id="@+id/txtDays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/7 dias"
                     android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textColor="@color/orange"
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:text="Parabéns, você está quase lá!"
-                    android:textColor="@color/fire_gray"
-                    android:textSize="12sp"
+                    android:id="@+id/txtMotivation"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
+                    android:layout_height="wrap_content"
+                    android:text="Frase motivacional aqui"
+                    android:textSize="12sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
 
             <!-- METAS -->
@@ -252,10 +271,10 @@
                 <TextView
                     android:layout_marginStart="14dp"
                     android:text="Durma 8h para melhorar sua recuperação"
-                    android:textColor="@color/fire_text"
+                    android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
             <!-- META 2 -->
@@ -278,8 +297,8 @@
                     android:text="Beba 2L de água por dia"
                     android:textColor="@color/fire_text"
                     android:textSize="14sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </LinearLayout>

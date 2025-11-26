@@ -1,20 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Fundo da barra -->
+    <!-- FUNDO CINZA -->
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
-            <solid android:color="#33FFFFFF"/> <!-- branco suave translúcido -->
-            <corners android:radius="50dp" />
+            <corners android:radius="10dp"/>
+            <solid android:color="#CCCCCC"/> <!-- sua cor cinza -->
         </shape>
     </item>
 
-    <!-- Progresso -->
+    <!-- BARRA LARANJA -->
     <item android:id="@android:id/progress">
-        <shape android:shape="rectangle">
-            <solid android:color="@color/light_gray2" />
-            <corners android:radius="50dp" />
-        </shape>
+        <clip>
+            <shape android:shape="rectangle">
+                <corners android:radius="10dp"/>
+                <solid android:color="@color/fire_primary"/> <!-- sua cor laranja -->
+            </shape>
+        </clip>
     </item>
+
+
 
 </layer-list>
+
