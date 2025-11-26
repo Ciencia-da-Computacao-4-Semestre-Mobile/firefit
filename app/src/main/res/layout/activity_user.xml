@@ -51,7 +51,6 @@
                         android:id="@+id/txtUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Pedro da Silva Xavier"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -72,7 +71,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="60dp" />
 
             <TextView
                 android:text="Minha Conta"
@@ -94,7 +93,8 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:backgroundTint="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -126,7 +126,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -158,7 +159,8 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginTop="6dp">
+                android:layout_marginTop="6dp"
+                android:backgroundTint="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -190,12 +192,13 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:layout_marginBottom="12dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:src="@drawable/ic_calendar1" />
+                    android:src="@drawable/ic_calendar" />
 
                 <TextView
                     android:text="Meus Eventos"

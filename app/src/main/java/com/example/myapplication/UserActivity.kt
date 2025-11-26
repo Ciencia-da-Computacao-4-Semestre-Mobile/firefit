@@ -9,14 +9,34 @@ import com.google.firebase.auth.FirebaseAuth
 
 class UserActivity : AppCompatActivity() {
 
+    private lateinit var txtUserName: TextView
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
+        // Firebase
+        auth = FirebaseAuth.getInstance()
+
+        // TextView do nome
+        txtUserName = findViewById(R.id.txtUserName)
+
+        // Pega usuário logado
+        val user = auth.currentUser
+        val nome = user?.displayName
+
+        // Exibe o nome
+        if (!nome.isNullOrEmpty()) {
+            txtUserName.text = nome
+        } else {
+            txtUserName.text = "Usuário"
+        }
+
+        // --- Bottom Nav ---
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         val btnLogout = findViewById<TextView>(R.id.txtDesconectar)
 
-        // Deixar o item usuário selecionado ao abrir
         bottomNav.selectedItemId = R.id.nav_user
 
         bottomNav.setOnItemSelectedListener { item ->
@@ -30,7 +50,6 @@ class UserActivity : AppCompatActivity() {
                     }
                     true
                 }
-
 
                 R.id.nav_training -> {
                     if (this !is WorkoutsActivity) {
@@ -54,7 +73,7 @@ class UserActivity : AppCompatActivity() {
             }
         }
 
-        // 🔥 LOGOUT
+        // --- Logout ---
         btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
 

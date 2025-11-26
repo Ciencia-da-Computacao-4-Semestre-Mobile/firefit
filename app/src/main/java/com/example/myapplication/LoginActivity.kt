@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.example.myapplication.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth   // IMPORTANTE!!
 import com.google.firebase.firestore.FirebaseFirestore
+import com.example.myapplication.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 

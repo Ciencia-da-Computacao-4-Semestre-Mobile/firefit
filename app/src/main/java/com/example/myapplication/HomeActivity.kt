@@ -2,12 +2,17 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var tvUserName: TextView
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +23,23 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_home)
 
+        // 🔥 Firebase Auth
+        auth = FirebaseAuth.getInstance()
+
+        // 🔥 TextView onde mostrará o nome (ALTERE o id se no seu XML for outro)
+        tvUserName = findViewById(R.id.tvUserName)
+
+        // 🔥 Recupera o nome salvo no Firebase Auth
+        val user = auth.currentUser
+        val nome = user?.displayName
+
+        if (!nome.isNullOrEmpty()) {
+            tvUserName.text = "$nome!"
+        } else {
+            tvUserName.text = ""
+        }
+
+        // 🔥 Navegação inferior
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
 
         // Seleciona o item atual da tela
@@ -35,7 +57,6 @@ class HomeActivity : AppCompatActivity() {
                     }
                     true
                 }
-
 
                 R.id.nav_training -> {
                     if (this !is WorkoutsActivity) {

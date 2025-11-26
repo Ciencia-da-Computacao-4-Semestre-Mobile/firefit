@@ -56,7 +56,6 @@
                         android:id="@+id/tvUserName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pedro!"
                         android:textColor="@color/fire_primary"
                         android:textStyle="bold"
                         android:textSize="28sp"/>
