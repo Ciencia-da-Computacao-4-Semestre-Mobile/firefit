@@ -87,8 +87,25 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.nav_events -> {
+                    if (this !is EventsActivity) {
+                        startActivity(Intent(this, EventsActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
+                }
+
                 else -> false
             }
+        }
+
+        val tvSeeAllEvents: TextView = findViewById(R.id.tvSeeAllEvents)
+
+        tvSeeAllEvents.setOnClickListener {
+            // Abre a tela de Events
+            val intent = Intent(this, EventsActivity::class.java)
+            startActivity(intent)
         }
     }
 

@@ -19,5 +19,6 @@
     <color name="fire_cardd">#1A1A1A</color>
     <color name="nav_icon_active">#FF5A1F</color>
     <color name="nav_icon_inactive">#777777</color>
+    <color name="Green">#4CAF50</color>
 
 </resources>
