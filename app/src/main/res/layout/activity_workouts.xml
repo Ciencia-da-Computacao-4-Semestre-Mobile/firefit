@@ -316,6 +316,7 @@
                             android:layout_weight="1"/>
 
                         <Button
+                            android:id="@+id/btnIniciarCardio"
                             android:layout_width="wrap_content"
                             android:layout_height="48dp"
                             android:paddingHorizontal="14dp"

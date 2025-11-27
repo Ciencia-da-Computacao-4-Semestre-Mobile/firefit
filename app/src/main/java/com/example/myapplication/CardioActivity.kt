@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -9,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class CardioActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // coloque o nome do xml que você usa (o que você me enviou). Ex: R.layout.activity_cardio
@@ -43,5 +43,6 @@ class CardioActivity : AppCompatActivity() {
         btnVoltar.setOnClickListener {
             finish()
         }
+
     }
 }

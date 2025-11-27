@@ -4,8 +4,6 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ProgressBar
@@ -16,8 +14,6 @@ import androidx.core.view.WindowCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WorkoutsActivity : AppCompatActivity() {
-
-
 
     private lateinit var card1: FrameLayout
     private lateinit var card2: FrameLayout
@@ -62,7 +58,7 @@ class WorkoutsActivity : AppCompatActivity() {
             }
         }
 
-        // Cards (precisam existir no XML)
+        // Cards
         card1 = findViewById(R.id.card1)
         card2 = findViewById(R.id.card2)
         card3 = findViewById(R.id.card3)
@@ -75,16 +71,22 @@ class WorkoutsActivity : AppCompatActivity() {
         animateCard(card2)
         animateCard(card3)
 
-        // ✅ PROGRESSO (ID CORRIGIDO)
+        // Progresso
         progress1 = findViewById(R.id.progresso)
 
         prefs = getSharedPreferences("progresso", MODE_PRIVATE)
         val savedValue = prefs.getInt("card1_progress", 70)
         animateProgress(progress1, savedValue)
 
-        // Botão iniciar treino
+        // Botão iniciar treino diário
         findViewById<Button>(R.id.btnStartDaily).setOnClickListener {
             startActivity(Intent(this, TimerActivity::class.java))
+        }
+
+        // ✅ Botão iniciar cardio → abre CardioActivity + layout activity_cardio
+        findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
+            val intent = Intent(this, CardioActivity::class.java)
+            startActivity(intent)
         }
 
     }
@@ -92,7 +94,6 @@ class WorkoutsActivity : AppCompatActivity() {
     private fun openDetails(title: String) {
         // TODO: criar tela de detalhes futuramente
     }
-
 
     private fun animateCard(card: FrameLayout) {
         card.alpha = 0f

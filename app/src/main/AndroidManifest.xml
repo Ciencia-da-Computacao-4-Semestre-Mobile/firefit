@@ -40,7 +40,6 @@
         <activity
             android:name=".ExerciseActivity"
             android:exported="false" />
-<<<<<<< HEAD
 
         <activity android:name=".CardioIntensityActivity" />
         <activity android:name=".CardioDurationActivity" />
@@ -51,9 +50,6 @@
         <activity android:name=".TelaBicicletaActivity"/>
         <activity android:name=".TelaCaminhadaActivity"/>
 
-
-=======
->>>>>>> 3807cfa4c2f95ca0f118e027761bcf04547ba638
     </application>
 
 </manifest>
