@@ -42,7 +42,7 @@ android {
 
 dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
 
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.google.firebase:firebase-database-ktx")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

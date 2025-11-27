@@ -60,7 +60,7 @@
                         android:id="@+id/txtAlterarImc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ALTERAR IMC  >"
+                        android:text="ALTERAR FOTO"
                         android:textSize="12sp"
                         android:textStyle="bold"
                         android:textColor="#FF6A00"
@@ -85,6 +85,7 @@
             <!-- ================== ITENS ================== -->
 
             <LinearLayout
+                android:id="@+id/cardPersonalData"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="10dp"
@@ -117,40 +118,9 @@
                     app:tint="#FFFFFF" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:background="#151515"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:layout_marginBottom="12dp"
-                android:layout_marginTop="5dp"
-                android:backgroundTint="@color/background2">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:src="@drawable/ic_plan" />
-
-                <TextView
-                    android:text="Planos"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="12dp" />
-
-                <ImageView
-                    android:src="@drawable/ic_arrow_right"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    app:tint="#FFFFFF" />
-            </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cardWorkouts"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:gravity="center_vertical"
@@ -184,6 +154,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/cardEvents"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:gravity="center_vertical"

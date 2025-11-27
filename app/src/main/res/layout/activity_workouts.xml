@@ -243,9 +243,23 @@
                             android:id="@+id/title2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+<<<<<<< HEAD
                             android:text="Cardio Matinal"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp"
+=======
+                            android:layout_weight="1"/>
+
+                        <Button
+                            android:id="@+id/btnIniciarCardio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:paddingHorizontal="14dp"
+                            android:backgroundTint="#FFFFFF"
+                            android:textColor="#FF4F2E"
+                            android:text="@string/iniciar"
+                            android:textSize="12sp"
+>>>>>>> 8eb847665e01dca3b1541b8f6d2619c16a340bd4
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/icon_fire2"
