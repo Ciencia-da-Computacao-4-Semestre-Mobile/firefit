@@ -11,14 +11,15 @@
         android:layout_width="250dp"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@drawable/event_placeholder"
+        android:background="@drawable/rounded_left"
         android:clipToOutline="true"
         android:src="@drawable/event_placeholder" />
 
     <!-- ESPAÇO -->
     <Space
         android:layout_width="12dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
     <!-- COLUNA DE INFORMAÇÕES À DIREITA -->
     <LinearLayout
@@ -26,18 +27,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_weight="1"
-        android:gravity="end"
         android:padding="6dp">
-
-        <!-- Data -->
-        <TextView
-            android:id="@+id/tvDateTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="02/12 | 20:35"
-            android:textColor="@color/fire_gray"
-            android:textSize="12sp"
-            android:layout_marginTop="6dp"/>
 
         <!-- Título -->
         <TextView
@@ -47,8 +37,8 @@
             android:text="Yoga"
             android:textStyle="bold"
             android:textColor="@color/fire_text"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"/>
+            android:textSize="26sp"
+            android:layout_marginTop="30dp"/>
 
         <!-- Instrutor -->
         <TextView
@@ -56,22 +46,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pedro Marcal"
+            android:textStyle="bold"
+            android:textColor="@color/fire_gray"
+            android:textSize="15sp"
+            android:layout_marginTop="3dp"/>
+
+        <!-- Data -->
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data: 02/12"
             android:textColor="@color/fire_gray"
             android:textSize="12sp"
-            android:layout_marginTop="3dp"/>
+            android:layout_marginTop="6dp"/>
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horário: 20:35"
+            android:textColor="@color/fire_gray"
+            android:textSize="12sp"
+            android:layout_marginTop="6dp"/>
+
 
         <!-- STATUS -->
         <TextView
             android:id="@+id/tvStatus"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="DISPONÍVEL"
-            android:textColor="@color/green"
-            android:background="@drawable/status_available_bg"
+            android:textColor="@color/Green"
+            android:background="@drawable/bg_status_confirmado"
             android:textSize="12sp"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
-            android:layout_marginTop="12dp"/>
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 
 </LinearLayout>
