@@ -49,10 +49,11 @@
 
 
             <LinearLayout
-                android:padding="16dp"
+                android:padding="23dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
 
                 <ImageView
                     android:id="@+id/imgProfessor"
@@ -100,7 +101,9 @@
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
         <!-- INFO CARD -->
         <androidx.cardview.widget.CardView
             android:layout_marginTop="18dp"
@@ -296,6 +299,13 @@
         <View android:layout_height="28dp" android:layout_width="match_parent"/>
 
         <!-- BOTÃO AGENDAR -->
+
+        <!-- BOTÃO EVENTOS SALVOS (outline) -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="63dp" />
+
         <Button
             android:id="@+id/btnAgendar"
             android:layout_width="match_parent"
@@ -307,22 +317,19 @@
             android:textSize="16sp"
             android:textStyle="bold" />
 
-        <!-- BOTÃO EVENTOS SALVOS (outline) -->
         <Button
             android:id="@+id/btnEventosSalvos"
-            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/btn_outline"
             android:text="EVENTOS SALVOS"
             android:textAllCaps="true"
             android:textColor="#FF7C32"
             android:textSize="14sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <!-- Espaço para bottom bar -->
-        <View android:layout_height="80dp" android:layout_width="match_parent"/>
 
     </LinearLayout>
 </ScrollView>
