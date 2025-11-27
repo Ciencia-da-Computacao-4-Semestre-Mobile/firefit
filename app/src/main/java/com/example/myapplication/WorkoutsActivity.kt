@@ -1,14 +1,13 @@
 package com.example.myapplication
 
+import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-<<<<<<< HEAD
-=======
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ProgressBar
 import android.widget.ScrollView
->>>>>>> 8eb847665e01dca3b1541b8f6d2619c16a340bd4
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -16,8 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WorkoutsActivity : AppCompatActivity() {
 
-<<<<<<< HEAD
-=======
     private lateinit var card1: FrameLayout
     private lateinit var card2: FrameLayout
     private lateinit var card3: FrameLayout
@@ -25,7 +22,6 @@ class WorkoutsActivity : AppCompatActivity() {
     private lateinit var scrollView: ScrollView
     private lateinit var prefs: SharedPreferences
 
->>>>>>> 8eb847665e01dca3b1541b8f6d2619c16a340bd4
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -74,8 +70,6 @@ class WorkoutsActivity : AppCompatActivity() {
             }
         }
 
-<<<<<<< HEAD
-=======
         // Cards
         card1 = findViewById(R.id.card1)
         card2 = findViewById(R.id.card2)
@@ -127,7 +121,6 @@ class WorkoutsActivity : AppCompatActivity() {
         val anim = ObjectAnimator.ofInt(bar, "progress", 0, value)
         anim.duration = 800
         anim.start()
->>>>>>> 8eb847665e01dca3b1541b8f6d2619c16a340bd4
     }
 }
 
