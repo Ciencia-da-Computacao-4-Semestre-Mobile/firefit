@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -11,11 +10,11 @@
         android:id="@+id/scrollArea"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="90dp"
+        android:paddingBottom="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -49,158 +48,639 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <!-- CARD 1 -->
-            <androidx.cardview.widget.CardView
+            <!-- ======================================================= -->
+            <!-- ===================== CARD 1 ========================== -->
+            <!-- ======================================================= -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginBottom="22dp"
-                android:backgroundTint="#1E1E1F"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="7dp">
+                android:layout_marginBottom="22dp">
 
-                <RelativeLayout
+                <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="22dp">
+                    android:layout_margin="6dp"
+                    android:background="#33FF4F2E"
+                    android:elevation="2dp" />
 
-                    <!-- Ícone grande -->
-                    <ImageView
-                        android:id="@+id/icon_fire1"
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
-                        android:layout_alignParentEnd="true"
-                        android:alpha="0.9"
-                        android:src="@drawable/logo"
-                        app:tint="#FF4F2E"
-                        android:contentDescription="@string/desc_logo_treino" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#1E1E1F"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="7dp">
 
-                    <!-- Título -->
-                    <TextView
-                        android:id="@+id/title1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/forca_total"
-                        android:textColor="#FFFFFF"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-                    <!-- Sub-título -->
-                    <TextView
-                        android:id="@+id/sub1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/title1"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/treino_completo"
-                        android:textColor="#B6B6B6"
-                        android:textSize="12sp" />
-
-                    <!-- Ampulheta + minutos -->
-                    <LinearLayout
-                        android:id="@+id/timeContainer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_below="@id/sub1"
-                        android:layout_marginTop="12dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="22dp">
 
                         <ImageView
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
-                            android:src="@drawable/ic_hourglass"
-                            app:tint="#FFFFFF"
-                            android:layout_marginEnd="8dp"
-                            android:contentDescription="@string/desc_tempo" />
+                            android:id="@+id/icon_fire1"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:alpha="0.9"
+                            android:src="@drawable/logo"
+                            app:tint="#FF4F2E"
+                            android:contentDescription="@string/desc_logo_treino"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/tempo_45"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <!-- Container horizontal para Nível + Botões -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical"
-                        android:layout_below="@id/timeContainer"
-                        android:layout_marginTop="12dp">
-
-                        <!-- Nível -->
-                        <TextView
-                            android:id="@+id/nivel1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/nivel_avancado"
-                            android:textColor="#CFCFCF"
-                            android:textSize="12sp"
-                            android:textStyle="bold"/>
-
-                        <!-- Space para empurrar os botões para a direita -->
-                        <Space
+                            android:id="@+id/title1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"/>
+                            android:text="@string/forca_total"
+                            android:textColor="#FFFFFF"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/icon_fire1"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-                        <!-- Botões -->
+                        <TextView
+                            android:id="@+id/sub1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/treino_completo"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toBottomOf="@id/title1"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
                         <LinearLayout
-                            android:id="@+id/btnGroup1"
+                            android:id="@+id/timeContainer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:gravity="center">
+                            android:gravity="center_vertical"
+                            app:layout_constraintTop_toBottomOf="@id/sub1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="12dp">
+
+                            <ImageView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:src="@drawable/ic_hourglass"
+                                app:tint="#80FFFFFF"
+                                android:layout_marginEnd="8dp"
+                                android:contentDescription="@string/desc_tempo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tempo_45"
+                                android:textColor="#80FFFFFF"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp"
+                            style="?android:attr/buttonBarStyle"
+                            app:layout_constraintTop_toBottomOf="@id/timeContainer">
+
+                            <TextView
+                                android:id="@+id/nivel1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nivel_avancado"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold"/>
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
 
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:paddingHorizontal="14dp"
-                                android:background="@drawable/btn_outline_workouts"
+                                android:backgroundTint="#FF4F2E"
+                                android:textColor="#FFFFFF"
                                 android:text="@string/iniciar"
                                 android:textSize="12sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
 
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:paddingHorizontal="14dp"
                                 android:layout_marginStart="10dp"
-                                android:background="@drawable/btn_outline_workouts"
+                                android:backgroundTint="#FF4F2E"
+                                android:textColor="#FFFFFF"
                                 android:text="@string/ver_mais"
                                 android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/progresso"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="14dp"
+                            android:progress="70"
+                            android:max="100"
+                            android:progressTint="#FF4F2E"
+                            android:backgroundTint="#3A3A3C"
+                            android:scaleY="1.4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
+
+            <!-- ======================================================= -->
+            <!-- ===================== CARD 2 ========================== -->
+            <!-- ======================================================= -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginBottom="22dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:background="#33FFA54F"
+                    android:elevation="2dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#FF4F2E"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="7dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="22dp">
+
+                        <ImageView
+                            android:id="@+id/icon_fire2"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:alpha="0.9"
+                            android:src="@drawable/logo"
+                            app:tint="#FFFFFF"
+                            android:contentDescription="@string/desc_logo_treino"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/title2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Cardio Matinal"
+                            android:textColor="#FFFFFF"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/icon_fire2"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/sub2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/treino_resistencia"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toBottomOf="@id/title2"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:id="@+id/timeContainer2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            app:layout_constraintTop_toBottomOf="@id/sub2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginTop="12dp">
+
+                            <ImageView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:src="@drawable/ic_hourglass"
+                                app:tint="#FFFFFF"
+                                android:layout_marginEnd="8dp"
+                                android:contentDescription="@string/desc_tempo"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30 minutos"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
-                    </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/btnBar2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp"
+                            style="?android:attr/buttonBarStyle"
+                            app:layout_constraintTop_toBottomOf="@id/timeContainer2">
 
-                    <!-- Barra de progresso -->
-                    <ProgressBar
-                        android:id="@+id/progresso"
-                        style="?android:attr/progressBarStyleHorizontal"
+                            <TextView
+                                android:id="@+id/nivel2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/nivel_avancado"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold"/>
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingHorizontal="14dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:textColor="#FF4F2E"
+                                android:text="@string/iniciar"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingHorizontal="14dp"
+                                android:layout_marginStart="10dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:textColor="#FF4F2E"
+                                android:text="@string/ver_mais"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/progresso2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="14dp"
+                            android:progress="0"
+                            android:max="100"
+                            android:progressTint="#FFFFFF"
+                            android:backgroundTint="#D9531E"
+                            android:scaleY="1.4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
+
+
+            <!-- ======================================================= -->
+            <!-- ===================== CARD 3 ========================== -->
+            <!-- ======================================================= -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginBottom="22dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:background="#33FFA54F"
+                    android:elevation="2dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#FF4F2E"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="7dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="14dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="0.5dp"
-                        android:progress="70"
-                        android:max="100"
-                        android:progressTint="#FF4F2E"
-                        android:backgroundTint="#3A3A3C"
-                        android:scaleY="1.4"
-                        android:clipToPadding="false"
-                        android:padding="2dp" />
+                        android:layout_height="match_parent"
+                        android:padding="22dp">
 
-                </RelativeLayout>
+                        <ImageView
+                            android:id="@+id/icon_fire3"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:alpha="0.9"
+                            android:src="@drawable/logo"
+                            app:tint="#FFFFFF"
+                            android:contentDescription="@string/desc_logo_treino"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
 
-            </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/title3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Alongamento"
+                            android:textColor="#FFFFFF"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/icon_fire3"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/sub3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/flexibilidade_yoga"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toBottomOf="@id/title3"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:id="@+id/timeContainer3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp"
+                            app:layout_constraintTop_toBottomOf="@id/sub3"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <ImageView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:src="@drawable/ic_hourglass"
+                                app:tint="#FFFFFF"
+                                android:layout_marginEnd="8dp"
+                                android:contentDescription="@string/desc_tempo"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="20 minutos"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBar3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp"
+                            style="?android:attr/buttonBarStyle"
+                            app:layout_constraintTop_toBottomOf="@id/timeContainer3">
+
+                            <TextView
+                                android:id="@+id/nivel3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nível fácil"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold"/>
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingHorizontal="14dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:textColor="#FF4F2E"
+                                android:text="@string/iniciar"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingHorizontal="14dp"
+                                android:layout_marginStart="10dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:textColor="#FF4F2E"
+                                android:text="@string/ver_mais"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/progresso3"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="14dp"
+                            android:progress="0"
+                            android:max="100"
+                            android:progressTint="#FFFFFF"
+                            android:backgroundTint="#D9531E"
+                            android:scaleY="1.4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
+
+            <!-- ======================================================= -->
+            <!-- ===================== CARD 4 ========================== -->
+            <!-- ======================================================= -->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginBottom="22dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="6dp"
+                    android:background="#33FFA54F"
+                    android:elevation="2dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#FF4F2E"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="7dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="22dp">
+
+                        <ImageView
+                            android:id="@+id/icon_fire4"
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            android:alpha="0.9"
+                            android:src="@drawable/logo"
+                            app:tint="#FFFFFF"
+                            android:contentDescription="@string/desc_logo_treino"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/title4"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="HIIT"
+                            android:textColor="#FFFFFF"
+                            android:textSize="26sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/icon_fire4"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/sub4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Treino com intervalo"
+                            android:textColor="#FFFFFF"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toBottomOf="@id/title4"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <LinearLayout
+                            android:id="@+id/timeContainer4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp"
+                            app:layout_constraintTop_toBottomOf="@id/sub4"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <ImageView
+                                android:layout_width="26dp"
+                                android:layout_height="26dp"
+                                android:src="@drawable/ic_hourglass"
+                                app:tint="#FFFFFF"
+                                android:layout_marginEnd="8dp"
+                                android:contentDescription="@string/desc_tempo"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="15 minutos"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBar4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="12dp"
+                            style="?android:attr/buttonBarStyle"
+                            app:layout_constraintTop_toBottomOf="@id/timeContainer4">
+
+                            <TextView
+                                android:id="@+id/nivel4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nível iniciante"
+                                android:textColor="#FFFFFF"
+                                android:textSize="15sp"
+                                android:textStyle="bold"/>
+
+                            <Space
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"/>
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingHorizontal="14dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:textColor="#FF4F2E"
+                                android:text="@string/iniciar"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="48dp"
+                                android:paddingHorizontal="14dp"
+                                android:layout_marginStart="10dp"
+                                android:backgroundTint="#FFFFFF"
+                                android:textColor="#FF4F2E"
+                                android:text="@string/ver_mais"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                style="?android:attr/buttonBarButtonStyle" />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/progresso4"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="14dp"
+                            android:progress="0"
+                            android:max="100"
+                            android:progressTint="#FFFFFF"
+                            android:backgroundTint="#D9531E"
+                            android:scaleY="1.4"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
+
+            <!-- BOTÃO INICIAR TREINO DIÁRIO -->
+
+            <Button
+                android:id="@+id/btnStartDaily"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="INICIAR TREINO DIÁRIO"
+                android:textAllCaps="false"
+                android:textColor="#FF4F2E"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:background="@drawable/btn_outline"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="30dp"
+                app:backgroundTint="@null"/>
 
         </LinearLayout>
-
     </ScrollView>
 
+    <!-- NAV BAR -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
@@ -212,5 +692,4 @@
         app:menu="@menu/bottom_menu"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
