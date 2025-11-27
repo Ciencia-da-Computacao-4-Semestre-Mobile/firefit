@@ -85,6 +85,8 @@ class WorkoutsActivity : AppCompatActivity() {
             startActivity(Intent(this, TimerActivity::class.java))
         }
 
+
+
     }
 
     private fun openDetails(title: String) {
