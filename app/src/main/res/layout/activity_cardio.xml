@@ -94,85 +94,40 @@
                 android:textColor="@color/fire_text"
                 android:layout_marginTop="22dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <!-- =================== OPÇÕES DE CARDIO (ADICIONADO AQUI) =================== -->
+            <RadioGroup
+                android:id="@+id/groupCardio"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="14dp">
+                android:orientation="vertical"
+                android:layout_marginTop="14dp"
+                android:padding="6dp">
 
-                <!-- Coluna 1 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <RadioButton
+                    android:id="@+id/rbCorrida"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:text="Corrida"
+                    android:textSize="16sp"
+                    android:textColor="@color/fire_text" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="5"
-                        android:textStyle="bold"
-                        android:textColor="@color/fire_primary"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Exercícios"
-                        android:textColor="@color/fire_gray"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <!-- Coluna 2 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <RadioButton
+                    android:id="@+id/rbBicicleta"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:text="Bicicleta"
+                    android:textSize="16sp"
+                    android:textColor="@color/fire_text" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="30 min"
-                        android:textColor="@color/fire_primary"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Duração"
-                        android:textColor="@color/fire_gray"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <!-- Coluna 3 -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <RadioButton
+                    android:id="@+id/rbCaminhada"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Médio"
-                        android:textColor="@color/fire_primary"
-                        android:textStyle="bold"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nível"
-                        android:textColor="@color/fire_gray"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </LinearLayout>
+                    android:text="Caminhada"
+                    android:textSize="16sp"
+                    android:textColor="@color/fire_text" />
+            </RadioGroup>
+            <!-- =================== FIM DAS OPÇÕES DE CARDIO =================== -->
 
             <!-- =================== LISTA DE EXERCÍCIOS =================== -->
             <TextView

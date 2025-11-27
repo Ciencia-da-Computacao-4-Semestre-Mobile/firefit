@@ -49,6 +49,15 @@
             android:name=".ExerciseActivity"
             android:exported="false" />
 
+        <activity android:name=".CardioIntensityActivity" />
+        <activity android:name=".CardioDurationActivity" />
+        <activity android:name=".CardioStartActivity" />
+
+
+        <activity android:name=".TelaCorridaActivity"/>
+        <activity android:name=".TelaBicicletaActivity"/>
+        <activity android:name=".TelaCaminhadaActivity"/>
+
 
     </application>
 
