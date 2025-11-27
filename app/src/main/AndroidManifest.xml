@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,44 +11,36 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
+        <activity
+            android:name=".TimerActivity"
+            android:exported="false" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
-
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
-
-        <!-- Register -->
+            android:exported="false" /> <!-- Register -->
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity android:name=".ForgotPasswordActivity" />
-
-        <activity android:name=".UserActivity" />
-
-        <!-- Home -->
+        <activity android:name=".UserActivity" /> <!-- Home -->
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
-
         <activity
             android:name=".WorkoutsActivity"
             android:exported="false" />
-
         <activity
             android:name=".ExerciseActivity"
             android:exported="false" />
+<<<<<<< HEAD
 
         <activity android:name=".CardioIntensityActivity" />
         <activity android:name=".CardioDurationActivity" />
@@ -59,6 +52,8 @@
         <activity android:name=".TelaCaminhadaActivity"/>
 
 
+=======
+>>>>>>> 3807cfa4c2f95ca0f118e027761bcf04547ba638
     </application>
 
 </manifest>
