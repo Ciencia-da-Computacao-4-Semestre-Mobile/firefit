@@ -68,16 +68,16 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:text="CANCELAR"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:background="@drawable/btn_outline_workouts"/>
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:text="VER MAIS"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/btn_outline_workouts"/>
         </LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Panturrilha em Pé"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/txtSeries"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 Séries"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/txtReps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20-25 Repetições"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/txtRest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pausa: 30 - 45 Segundos"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PRÓXIMO"
+            android:textAllCaps="true"
+            android:backgroundTint="#FF5A1F"
+            android:layout_marginTop="20dp"
+            android:padding="12dp" />
+
+    </LinearLayout>
+</ScrollView>
