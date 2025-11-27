@@ -17,6 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WorkoutsActivity : AppCompatActivity() {
 
+
+
     private lateinit var card1: FrameLayout
     private lateinit var card2: FrameLayout
     private lateinit var card3: FrameLayout
@@ -84,8 +86,6 @@ class WorkoutsActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnStartDaily).setOnClickListener {
             startActivity(Intent(this, TimerActivity::class.java))
         }
-
-
 
     }
 
