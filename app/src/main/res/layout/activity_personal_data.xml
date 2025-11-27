@@ -55,6 +55,8 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="NOME COMPLETO"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -81,6 +83,8 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="E-MAIL"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -118,6 +122,8 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="DATA DE NASCIMENTO"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -145,6 +151,8 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="TELEFONE"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"

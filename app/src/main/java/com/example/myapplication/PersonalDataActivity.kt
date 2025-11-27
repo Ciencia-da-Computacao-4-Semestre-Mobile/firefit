@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -28,10 +29,7 @@ class PersonalDataActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         val user = auth.currentUser
 
-        // ==============================
         // FINDVIEWBYS
-        // ==============================
-
         btnBack = findViewById(R.id.btnBack)
         btnSalvar = findViewById(R.id.btnSalvar)
 
@@ -43,40 +41,30 @@ class PersonalDataActivity : AppCompatActivity() {
         inputPeso = findViewById(R.id.inputPeso)
         inputAltura = findViewById(R.id.inputAltura)
 
-        // ==============================
         // PREENCHE CAMPOS EXISTENTES
-        // ==============================
-
         inputNome.setText(user?.displayName ?: "")
         inputEmail.setText(user?.email ?: "")
 
         carregarDadosExtras()
 
-        // ==============================
         // BOTÃO VOLTAR
-        // ==============================
         btnBack.setOnClickListener {
             finish()
         }
 
-        // ==============================
         // BOTÃO SALVAR
-        // ==============================
         btnSalvar.setOnClickListener {
             salvarDados()
         }
     }
 
-    // ==============================
-    // CARREGA DADOS DO FIREBASE
-    // ==============================
+    // CARREGA DADOS EXTRAS DO FIREBASE
     private fun carregarDadosExtras() {
         val uid = auth.currentUser?.uid ?: return
         val db = FirebaseDatabase.getInstance().getReference("users").child(uid)
 
         db.get().addOnSuccessListener { snapshot ->
             if (snapshot.exists()) {
-
                 inputNascimento.setText(snapshot.child("nascimento").value?.toString() ?: "")
                 inputTelefone.setText(snapshot.child("telefone").value?.toString() ?: "")
                 inputIdade.setText(snapshot.child("idade").value?.toString() ?: "")
@@ -86,11 +74,8 @@ class PersonalDataActivity : AppCompatActivity() {
         }
     }
 
-    // ==============================
-    // SALVA NO FIREBASE
-    // ==============================
+    // SALVA DADOS + CONFIRMAÇÃO + VOLTA PARA USERACTIVITY
     private fun salvarDados() {
-
         val user = auth.currentUser ?: return
 
         val nome = inputNome.text.toString()
@@ -100,27 +85,52 @@ class PersonalDataActivity : AppCompatActivity() {
         val peso = inputPeso.text.toString()
         val altura = inputAltura.text.toString()
 
-        // Atualiza nome no Firebase Auth
         val profileUpdate = com.google.firebase.auth.UserProfileChangeRequest.Builder()
             .setDisplayName(nome)
             .build()
 
-        user.updateProfile(profileUpdate)
+        // 1 - Atualiza nome no FirebaseAuth
+        user.updateProfile(profileUpdate).addOnCompleteListener { taskProfile ->
 
-        // Atualiza dados extras no Realtime Database
-        val uid = user.uid
-        val db = FirebaseDatabase.getInstance().getReference("users").child(uid)
+            if (!taskProfile.isSuccessful) {
+                Toast.makeText(this, "Erro ao atualizar nome!", Toast.LENGTH_SHORT).show()
+                return@addOnCompleteListener
+            }
 
-        val dados = mapOf(
-            "nascimento" to nascimento,
-            "telefone" to telefone,
-            "idade" to idade,
-            "peso" to peso,
-            "altura" to altura
-        )
+            // 2 - Atualiza dados extras no Realtime Database
+            val uid = user.uid
+            val db = FirebaseDatabase.getInstance().getReference("users").child(uid)
 
-        db.updateChildren(dados).addOnCompleteListener {
-            Toast.makeText(this, "Dados atualizados!", Toast.LENGTH_SHORT).show()
+            val dados = mapOf(
+                "nascimento" to nascimento,
+                "telefone" to telefone,
+                "idade" to idade,
+                "peso" to peso,
+                "altura" to altura
+            )
+
+            db.updateChildren(dados).addOnCompleteListener { taskDb ->
+
+                if (!taskDb.isSuccessful) {
+                    Toast.makeText(this, "Erro ao atualizar dados!", Toast.LENGTH_SHORT).show()
+                    return@addOnCompleteListener
+                }
+
+                // 3 - Mostra mensagem ANTES de sair
+                Toast.makeText(this, "Dados atualizados com sucesso!", Toast.LENGTH_LONG).show()
+
+                // 4 - Força um pequeno delay para garantir que o Toast aparece
+                android.os.Handler(mainLooper).postDelayed({
+
+                    // 5 - Volta para a UserActivity
+                    val intent = Intent(this, UserActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
+
+                }, 800) // Delay de 800ms para o To
+
+            }
         }
     }
 }

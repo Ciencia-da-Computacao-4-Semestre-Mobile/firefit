@@ -50,6 +50,9 @@
         <activity android:name=".TelaBicicletaActivity"/>
         <activity android:name=".TelaCaminhadaActivity"/>
 
+
+        <activity android:name=".PersonalDataActivity"/>
+
     </application>
 
 </manifest>
