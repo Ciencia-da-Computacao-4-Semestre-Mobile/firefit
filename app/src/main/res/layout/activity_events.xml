@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0D0D0D"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:backgroundTint="@color/background">
 
     <LinearLayout
         android:orientation="vertical"
@@ -260,7 +261,7 @@
                             android:layout_height="40dp"
                             android:layout_marginTop="6dp">
 
-                            <ProgressBar
+                             <ProgressBar
                                 android:id="@+id/progressCapacidade"
                                 style="@android:style/Widget.ProgressBar.Horizontal"
                                 android:layout_width="match_parent"
@@ -268,7 +269,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:background="#FF7C30"
                                 android:max="30"
-                                android:progress="17" />
+                                android:progress="17"/>
 
                             <ImageView
                                 android:id="@+id/imgFlame"

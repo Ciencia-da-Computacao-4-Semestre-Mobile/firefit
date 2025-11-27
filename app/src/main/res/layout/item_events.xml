@@ -77,7 +77,6 @@
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="DISPONÍVEL"
-            android:textColor="@color/green"
             android:background="@drawable/bg_status_confirmado"
             android:textSize="12sp"
             android:paddingHorizontal="10dp"

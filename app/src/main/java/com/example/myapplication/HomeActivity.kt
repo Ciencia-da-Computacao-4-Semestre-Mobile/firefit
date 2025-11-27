@@ -87,14 +87,14 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
 
-                //R.id.nav_events -> {
-                   // if (this !is EventsActivity) {
-                      //  startActivity(Intent(this, EventsActivity::class.java))
-                      //  overridePendingTransition(0, 0)
-                      //  finish()
-                  //  }
-                  //  true
-                //}
+                R.id.nav_events -> {
+                    if (this !is ScheduledEventsActivity) {
+                        startActivity(Intent(this, ScheduledEventsActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
+                }
 
                 else -> false
             }
@@ -102,11 +102,10 @@ class HomeActivity : AppCompatActivity() {
 
         val tvSeeAllEvents: TextView = findViewById(R.id.tvSeeAllEvents)
 
-       // tvSeeAllEvents.setOnClickListener {
-       //     // Abre a tela de Events
-         //   val intent = Intent(this, EventsActivity::class.java)
-           // startActivity(intent)
-        //}
+        tvSeeAllEvents.setOnClickListener {
+            val intent = Intent(this, ScheduledEventsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // -------------------------------------------------------------

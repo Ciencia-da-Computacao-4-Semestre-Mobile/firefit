@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Quadrado -->
+    <path
+        android:fillColor="@color/orange"
+        android:strokeWidth="2"
+        android:pathData="M4,4h16v16h-16z" />
+
+    <!-- Check -->
+    <path
+        android:fillColor="@color/orange"
+        android:strokeColor="#FFA54F"
+        android:strokeWidth="2.3"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M7,12.5l3.5,3.5l6.5,-7" />
+</vector>

@@ -100,6 +100,12 @@ class WorkoutsActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // ✅ Botão iniciar cardio → abre CardioActivity + layout activity_cardio
+        findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
+            val intent = Intent(this, CardioActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 

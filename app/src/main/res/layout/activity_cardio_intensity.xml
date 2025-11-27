@@ -12,13 +12,14 @@
         android:text="Escolha a Intensidade"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/fire_text" />
+        android:textColor="@color/fire_text"/>
 
     <ListView
         android:id="@+id/listCardioIntensity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:dividerHeight="8dp"
-        android:layout_marginTop="12dp" />
+        android:background="@color/background"/>
 
 </LinearLayout>

@@ -44,6 +44,7 @@
         <activity android:name=".CardioIntensityActivity" />
         <activity android:name=".CardioDurationActivity" />
         <activity android:name=".CardioStartActivity" />
+        <activity android:name=".CardioActivity" />
 
 
         <activity android:name=".TelaCorridaActivity"/>
@@ -52,6 +53,8 @@
 
 
         <activity android:name=".PersonalDataActivity"/>
+
+        <activity android:name=".ScheduledEventsActivity"/>
 
     </application>
 

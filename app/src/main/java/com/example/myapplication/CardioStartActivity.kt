@@ -28,12 +28,12 @@ class CardioStartActivity : AppCompatActivity() {
 
         val tipo = intent.getStringExtra("tipoCardio") ?: "Cardio"
         val intensity = intent.getStringExtra("intensity") ?: "Moderado"
-        var duration = intent.getStringExtra("duration") ?: "30 minutos"
+        val durationStr = intent.getStringExtra("duration") ?: "30 minutos"
 
         findViewById<TextView>(R.id.txtCardioTitle).text = "$tipo — $intensity"
-        findViewById<TextView>(R.id.txtCardioInfo).text = "Duração: $duration"
+        findViewById<TextView>(R.id.txtCardioInfo).text = "Duração: $durationStr"
 
-        timeLeftMillis = parseDurationToMillis(duration)
+        timeLeftMillis = parseDurationToMillis(durationStr)
 
         tvTimer = findViewById(R.id.tvTimer)
         btnStartPause = findViewById(R.id.btnStartPause)
@@ -50,14 +50,12 @@ class CardioStartActivity : AppCompatActivity() {
         }
 
         // animação pulse
-        val pulseAnimator = ObjectAnimator.ofFloat(tvTimer, View.SCALE_X, 1f, 1.08f).apply {
-            setDuration(600)
+        pulseAnimator = ObjectAnimator.ofFloat(tvTimer, View.SCALE_X, 1f, 1.08f).apply {
+            duration = 600
             repeatMode = ObjectAnimator.REVERSE
             repeatCount = ObjectAnimator.INFINITE
             interpolator = LinearInterpolator()
-            start()
         }
-
         pulseAnimator?.addUpdateListener { tvTimer.scaleY = tvTimer.scaleX }
 
         // ==============================
@@ -67,7 +65,6 @@ class CardioStartActivity : AppCompatActivity() {
         exerciseContainer.removeAllViews()
 
         when (tipo.lowercase()) {
-
             "corrida" -> {
                 exerciseContainer.addView(makeTextView("Aquecimento — Corrida leve 5 minutos"))
                 exerciseContainer.addView(makeTextView("Corrida moderada — 3×5 minutos"))
@@ -75,7 +72,6 @@ class CardioStartActivity : AppCompatActivity() {
                 exerciseContainer.addView(makeTextView("Corrida leve — Recuperação 3 minutos"))
                 exerciseContainer.addView(makeTextView("Alongamento final — 5 minutos"))
             }
-
             "bicicleta" -> {
                 exerciseContainer.addView(makeTextView("Aquecimento — Pedalada leve 7 minutos"))
                 exerciseContainer.addView(makeTextView("Subidas — 4×4 minutos"))
@@ -83,7 +79,6 @@ class CardioStartActivity : AppCompatActivity() {
                 exerciseContainer.addView(makeTextView("Ritmo leve — 5 minutos"))
                 exerciseContainer.addView(makeTextView("Alongamento final para pernas — 5 minutos"))
             }
-
             "caminhada" -> {
                 exerciseContainer.addView(makeTextView("Caminhada leve — 10 minutos"))
                 exerciseContainer.addView(makeTextView("Caminhada inclinada — 5 minutos"))
@@ -91,7 +86,6 @@ class CardioStartActivity : AppCompatActivity() {
                 exerciseContainer.addView(makeTextView("Caminhada leve — Recuperação 5 minutos"))
                 exerciseContainer.addView(makeTextView("Alongamento geral — 5 minutos"))
             }
-
             else -> {
                 exerciseContainer.addView(makeTextView("Aquecimento — 5 minutos"))
                 exerciseContainer.addView(makeTextView("Treino principal — 20 minutos"))
@@ -117,7 +111,7 @@ class CardioStartActivity : AppCompatActivity() {
     // ==============================
     private fun startTimer() {
         countDownTimer?.cancel()
-        countDownTimer = object: CountDownTimer(timeLeftMillis, 1000) {
+        countDownTimer = object : CountDownTimer(timeLeftMillis, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeftMillis = millisUntilFinished
                 updateTimerText()
