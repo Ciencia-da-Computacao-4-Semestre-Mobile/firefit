@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="progressWeek" type="id" />
+    <item name="tvEventosTitle" type="id" />
+    <item name="imgFire" type="id" />
+    <item name="txtDays" type="id" />
+    <item name="txtMotivation" type="id" />
+</resources>

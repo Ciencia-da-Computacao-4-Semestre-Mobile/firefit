@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fire_background">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- =================== CARD PRINCIPAL =================== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:background="@drawable/card_bg"
+            android:padding="14dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cardio Matinal"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/fire_text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Treino de resistência cardiovascular"
+                    android:textColor="@color/fire_gray"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30 MIN"
+                        android:textColor="@color/fire_text"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Iniciante"
+                        android:textColor="@color/fire_text"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/logo"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <!-- =================== RESUMO DO TREINO =================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resumo do Treino"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/fire_text"
+            android:layout_marginTop="22dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="14dp">
+
+            <!-- Coluna 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textStyle="bold"
+                    android:textColor="@color/fire_primary"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exercícios"
+                    android:textColor="@color/fire_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Coluna 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="30 min"
+                    android:textColor="@color/fire_primary"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duração"
+                    android:textColor="@color/fire_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <!-- Coluna 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Médio"
+                    android:textColor="@color/fire_primary"
+                    android:textStyle="bold"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nível"
+                    android:textColor="@color/fire_gray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- =================== LISTA DE EXERCÍCIOS =================== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Exercícios"
+            android:textColor="@color/fire_text"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="26dp" />
+
+        <!-- === ITEM 1 === -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_orange"
+            android:gravity="center_vertical"
+            android:padding="14dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aquecimento - Corrida Leve"
+                android:textColor="@color/fire_text"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1x5 min"
+                android:textColor="@color/fire_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- === ITEM 2 === -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_orange"
+            android:gravity="center_vertical"
+            android:padding="14dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Corrida em Ritmo Moderado"
+                android:textColor="@color/fire_text"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3x5 min"
+                android:textColor="@color/fire_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- === ITEM 3 === -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_orange"
+            android:gravity="center_vertical"
+            android:padding="14dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sprints"
+                android:textColor="@color/fire_text"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5x30 seg"
+                android:textColor="@color/fire_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- === ITEM 4 === -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_orange"
+            android:gravity="center_vertical"
+            android:padding="14dp"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Corrida de Recuperação"
+                android:textColor="@color/fire_text"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1x3 min"
+                android:textColor="@color/fire_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- === ITEM 5 === -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_orange"
+            android:gravity="center_vertical"
+            android:padding="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alongamento"
+                android:textColor="@color/fire_text"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1x5 min"
+                android:textColor="@color/fire_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- =================== BOTÕES =================== -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnIniciarTreino"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Iniciar Treino"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_orange"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Voltar"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/btn_outline"
+            android:textColor="@color/fire_primary" />
+
+    </LinearLayout>
+
+
+</ScrollView>
+
+
+
