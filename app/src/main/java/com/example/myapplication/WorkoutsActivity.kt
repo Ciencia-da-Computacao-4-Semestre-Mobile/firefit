@@ -94,12 +94,12 @@ class WorkoutsActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnStartDaily).setOnClickListener {
             startActivity(Intent(this, TimerActivity::class.java))
         }
-
         // ✅ Botão iniciar cardio → abre CardioActivity + layout activity_cardio
         findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
             val intent = Intent(this, CardioActivity::class.java)
             startActivity(intent)
         }
+
 
     }
 
