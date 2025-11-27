@@ -22,51 +22,87 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <!-- PERFIL -->
+            <!-- PERFIL + CARD IMC -->
             <LinearLayout
                 android:layout_marginTop="60dp"
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:gravity="center_vertical">
 
-
-                <ImageView
-                    android:id="@+id/imgUser"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/ic_user_placeholder"
-                    android:background="@drawable/rounded_image"
-                    android:scaleType="centerCrop"
-                    android:layout_marginRight="16dp" />
-
+                <!-- FOTO + NOME + ALTERAR -->
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical">
+                    android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/txtUserName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="17dp" />
+                    <ImageView
+                        android:id="@+id/imgUser"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/ic_user_placeholder"
+                        android:background="@drawable/rounded_image"
+                        android:scaleType="centerCrop"
+                        android:layout_marginRight="16dp" />
 
-                    <TextView
-                        android:id="@+id/txtAlterarImc"
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ALTERAR FOTO"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="#FF6A00"
-                        android:layout_marginTop="4dp" />
+                        android:gravity="center_vertical">
 
+                        <TextView
+                            android:id="@+id/txtUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="17dp" />
+
+                        <TextView
+                            android:id="@+id/txtAlterarImg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ALTERAR FOTO"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:textColor="#FF6A00"
+                            android:layout_marginTop="4dp" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- CARD IMC -->
+                <LinearLayout
+                    android:id="@+id/cardImc"
+                    android:layout_width="110dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/border_orange"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/txtImcValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="22sp" />
+
+                    <TextView
+                        android:id="@+id/txtImcStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IMC"
+                        android:textColor="#FF6A00"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -117,7 +153,6 @@
                     android:src="@drawable/ic_arrow_right"
                     app:tint="#FFFFFF" />
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/cardWorkouts"

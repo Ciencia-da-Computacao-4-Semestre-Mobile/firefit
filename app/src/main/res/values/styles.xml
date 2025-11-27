@@ -5,4 +5,9 @@
         <item name="android:height">32dp</item>
         <item name="android:color">@color/fire_cardd</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+
 </resources>
