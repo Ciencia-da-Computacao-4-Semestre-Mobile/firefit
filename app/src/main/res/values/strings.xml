@@ -29,4 +29,20 @@
     <string name="iniciar">INICIAR</string>
     <string name="ver_mais">VER MAIS</string>
 
+    <string name="cardio_matinal">Cardio Matinal</string>
+    <string name="tempo_30">30 MIN</string>
+
+    <string name="treino_alongamento">Alongamento</string>
+    <string name="tempo_20_min">20 minutos</string>
+    <string name="nivel_facil">Nível Fácil</string>
+
+    <string name="treino_hiit">HIIT</string>
+    <string name="treino_com_intervalo">Treino com intervalo</string>
+    <string name="tempo_15_min">15 minutos</string>
+    <string name="nivel_iniciante">Nível iniciante</string>
+    <string name="progresso_0">0%</string>
+
+    <string name="treino_resistencia">Treino de Resistência</string>
+
+    <string name="flexibilidade_yoga">Flexibilidade e Yoga</string>
 </resources>
