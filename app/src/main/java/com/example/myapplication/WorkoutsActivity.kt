@@ -18,7 +18,6 @@ class WorkoutsActivity : AppCompatActivity() {
 
     private lateinit var card1: FrameLayout
     private lateinit var card2: FrameLayout
-    private lateinit var card3: FrameLayout
     private lateinit var progress1: ProgressBar
     private lateinit var scrollView: ScrollView
     private lateinit var prefs: SharedPreferences
@@ -84,15 +83,13 @@ class WorkoutsActivity : AppCompatActivity() {
         // Cards
         card1 = findViewById(R.id.card1)
         card2 = findViewById(R.id.card2)
-        card3 = findViewById(R.id.card3)
 
         card1.setOnClickListener { openDetails("Treino A") }
         card2.setOnClickListener { openDetails("Treino B") }
-        card3.setOnClickListener { openDetails("Treino C") }
 
         animateCard(card1)
         animateCard(card2)
-        animateCard(card3)
+
 
         // Progresso
         progress1 = findViewById(R.id.progresso)
