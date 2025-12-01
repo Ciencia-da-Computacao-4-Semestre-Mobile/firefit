@@ -108,9 +108,6 @@ class UserActivity : AppCompatActivity() {
             startActivityForResult(intent, PERSONAL_DATA_REQUEST)
         }
 
-        findViewById<LinearLayout>(R.id.cardWorkouts).setOnClickListener {
-            startActivity(Intent(this, WorkoutsSavedActivity::class.java))
-        }
     }
 
     // Escolher foto
