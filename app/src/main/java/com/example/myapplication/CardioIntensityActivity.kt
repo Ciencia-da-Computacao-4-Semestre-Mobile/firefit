@@ -1,7 +1,5 @@
 package com.example.myapplication
 
-
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -16,10 +14,11 @@ class CardioIntensityActivity : AppCompatActivity() {
 
         val tipo = intent.getStringExtra("tipoCardio") ?: "cardio"
 
-        // você pode customizar as opções por tipo, aqui mantemos 3 níveis
         val intensities = listOf("Leve", "Moderado", "Intenso")
         val listView = findViewById<ListView>(R.id.listCardioIntensity)
-        listView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, intensities)
+        val adapter = ArrayAdapter(this, R.layout.list_item_intensity, R.id.textItem, intensities)
+        listView.adapter = adapter
+
 
         listView.setOnItemClickListener { _, _, pos, _ ->
             val selected = intensities[pos]

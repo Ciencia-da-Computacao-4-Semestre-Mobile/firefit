@@ -17,7 +17,8 @@ class CardioDurationActivity : AppCompatActivity() {
 
         val durations = listOf("10 minutos", "20 minutos", "30 minutos", "45 minutos", "60 minutos")
         val listView = findViewById<ListView>(R.id.listCardioDuration)
-        listView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, durations)
+        val adapter = ArrayAdapter(this, R.layout.list_item_duration, R.id.textItem, durations)
+        listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, pos, _ ->
             val selectedDuration = durations[pos]
