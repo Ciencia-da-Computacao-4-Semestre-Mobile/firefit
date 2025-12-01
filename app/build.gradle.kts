@@ -22,7 +22,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -48,7 +49,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.firebase:firebase-storage-ktx") // <-- ADICIONE ESTA LINHA
+    implementation("com.google.firebase:firebase-storage-ktx")
+
+    implementation("io.coil-kt:coil:2.6.0")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
 

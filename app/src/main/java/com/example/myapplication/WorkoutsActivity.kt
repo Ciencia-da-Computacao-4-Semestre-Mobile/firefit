@@ -39,19 +39,19 @@ class WorkoutsActivity : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
-                R.id.nav_training -> {
-                    if (this !is WorkoutsActivity) {
-                        startActivity(Intent(this, WorkoutsActivity::class.java))
-                        overridePendingTransition(0,0)
+                R.id.nav_home -> {
+                    if (this !is HomeActivity) {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        overridePendingTransition(0, 0)
                         finish()
                     }
                     true
                 }
 
-                R.id.nav_home -> {
-                    if (this !is HomeActivity) {
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        overridePendingTransition(0,0)
+                R.id.nav_training -> {
+                    if (this !is WorkoutsActivity) {
+                        startActivity(Intent(this, WorkoutsActivity::class.java))
+                        overridePendingTransition(0, 0)
                         finish()
                     }
                     true
@@ -60,7 +60,16 @@ class WorkoutsActivity : AppCompatActivity() {
                 R.id.nav_user -> {
                     if (this !is UserActivity) {
                         startActivity(Intent(this, UserActivity::class.java))
-                        overridePendingTransition(0,0)
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
+                }
+
+                R.id.nav_events -> {
+                    if (this !is ScheduledEventsActivity) {
+                        startActivity(Intent(this, ScheduledEventsActivity::class.java))
+                        overridePendingTransition(0, 0)
                         finish()
                     }
                     true
