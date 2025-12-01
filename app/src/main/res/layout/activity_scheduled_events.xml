@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/fire_background">
 
-    <!-- SCROLL PRINCIPAL -->
+    <!-- SCROLL PRINCIPAL RESPONSIVO -->
     <ScrollView
         android:id="@+id/scrollScheduledEvents"
         android:layout_width="0dp"
@@ -29,37 +29,37 @@
                 android:gravity="center_vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="24dp">
 
                 <ImageView
                     android:id="@+id/btnBack"
                     android:src="@drawable/ic_back"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:padding="4dp" />
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:padding="6dp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Eventos Agendados"
                     android:textColor="@color/fire_text"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="12dp"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"/>
             </LinearLayout>
 
             <!-- TÍTULO PRÓXIMOS EVENTOS -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:src="@drawable/logo"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"/>
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"/>
 
                 <TextView
                     android:layout_marginStart="10dp"
@@ -71,26 +71,26 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <!-- LISTA PRÓXIMOS EVENTOS -->
+            <!-- LISTA -->
             <LinearLayout
                 android:id="@+id/listProximosEventos"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="14dp" />
 
-            <!-- TÍTULO EVENTOS FINALIZADOS -->
+            <!-- FINALIZADOS -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="32dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:src="@drawable/ic_check_square"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"/>
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"/>
 
                 <TextView
                     android:layout_marginStart="10dp"
@@ -102,27 +102,26 @@
                     android:layout_height="wrap_content"/>
             </LinearLayout>
 
-            <!-- LISTA EVENTOS FINALIZADOS -->
             <LinearLayout
                 android:id="@+id/listEventosFinalizados"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="14dp" />
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- BOTTOM NAV -->
+    <!-- NAV RESPONSIVO -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="64dp"
         android:background="@color/fire_cardd"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
