@@ -155,16 +155,14 @@
                             <Space android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
 
                             <Button
-<<<<<<< HEAD
                                 android:id="@+id/btnIniciar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
                                 android:paddingHorizontal="14dp"
                                 android:backgroundTint="#FF4F2E"
                                 android:textColor="#FFFFFF"
-=======
+
                                 android:id="@+id/btnIniciarCardio1"
->>>>>>> 81f506f7e56185e736b1e3d852e413d7107a5754
                                 android:text="@string/iniciar"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
@@ -173,8 +171,6 @@
                                 android:paddingHorizontal="14dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"/>
-
-
                         </LinearLayout>
 
                         <ProgressBar
