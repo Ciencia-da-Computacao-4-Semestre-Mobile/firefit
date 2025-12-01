@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.ImageView
 
 class WorkoutsActivity : AppCompatActivity() {
 
@@ -24,6 +25,7 @@ class WorkoutsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         // 🔥 Remove a barra branca do Android (navigation bar)
         WindowCompat.setDecorFitsSystemWindows(window, false)
