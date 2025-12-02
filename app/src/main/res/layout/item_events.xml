@@ -3,7 +3,11 @@
     android:layout_height="195dp"
     android:orientation="horizontal"
     android:background="@drawable/card_bg"
-    android:layout_marginBottom="12dp">
+    android:layout_marginBottom="12dp"
+
+    android:clickable="false"
+    android:focusable="false"
+    android:descendantFocusability="blocksDescendants">
 
     <!-- IMAGEM À ESQUERDA -->
     <ImageView
@@ -69,7 +73,6 @@
             android:textColor="@color/fire_gray"
             android:textSize="12sp"
             android:layout_marginTop="6dp"/>
-
 
         <!-- STATUS -->
         <TextView

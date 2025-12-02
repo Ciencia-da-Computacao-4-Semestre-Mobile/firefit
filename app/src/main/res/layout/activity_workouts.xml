@@ -155,13 +155,6 @@
                             <Space android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
 
                             <Button
-                                android:id="@+id/btnIniciar"
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:paddingHorizontal="14dp"
-                                android:backgroundTint="#FF4F2E"
-                                android:textColor="#FFFFFF"
-
                                 android:id="@+id/btnIniciarCardio1"
                                 android:text="@string/iniciar"
                                 android:textSize="12sp"
@@ -316,20 +309,9 @@
                                 android:textStyle="bold"
                                 style="?android:attr/buttonBarButtonStyle" />
 
-<<<<<<< HEAD
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:paddingHorizontal="14dp"
-                                android:layout_marginStart="10dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:textColor="#FF4F2E"
-                                android:text="@string/ver_mais"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                style="?android:attr/buttonBarButtonStyle" />
-=======
->>>>>>> 81f506f7e56185e736b1e3d852e413d7107a5754
+
+
+
                         </LinearLayout>
 
                         <ProgressBar
@@ -349,163 +331,11 @@
                 </androidx.cardview.widget.CardView>
             </FrameLayout>
 
-
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginBottom="22dp">
-
-<<<<<<< HEAD
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="6dp"
-                    android:background="#33FFA54F"
-                    android:elevation="2dp" />
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="#FF4F2E"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="7dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="22dp">
-
-                        <ImageView
-                            android:id="@+id/icon_fire4"
-                            android:layout_width="52dp"
-                            android:layout_height="52dp"
-                            android:alpha="0.9"
-                            android:src="@drawable/logo"
-                            app:tint="#FFFFFF"
-                            android:contentDescription="@string/desc_logo_treino"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-                        <TextView
-                            android:id="@+id/title4"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="HIIT"
-                            android:textColor="#FFFFFF"
-                            android:textSize="26sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/icon_fire4"
-                            app:layout_constraintTop_toTopOf="parent"/>
-
-                        <TextView
-                            android:id="@+id/sub4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Treino com intervalo"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            app:layout_constraintTop_toBottomOf="@id/title4"
-                            app:layout_constraintStart_toStartOf="parent"/>
-
-                        <LinearLayout
-                            android:id="@+id/timeContainer4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="12dp"
-                            app:layout_constraintTop_toBottomOf="@id/sub4"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <ImageView
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                android:src="@drawable/ic_hourglass"
-                                app:tint="#FFFFFF"
-                                android:layout_marginEnd="8dp"
-                                android:contentDescription="@string/desc_tempo"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="15 minutos"
-                                android:textColor="#FFFFFF"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/btnBar4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="12dp"
-                            style="?android:attr/buttonBarStyle"
-                            app:layout_constraintTop_toBottomOf="@id/timeContainer4">
-
-                            <TextView
-                                android:id="@+id/nivel4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Nível iniciante"
-                                android:textColor="#FFFFFF"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
-
-                            <Space
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"/>
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:paddingHorizontal="14dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:textColor="#FF4F2E"
-                                android:text="@string/iniciar"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                style="?android:attr/buttonBarButtonStyle" />
-
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:paddingHorizontal="14dp"
-                                android:layout_marginStart="10dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:textColor="#FF4F2E"
-                                android:text="@string/ver_mais"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                style="?android:attr/buttonBarButtonStyle" />
-                        </LinearLayout>
-
-                        <ProgressBar
-                            android:id="@+id/progresso4"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="0dp"
-                            android:layout_height="14dp"
-                            android:progress="0"
-                            android:max="100"
-                            android:progressTint="#FFFFFF"
-                            android:backgroundTint="#D9531E"
-                            android:scaleY="1.4"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"/>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-            </FrameLayout>
-
             <!-- BOTÃO INICIAR TREINO DIÁRIO -->
 
-=======
+
             <!-- BOTÃO FINAL -->
->>>>>>> 81f506f7e56185e736b1e3d852e413d7107a5754
+
             <Button
                 android:id="@+id/btnStartDaily"
                 android:layout_width="match_parent"
@@ -532,12 +362,18 @@
         app:itemActiveIndicatorStyle="@style/NavActiveIndicatorStyle"
         app:menu="@menu/bottom_menu"
         app:labelVisibilityMode="unlabeled"
-<<<<<<< HEAD
-        app:layout_constraintBottom_toBottomOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
-=======
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu" />
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> 81f506f7e56185e736b1e3d852e413d7107a5754
