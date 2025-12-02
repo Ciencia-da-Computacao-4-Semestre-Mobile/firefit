@@ -16,7 +16,7 @@
             android:id="@+id/btnVoltar"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/metas_ig" />
+            android:src="@drawable/meta_ig" />
 
         <TextView
             android:id="@+id/txtTitulo"
@@ -54,16 +54,20 @@
                 android:layout_marginBottom="20dp">
 
                 <TextView
+                    android:layout_width="173dp"
+                    android:layout_height="36dp"
                     android:text="Resumo da Semana"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="6dp"
                     android:text="Você concluiu 2 de 3 metas 🔥"
                     android:textColor="#AAAAAA"
-                    android:textSize="14sp"
-                    android:layout_marginTop="6dp"/>
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <!-- ===== META: PESO ===== -->
@@ -80,19 +84,25 @@
                     android:text="Peso"
                     android:textColor="#FF5A1F"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <TextView
                     android:text="Meta: 80 kg"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <TextView
                     android:text="Atual: 85 kg"
                     android:textColor="#AAAAAA"
                     android:textSize="13sp"
-                    android:layout_marginTop="2dp"/>
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
@@ -118,19 +128,25 @@
                     android:text="Treinos Semanais"
                     android:textColor="#FF5A1F"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <TextView
                     android:text="Meta: 5 treinos"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <TextView
                     android:text="Realizados: 2"
                     android:textColor="#AAAAAA"
                     android:textSize="13sp"
-                    android:layout_marginTop="2dp"/>
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
@@ -156,19 +172,25 @@
                     android:text="Alimentação"
                     android:textColor="#FF5A1F"
                     android:textSize="15sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <TextView
                     android:text="Meta: dieta semanal"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <TextView
                     android:text="Cumprimento: 20%"
                     android:textColor="#AAAAAA"
                     android:textSize="13sp"
-                    android:layout_marginTop="2dp"/>
+                    android:layout_marginTop="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"/>
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleHorizontal"
@@ -186,17 +208,23 @@
                 android:textColor="#CCCCCC"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:layout_marginBottom="20dp"/>
+                android:layout_marginBottom="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"/>
 
             <!-- ===== BOTÃO ===== -->
-            <Button
+            <TextView
                 android:id="@+id/btnAdicionarMeta"
                 android:layout_width="match_parent"
-                android:layout_height="54dp"
+                android:layout_height="55dp"
+                android:gravity="center"
                 android:text="ADICIONAR NOVA META"
                 android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/card_bg_orange"/>
+                android:background="@drawable/btn_orange"
+                android:layout_marginTop="24dp"/>
+
         </LinearLayout>
     </ScrollView>
 
