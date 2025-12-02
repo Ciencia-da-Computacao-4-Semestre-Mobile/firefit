@@ -307,11 +307,6 @@
                                 android:textStyle="bold"
                                 style="?android:attr/buttonBarButtonStyle" />
 
-<<<<<<< Updated upstream
-
-
-
-=======
                             <Button
                                 android:layout_width="wrap_content"
                                 android:layout_height="48dp"
@@ -323,7 +318,6 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 style="?android:attr/buttonBarButtonStyle" />
->>>>>>> Stashed changes
                         </LinearLayout>
 
                         <ProgressBar
@@ -343,13 +337,11 @@
                 </androidx.cardview.widget.CardView>
             </FrameLayout>
 
-<<<<<<< Updated upstream
             <!-- BOTÃO INICIAR TREINO DIÁRIO -->
 
 
             <!-- BOTÃO FINAL -->
 
-=======
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
@@ -502,7 +494,6 @@
             <!-- BOTÃO INICIAR TREINO DIÁRIO -->
 
             <!-- BOTÃO FINAL -->
->>>>>>> Stashed changes
             <Button
                 android:id="@+id/btnStartDaily"
                 android:layout_width="match_parent"
@@ -530,20 +521,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu" />
 
-<<<<<<< Updated upstream
-    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-=======
-</androidx.constraintlayout.widget.ConstraintLayout>
->>>>>>> Stashed changes
