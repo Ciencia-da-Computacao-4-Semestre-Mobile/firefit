@@ -1,126 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#1E1E1E">
 
-    <!-- SCROLL PRINCIPAL RESPONSIVO -->
-    <ScrollView
-        android:id="@+id/scrollScheduledEvents"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNav"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <TextView
+        android:id="@+id/txtTituloPagina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eventos"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:layout_marginBottom="16dp" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:padding="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- HEADER -->
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:id="@+id/btnBack"
-                    android:src="@drawable/ic_back"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:padding="6dp" />
-
-                <TextView
-                    android:text="Eventos"
-                    android:textColor="@color/fire_text"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"/>
-            </LinearLayout>
-
-            <!-- TÍTULO PRÓXIMOS EVENTOS -->
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="32dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:src="@drawable/logo"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"/>
-
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:text="PRÓXIMOS EVENTOS"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/fire_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <!-- LISTA -->
-            <LinearLayout
-                android:id="@+id/listProximosEventos"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp" />
-
-            <!-- FINALIZADOS -->
-            <LinearLayout
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="32dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:src="@drawable/ic_check_square"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"/>
-
-                <TextView
-                    android:layout_marginStart="10dp"
-                    android:text="EVENTOS FINALIZADOS"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/fire_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/listEventosFinalizados"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- NAV RESPONSIVO -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerScheduled"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="@color/fire_cardd"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu" />
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

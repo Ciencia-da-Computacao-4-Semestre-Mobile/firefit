@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginBottom="12dp"
+    android:background="#EEEEEE"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/txtNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome do Evento"
+        android:textColor="#424242"
+        android:textStyle="bold"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txtProfessor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Professor"
+        android:textColor="#616161"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/txtDataHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data - Hora"
+        android:textColor="#616161"
+        android:textSize="14sp"
+        android:layout_marginTop="2dp" />
+
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONCLUÍDO"
+        android:textColor="#FFFFFF"
+        android:background="#757575"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="start"
+        android:textStyle="bold"/>
+</LinearLayout>
