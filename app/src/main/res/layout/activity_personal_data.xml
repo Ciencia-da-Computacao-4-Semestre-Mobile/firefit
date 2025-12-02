@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,9 +10,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +38,7 @@
                 android:paddingEnd="28dp"/>
         </LinearLayout>
 
-        <!-- ======================== CAMPOS 1ª LINHA ======================== -->
+        <!-- CAMPOS LINHA 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +46,6 @@
             android:weightSum="2"
             android:layout_marginBottom="20dp">
 
-            <!-- Nome -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -75,7 +73,6 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
-            <!-- Email -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -103,10 +100,9 @@
                     android:textColorHint="@color/fire_gray"
                     android:textSize="15sp" />
             </LinearLayout>
-
         </LinearLayout>
 
-        <!-- ======================== CAMPOS 2ª LINHA ======================== -->
+        <!-- CAMPOS LINHA 2 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -114,7 +110,6 @@
             android:weightSum="2"
             android:layout_marginBottom="25dp">
 
-            <!-- Data de Nascimento -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -137,13 +132,12 @@
                     android:background="@drawable/input_bg"
                     android:padding="12dp"
                     android:hint="DD/MM/AAAA"
-                    android:textColor="@color/fire_text"
                     android:textColorHint="@color/fire_gray"
+                    android:textColor="@color/fire_text"
                     android:inputType="date"
                     android:textSize="15sp" />
             </LinearLayout>
 
-            <!-- Telefone -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -166,15 +160,14 @@
                     android:background="@drawable/input_bg"
                     android:padding="12dp"
                     android:hint="(11) 99999-9999"
-                    android:textColor="@color/fire_text"
-                    android:textColorHint="@color/fire_gray"
                     android:inputType="phone"
+                    android:textColorHint="@color/fire_gray"
+                    android:textColor="@color/fire_text"
                     android:textSize="15sp" />
             </LinearLayout>
-
         </LinearLayout>
 
-        <!-- ======================== CARDS EDITÁVEIS ======================== -->
+        <!-- CARDS DE IDADE/PESO/ALTURA -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -182,7 +175,6 @@
             android:weightSum="3"
             android:gravity="center">
 
-            <!-- Idade -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="90dp"
@@ -199,14 +191,13 @@
                     android:hint="Idade"
                     android:gravity="center"
                     android:inputType="number"
-                    android:textColorHint="@color/light_gray1"
                     android:textColor="@color/light_gray1"
+                    android:textColorHint="@color/light_gray1"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:background="@android:color/transparent"/>
             </LinearLayout>
 
-            <!-- Peso -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="90dp"
@@ -231,7 +222,6 @@
                     android:background="@android:color/transparent"/>
             </LinearLayout>
 
-            <!-- Altura -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="90dp"
@@ -269,6 +259,5 @@
             android:background="@drawable/btn_secondary"
             android:layout_marginTop="30dp"
             app:backgroundTint="@null"/>
-
     </LinearLayout>
 </ScrollView>

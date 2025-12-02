@@ -1,37 +1,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="195dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/card_bg"
     android:layout_marginBottom="12dp"
-
+    android:padding="8dp"
     android:clickable="false"
     android:focusable="false"
     android:descendantFocusability="blocksDescendants">
 
-    <!-- IMAGEM À ESQUERDA -->
+    <!-- IMAGEM À ESQUERDA (agora responsiva com peso) -->
     <ImageView
         android:id="@+id/imgEvent"
-        android:layout_width="250dp"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_weight="0.90"
         android:scaleType="centerCrop"
         android:background="@drawable/rounded_left"
         android:clipToOutline="true"
         android:src="@drawable/event_placeholder" />
 
-    <!-- ESPAÇO -->
+    <!-- ESPAÇO RESPONSIVO -->
     <Space
-        android:layout_width="10dp"
-        android:layout_height="match_parent"
-        />
+        android:layout_width="8dp"
+        android:layout_height="match_parent" />
 
-    <!-- COLUNA DE INFORMAÇÕES À DIREITA -->
+    <!-- COLUNA DE INFORMAÇÕES -->
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:padding="6dp">
+        android:layout_height="wrap_content"
+        android:layout_weight="0.60"
+        android:orientation="vertical">
 
         <!-- Título -->
         <TextView
@@ -41,8 +40,8 @@
             android:text="Yoga"
             android:textStyle="bold"
             android:textColor="@color/fire_text"
-            android:textSize="26sp"
-            android:layout_marginTop="30dp"/>
+            android:textSize="22sp"
+            android:layout_marginTop="4dp" />
 
         <!-- Instrutor -->
         <TextView
@@ -52,8 +51,8 @@
             android:text="Pedro Marcal"
             android:textStyle="bold"
             android:textColor="@color/fire_gray"
-            android:textSize="15sp"
-            android:layout_marginTop="3dp"/>
+            android:textSize="14sp"
+            android:layout_marginTop="2dp" />
 
         <!-- Data -->
         <TextView
@@ -63,8 +62,9 @@
             android:text="Data: 02/12"
             android:textColor="@color/fire_gray"
             android:textSize="12sp"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="4dp" />
 
+        <!-- Horário -->
         <TextView
             android:id="@+id/tvTime"
             android:layout_width="wrap_content"
@@ -72,19 +72,19 @@
             android:text="Horário: 20:35"
             android:textColor="@color/fire_gray"
             android:textSize="12sp"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="4dp" />
 
         <!-- STATUS -->
         <TextView
             android:id="@+id/tvStatus"
-            android:layout_width="125dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DISPONÍVEL"
             android:background="@drawable/bg_status_confirmado"
             android:textSize="12sp"
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="12dp" />
     </LinearLayout>
 
 </LinearLayout>

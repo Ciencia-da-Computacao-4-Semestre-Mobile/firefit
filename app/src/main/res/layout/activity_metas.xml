@@ -116,20 +116,20 @@
                     android:textColor="#FF5A1F"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    android:layout_height="12dp"
-                    android:layout_width="12dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:text="Meta: 5 treinos"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_marginTop="5dp"
-                    android:layout_height="12dp"
-                    android:layout_width="12dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <ProgressBar
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:progress="40"
                     android:max="100"
@@ -152,20 +152,20 @@
                     android:textColor="#FF5A1F"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_height="12dp"
-                    android:layout_width="12dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <TextView
                     android:text="Meta: 100% da dieta semanal"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_marginTop="5dp"
-                    android:layout_height="12dp"
-                    android:layout_width="12dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <ProgressBar
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:progress="20"
                     android:max="100"

@@ -309,7 +309,7 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="75dp"
         android:background="@color/fire_cardd"
         app:itemIconTint="@color/nav_item_color"
         app:itemTextColor="@color/nav_item_color"

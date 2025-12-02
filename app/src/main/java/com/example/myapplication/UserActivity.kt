@@ -16,16 +16,16 @@ import com.google.firebase.storage.FirebaseStorage
 class UserActivity : AppCompatActivity() {
 
     private lateinit var txtUserName: TextView
+    private lateinit var txtImcValor: TextView
+    private lateinit var txtImcStatus: TextView
+    private lateinit var imgUser: ImageView
+    private lateinit var txtAlterarImg: TextView
+
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
 
-    private lateinit var imgUser: ImageView
-    private lateinit var txtAlterarImg: TextView
     private val PICK_IMAGE = 200
     private val PERSONAL_DATA_REQUEST = 100
-
-    private lateinit var txtImcValor: TextView
-    private lateinit var txtImcStatus: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,63 +37,16 @@ class UserActivity : AppCompatActivity() {
         txtUserName = findViewById(R.id.txtUserName)
         imgUser = findViewById(R.id.imgUser)
         txtAlterarImg = findViewById(R.id.txtAlterarImg)
-
         txtImcValor = findViewById(R.id.txtImcValor)
         txtImcStatus = findViewById(R.id.txtImcStatus)
 
         carregarFoto()
+        carregarNomeDoAuth()
         carregarImcDoFirestore()
 
         txtAlterarImg.setOnClickListener { escolherFotoGaleria() }
 
-        txtUserName.text = auth.currentUser?.displayName ?: "Usuário"
-
-        // BottomNav
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        bottomNav.selectedItemId = R.id.nav_user
-
-        bottomNav.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-
-                R.id.nav_home -> {
-                    if (this !is HomeActivity) {
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                R.id.nav_training -> {
-                    if (this !is WorkoutsActivity) {
-                        startActivity(Intent(this, WorkoutsActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                R.id.nav_user -> {
-                    if (this !is UserActivity) {
-                        startActivity(Intent(this, UserActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                R.id.nav_events -> {
-                    if (this !is ScheduledEventsActivity) {
-                        startActivity(Intent(this, ScheduledEventsActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                else -> false
-            }
-        }
+        setupBottomNav()
 
         findViewById<TextView>(R.id.txtDesconectar).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -102,25 +55,19 @@ class UserActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Abrir PersonalDataActivity com startActivityForResult
         findViewById<LinearLayout>(R.id.cardPersonalData).setOnClickListener {
             val intent = Intent(this, PersonalDataActivity::class.java)
             startActivityForResult(intent, PERSONAL_DATA_REQUEST)
         }
-
     }
 
-    // Escolher foto
     private fun escolherFotoGaleria() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
+        val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
         startActivityForResult(intent, PICK_IMAGE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        val uid = auth.currentUser?.uid ?: return
 
         when (requestCode) {
             PICK_IMAGE -> {
@@ -130,39 +77,54 @@ class UserActivity : AppCompatActivity() {
                     uploadFotoFirebase(imageUri)
                 }
             }
+
             PERSONAL_DATA_REQUEST -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    // Recarrega nome, peso, altura e IMC
-                    txtUserName.text = auth.currentUser?.displayName ?: "Usuário"
-                    carregarImcDoFirestore()
+                    // atualiza UI com extras (se existirem)
+                    data?.let { intent ->
+                        val name = intent.getStringExtra("name")
+                        if (!name.isNullOrEmpty()) txtUserName.text = name
+
+                        // extras podem ser enviados como Double (putExtra Double) — usamos getDoubleExtra com fallback
+                        val peso = intent.getDoubleExtra("peso", 0.0)
+                        val altura = intent.getDoubleExtra("altura", 0.0)
+
+                        if (peso > 0.0 && altura > 0.0) {
+                            val alturaM = altura / 100.0
+                            val imc = peso / (alturaM * alturaM)
+                            txtImcValor.text = String.format("%.1f", imc)
+                            txtImcStatus.text = when {
+                                imc < 18.5 -> "Abaixo do peso"
+                                imc < 24.9 -> "Normal"
+                                imc < 29.9 -> "Sobrepeso"
+                                else -> "Obesidade"
+                            }
+                        } else {
+                            // fallback: recarrega do Firestore
+                            carregarImcDoFirestore()
+                        }
+                    } ?: run {
+                        carregarNomeDoAuth()
+                        carregarImcDoFirestore()
+                    }
+
+                    // garante que o nome do Auth seja atualizado na UI
+                    carregarNomeDoAuth()
                 }
             }
         }
     }
 
-    // Upload foto
     private fun uploadFotoFirebase(imageUri: Uri) {
         val uid = auth.currentUser?.uid ?: return
-
         val storageRef = FirebaseStorage.getInstance().getReference("profilePhotos/$uid.jpg")
 
         storageRef.putFile(imageUri)
             .addOnSuccessListener {
-
                 storageRef.downloadUrl.addOnSuccessListener { url ->
-
-                    val updates = UserProfileChangeRequest.Builder()
-                        .setPhotoUri(url)
-                        .build()
-
+                    val updates = UserProfileChangeRequest.Builder().setPhotoUri(url).build()
                     auth.currentUser?.updateProfile(updates)
-
-                    firestore.collection("PersonalData")
-                        .document(uid)
-                        .update("photoUrl", url.toString())
-
-                    Toast.makeText(this, "Foto atualizada!", Toast.LENGTH_SHORT).show()
-
+                    firestore.collection("PersonalData").document(uid).update("photoUrl", url.toString())
                     carregarFoto()
                 }
             }
@@ -170,42 +132,75 @@ class UserActivity : AppCompatActivity() {
 
     private fun carregarFoto() {
         val foto = auth.currentUser?.photoUrl
-        Glide.with(this)
-            .load(foto)
-            .placeholder(R.drawable.ic_user_placeholder)
-            .into(imgUser)
+        Glide.with(this).load(foto).placeholder(R.drawable.ic_user_placeholder).into(imgUser)
     }
 
-    // IMC via Firestore
+    private fun carregarNomeDoAuth() {
+        txtUserName.text = auth.currentUser?.displayName ?: "Usuário"
+    }
+
     private fun carregarImcDoFirestore() {
         val uid = auth.currentUser?.uid ?: return
 
-        firestore.collection("PersonalData")
-            .document(uid)
+        firestore.collection("PersonalData").document(uid)
             .get()
             .addOnSuccessListener { doc ->
+                val peso = (doc.get("peso") as? Number)?.toDouble()
+                    ?: (doc.get("peso") as? String)?.toDoubleOrNull()
+                    ?: 0.0
 
-                val peso = doc.get("peso")?.toString()?.toDoubleOrNull() ?: 0.0
-                val alturaCm = doc.get("altura")?.toString()?.toDoubleOrNull() ?: 0.0
+                val altura = (doc.get("altura") as? Number)?.toDouble()
+                    ?: (doc.get("altura") as? String)?.toDoubleOrNull()
+                    ?: 0.0
 
-                if (peso == 0.0 || alturaCm == 0.0) {
+                if (peso <= 0.0 || altura <= 0.0) {
                     txtImcValor.text = "--"
                     txtImcStatus.text = "Sem dados"
                     return@addOnSuccessListener
                 }
 
-                val altura = alturaCm / 100
-                val imc = peso / (altura * altura)
-
-                val status = when {
+                val alturaM = altura / 100.0
+                val imc = peso / (alturaM * alturaM)
+                txtImcValor.text = String.format("%.1f", imc)
+                txtImcStatus.text = when {
                     imc < 18.5 -> "Abaixo do peso"
                     imc < 24.9 -> "Normal"
                     imc < 29.9 -> "Sobrepeso"
                     else -> "Obesidade"
                 }
-
-                txtImcValor.text = String.format("%.1f", imc)
-                txtImcStatus.text = status
             }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Erro ao carregar IMC: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun setupBottomNav() {
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.selectedItemId = R.id.nav_user
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    true
+                }
+                R.id.nav_training -> {
+                    startActivity(Intent(this, WorkoutsActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    true
+                }
+                R.id.nav_user -> true
+                R.id.nav_events -> {
+                    startActivity(Intent(this, ScheduledEventsActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }
