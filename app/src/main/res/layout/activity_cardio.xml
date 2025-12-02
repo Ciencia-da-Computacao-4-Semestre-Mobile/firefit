@@ -204,13 +204,15 @@
     <!-- =================== BOTTOM NAV =================== -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="75dp"
         android:background="@color/background"
         app:itemIconTint="@color/fire_primary"
         app:itemTextColor="@color/fire_primary"
         app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/bottom_menu" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

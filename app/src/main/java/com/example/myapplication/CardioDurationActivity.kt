@@ -15,17 +15,38 @@ class CardioDurationActivity : AppCompatActivity() {
         val tipo = intent.getStringExtra("tipoCardio") ?: "cardio"
         val intensity = intent.getStringExtra("intensity") ?: "Moderado"
 
-        val durations = listOf("10 minutos", "20 minutos", "30 minutos", "45 minutos", "60 minutos")
+        // Lista completa com minutos + horas
+        val durations = listOf(
+            "10 minutos", "15 minutos", "20 minutos", "25 minutos", "30 minutos",
+            "35 minutos", "40 minutos", "45 minutos", "50 minutos", "55 minutos",
+
+            "1 hora",
+            "1h10", "1h20", "1h30", "1h40", "1h50",
+
+            "2 horas"
+        )
+
         val listView = findViewById<ListView>(R.id.listCardioDuration)
-        val adapter = ArrayAdapter(this, R.layout.list_item_duration, R.id.textItem, durations)
+
+        // Adaptador correto para usar seu layout customizado
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.list_item_duration,   // layout do item da lista
+            R.id.textItem,                 // ID do TextView dentro do layout
+            durations
+        )
+
         listView.adapter = adapter
 
         listView.setOnItemClickListener { _, _, pos, _ ->
             val selectedDuration = durations[pos]
-            val i = Intent(this, CardioStartActivity::class.java)
-            i.putExtra("tipoCardio", tipo)
-            i.putExtra("intensity", intensity)
-            i.putExtra("duration", selectedDuration)
+
+            val i = Intent(this, CardioStartActivity::class.java).apply {
+                putExtra("tipoCardio", tipo)
+                putExtra("intensity", intensity)
+                putExtra("duration", selectedDuration)
+            }
+
             startActivity(i)
         }
     }

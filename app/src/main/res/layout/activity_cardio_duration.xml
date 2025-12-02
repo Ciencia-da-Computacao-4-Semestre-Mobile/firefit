@@ -1,24 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="20dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     android:background="@color/fire_background">
 
+    <!-- TÍTULO -->
     <TextView
+        android:id="@+id/txtEscolhaDuracao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escolha a Duração"
-        android:textSize="20sp"
+        android:text="Duração"
+        android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="@color/fire_text"
-        android:layout_marginTop="20dp"/>
+        android:textColor="@android:color/white"
+        android:letterSpacing="0.05"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp" />
 
-    <ListView
-        android:id="@+id/listCardioDuration"
+    <!-- CARD PRINCIPAL -->
+    <LinearLayout
+        android:id="@+id/containerCardio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="8dp"
-        android:layout_marginTop="12dp" />
-</LinearLayout>
+        android:orientation="vertical"
+        android:background="@drawable/card_fire_glow"
+        android:padding="26dp"
+        android:elevation="10dp"
+        android:layout_below="@id/txtEscolhaDuracao"
+        android:layout_marginTop="20dp">
+
+        <!-- SUBTÍTULO -->
+        <TextView
+            android:id="@+id/txtSubtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecione uma opção"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="18dp" />
+
+        <!-- LIST VIEW -->
+        <ListView
+            android:id="@+id/listCardioDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#55FF6A00"
+            android:dividerHeight="2dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
