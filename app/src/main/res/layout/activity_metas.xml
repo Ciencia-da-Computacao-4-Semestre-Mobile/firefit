@@ -4,189 +4,199 @@
     android:layout_height="match_parent"
     android:background="#0F0F0F">
 
-    <!-- BOTÃO VOLTAR -->
-    <ImageView
-        android:id="@+id/btnVoltar"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/metas_ig"
-         />
+    <!-- ===== TOPO ===== -->
+    <RelativeLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:paddingHorizontal="16dp"
+        android:gravity="center_vertical">
 
-    <!-- TÍTULO -->
-    <TextView
-        android:id="@+id/txtTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
-        android:text="Metas"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/btnVoltar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/metas_ig" />
 
-    <!-- SCROLL DAS METAS -->
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Metas"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- ===== SCROLL ===== -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/txtTitulo"
-        android:padding="20dp">
+        android:layout_below="@id/topBar"
+        android:fillViewport="true"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
+            android:orientation="vertical">
 
-            <!-- CARD META 1 -->
+            <!-- ===== RESUMO ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#1A1A1A"
-                android:padding="20dp"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:elevation="4dp"
-                android:clipToPadding="false"
-                android:clipToOutline="false"
-                android:backgroundTint="#1A1A1A">
+                android:background="@drawable/card_bg_dark"
+                android:padding="18dp"
+                android:layout_marginBottom="20dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:text="Resumo da Semana"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:text="Você concluiu 2 de 3 metas 🔥"
+                    android:textColor="#AAAAAA"
+                    android:textSize="14sp"
+                    android:layout_marginTop="6dp"/>
+            </LinearLayout>
+
+            <!-- ===== META: PESO ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg_dark"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="6dp">
+
+                <TextView
                     android:text="Peso"
                     android:textColor="#FF5A1F"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Meta: 80 kg"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="4dp"/>
 
-                <!-- Barra de progresso -->
+                <TextView
+                    android:text="Atual: 85 kg"
+                    android:textColor="#AAAAAA"
+                    android:textSize="13sp"
+                    android:layout_marginTop="2dp"/>
+
                 <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="15dp"
-                    android:progress="60"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="14dp"
                     android:max="100"
-                    style="@android:style/Widget.ProgressBar.Horizontal"
-                    android:progressTint="#FF5A1F"
-                    android:backgroundTint="#333333" />
-
+                    android:progress="60"
+                    android:progressDrawable="@drawable/progress_orange"/>
             </LinearLayout>
 
-            <!-- CARD META 2 -->
+            <!-- ===== META: TREINOS ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#1A1A1A"
-                android:padding="20dp"
-                android:layout_marginBottom="20dp"
-                android:elevation="4dp">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Meta: 80 kg"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Peso"
-                    android:textColor="#FF5A1F"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                android:background="@drawable/card_bg_dark"
+                android:padding="18dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="6dp">
 
                 <TextView
                     android:text="Treinos Semanais"
                     android:textColor="#FF5A1F"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:text="Meta: 5 treinos"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:text="Realizados: 2"
+                    android:textColor="#AAAAAA"
+                    android:textSize="13sp"
+                    android:layout_marginTop="2dp"/>
 
                 <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:progress="40"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="14dp"
                     android:max="100"
-                    style="@android:style/Widget.ProgressBar.Horizontal"
-                    android:progressTint="#FF5A1F"
-                    android:backgroundTint="#333333" />
+                    android:progress="40"
+                    android:progressDrawable="@drawable/progress_orange"/>
             </LinearLayout>
 
-            <!-- CARD META 3 -->
+            <!-- ===== META: ALIMENTAÇÃO ===== -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#1A1A1A"
-                android:padding="20dp"
-                android:layout_marginBottom="20dp">
+                android:background="@drawable/card_bg_dark"
+                android:padding="18dp"
+                android:layout_marginBottom="24dp"
+                android:elevation="6dp">
 
                 <TextView
                     android:text="Alimentação"
                     android:textColor="#FF5A1F"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:text="Meta: 100% da dieta semanal"
+                    android:text="Meta: dieta semanal"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginTop="4dp"/>
+
+                <TextView
+                    android:text="Cumprimento: 20%"
+                    android:textColor="#AAAAAA"
+                    android:textSize="13sp"
+                    android:layout_marginTop="2dp"/>
 
                 <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:progress="20"
+                    android:layout_height="8dp"
+                    android:layout_marginTop="14dp"
                     android:max="100"
-                    style="@android:style/Widget.ProgressBar.Horizontal"
-                    android:progressTint="#FF5A1F"
-                    android:backgroundTint="#333333" />
-
+                    android:progress="20"
+                    android:progressDrawable="@drawable/progress_orange"/>
             </LinearLayout>
 
-            <!-- BOTÃO ADICIONAR META -->
+            <!-- ===== FRASE MOTIVACIONAL ===== -->
+            <TextView
+                android:text="💪 Pequenos passos todos os dias geram grandes resultados."
+                android:textColor="#CCCCCC"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- ===== BOTÃO ===== -->
             <Button
                 android:id="@+id/btnAdicionarMeta"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@drawable/card_bg_orange"
-                android:text="ADICIONAR META"
+                android:layout_height="54dp"
+                android:text="ADICIONAR NOVA META"
                 android:textStyle="bold"
-                android:textSize="16sp"
                 android:textColor="#FFFFFF"
-                android:layout_marginTop="10dp" />
-
+                android:background="@drawable/card_bg_orange"/>
         </LinearLayout>
     </ScrollView>
 
