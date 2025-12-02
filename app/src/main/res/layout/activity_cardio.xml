@@ -46,7 +46,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
-            
+
             <!-- =================== CARD PRINCIPAL =================== -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -166,136 +166,12 @@
                 android:textSize="18sp"
                 android:layout_marginTop="26dp" />
 
-            <!-- === ITEM 1 === -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerExercicios"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/border_orange"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Aquecimento - Corrida Leve"
-                    android:textColor="@color/fire_text"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1x5 min"
-                    android:textColor="@color/fire_gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- === ITEM 2 === -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/border_orange"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Corrida em Ritmo Moderado"
-                    android:textColor="@color/fire_text"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="3x5 min"
-                    android:textColor="@color/fire_gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- === ITEM 3 === -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/border_orange"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sprints"
-                    android:textColor="@color/fire_text"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5x30 seg"
-                    android:textColor="@color/fire_gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- === ITEM 4 === -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/border_orange"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginTop="12dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Corrida de Recuperação"
-                    android:textColor="@color/fire_text"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1x3 min"
-                    android:textColor="@color/fire_gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- === ITEM 5 === -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/border_orange"
-                android:gravity="center_vertical"
-                android:padding="14dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="30dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Alongamento"
-                    android:textColor="@color/fire_text"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1x5 min"
-                    android:textColor="@color/fire_gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
 
             <!-- =================== BOTÕES =================== -->
             <androidx.appcompat.widget.AppCompatButton
@@ -306,7 +182,8 @@
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:background="@drawable/btn_orange"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnVoltar"
