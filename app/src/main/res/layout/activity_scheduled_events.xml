@@ -35,11 +35,19 @@
     <!-- BottomNavigationView -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
+<<<<<<< Updated upstream
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:background="@color/background"
         app:itemIconTint="@color/fire_primary"
         app:itemTextColor="@color/fire_primary"
+=======
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/fire_cardd"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+>>>>>>> Stashed changes
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu"
         app:layout_constraintBottom_toBottomOf="parent"

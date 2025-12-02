@@ -337,11 +337,14 @@
                 </androidx.cardview.widget.CardView>
             </FrameLayout>
 
+<<<<<<< Updated upstream
             <!-- BOTÃO INICIAR TREINO DIÁRIO -->
 
 
             <!-- BOTÃO FINAL -->
 
+=======
+>>>>>>> Stashed changes
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
@@ -519,4 +522,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu" />
 
+<<<<<<< Updated upstream
 </androidx.constraintlayout.widget.ConstraintLayout>
+=======
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> Stashed changes
