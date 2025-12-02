@@ -1,65 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
-    android:background="#1E1E1E">
+    android:background="#1E1E1E"
+    android:padding="16dp">
 
-    <!-- Título -->
-    <TextView
-        android:id="@+id/txtTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirmar Evento"
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:fontFamily="sans-serif-medium"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Informações do evento -->
-    <TextView
-        android:id="@+id/txtInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detalhes do evento aqui..."
-        android:textColor="#CCCCCC"
-        android:textSize="16sp"
-        android:layout_marginBottom="32dp" />
-
-    <!-- Botão CONFIRMAR -->
-    <Button
-        android:id="@+id/btnConfirmar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CONFIRMAR"
-        android:textAllCaps="false"
-        android:paddingVertical="12dp"
-        android:backgroundTint="#2E7D32"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="12dp" />
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <!-- Botão CANCELAR -->
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CANCELAR"
-        android:textAllCaps="false"
-        android:paddingVertical="12dp"
-        android:backgroundTint="#D84315"
-        android:textColor="#FFFFFF"
-        android:layout_marginBottom="12dp" />
+        <!-- Título do evento -->
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Evento"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-medium" />
 
-    <!-- Botão VOLTAR -->
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="VOLTAR"
-        android:textAllCaps="false"
-        android:paddingVertical="12dp"
-        android:backgroundTint="#424242"
-        android:textColor="#FFFFFF" />
-</LinearLayout>
+        <!-- Card com detalhes do evento -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardDetalhe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/fire_cardd"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/orange">
+
+            <TextView
+                android:id="@+id/txtInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Detalhes do evento"
+                android:textColor="@color/fire_text"
+                android:textSize="16sp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Botões usando MaterialButton -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConfirmar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONFIRMAR"
+            android:textAllCaps="false"
+            android:paddingVertical="12dp"
+            app:backgroundTint="#2E7D32"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CANCELAR"
+            android:textAllCaps="false"
+            android:paddingVertical="12dp"
+            app:backgroundTint="#D84315"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAdicionarCalendario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADICIONAR AO CALENDÁRIO"
+            android:textAllCaps="false"
+            android:paddingVertical="12dp"
+            app:backgroundTint="#1976D2"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
+</ScrollView>

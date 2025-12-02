@@ -1,61 +1,53 @@
-package com.example.myapplication.adapter
+package Adapters
 
-import android.content.Context
+import android.R
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.databinding.ItemEventoBinding
 import com.example.myapplication.Evento
-import com.example.myapplication.R
+import com.example.myapplication.TipoEvento
 
 class EventosAdapter(
-    private val context: Context,
-    private val lista: List<Evento>,
     private val onClick: (Evento) -> Unit
-) : RecyclerView.Adapter<EventosAdapter.EventoViewHolder>() {
+) : ListAdapter<Evento, EventosAdapter.EventoViewHolder>(EventoDiffCallback()) {
 
-    override fun getItemViewType(position: Int): Int {
-        // usa a propriedade 'status' do modelo
-        return lista[position].status
+    inner class EventoViewHolder(val binding: ItemEventoBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(evento: Evento) {
+            binding.txtNomeEvento.text = evento.nome
+            binding.txtProfessorEvento.text = evento.professor
+            binding.txtDataEvento.text = evento.data.toString()
+            binding.txtHoraEvento.text = evento.hora.toString()
+
+            val color = when (evento.tipo) {
+                TipoEvento.MUSCULACAO -> binding.root.context.getColor(R.color.holo_green_dark)
+                TipoEvento.YOGA -> binding.root.context.getColor(R.color.holo_blue_light)
+                TipoEvento.FUNCIONAL -> binding.root.context.getColor(R.color.holo_orange_light)
+            }
+            binding.cardEvento.setCardBackgroundColor(color)
+
+            binding.root.setOnClickListener { onClick(evento) }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventoViewHolder {
-        val layoutId = when (viewType) {
-            1 -> R.layout.item_evento_disponivel
-            2 -> R.layout.item_evento_agendado
-            3 -> R.layout.item_evento_concluido
-            else -> R.layout.item_evento_disponivel
-        }
-
-        val view = LayoutInflater.from(context).inflate(layoutId, parent, false)
-        return EventoViewHolder(view)
+        val binding = ItemEventoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return EventoViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: EventoViewHolder, position: Int) {
-        holder.bind(lista[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = lista.size
-
-    inner class EventoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val txtNome = itemView.findViewById<TextView>(R.id.txtNome)
-        private val txtProfessor = itemView.findViewById<TextView>(R.id.txtProfessor)
-        private val txtDataHora = itemView.findViewById<TextView>(R.id.txtDataHora)
-        private val btnAcao = itemView.findViewById<Button?>(R.id.btnAcao)
-
-        fun bind(evento: Evento) {
-            txtNome.text = evento.nome
-            txtProfessor.text = evento.professor
-            txtDataHora.text = "${evento.data} - ${evento.hora}"
-
-            btnAcao?.apply {
-                setOnClickListener {
-                    onClick(evento)
-                }
-            }
-        }
+    // Função para filtrar por tipo
+    fun filtrarPorTipo(tipo: TipoEvento) {
+        submitList(currentList.filter { it.tipo == tipo })
     }
+}
+
+class EventoDiffCallback : DiffUtil.ItemCallback<Evento>() {
+    override fun areItemsTheSame(oldItem: Evento, newItem: Evento) = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: Evento, newItem: Evento) = oldItem == newItem
 }

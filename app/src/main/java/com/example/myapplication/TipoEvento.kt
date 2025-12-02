@@ -1,4 +1,7 @@
 package com.example.myapplication
 
-class TipoEvento {
+enum class TipoEvento {
+    MUSCULACAO,
+    YOGA,
+    FUNCIONAL
 }

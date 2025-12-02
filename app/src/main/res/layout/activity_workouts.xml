@@ -499,12 +499,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="INICIAR TREINO DIÁRIO"
-                android:textColor="#FF4F2E"
+                android:textColor="#FF6A00"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:background="@drawable/btn_outline"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="30dp"/>
+                android:background="@drawable/btn_outline"/>
 
         </LinearLayout>
     </ScrollView>

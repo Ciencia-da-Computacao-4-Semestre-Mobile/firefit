@@ -1,9 +1,13 @@
 package com.example.myapplication
 
+import com.example.myapplication.TipoEvento
+
 data class Evento(
+    val id: Int,
     val nome: String,
     val professor: String,
-    val data: String,
-    val hora: String,
-    val status: Int // 1 = disponível, 2 = agendado, 3 = concluído
+    val tipo: TipoEvento,
+    val data: String,   // "dd/MM/yyyy"
+    val hora: String,   // "HH:mm"
+    val duracao: Int    // em minutos
 )
