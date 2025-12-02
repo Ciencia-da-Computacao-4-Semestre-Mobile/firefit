@@ -323,7 +323,6 @@
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 style="?android:attr/buttonBarButtonStyle" />
->>>>>>> Stashed changes
                         </LinearLayout>
 
                         <ProgressBar
@@ -502,7 +501,6 @@
             <!-- BOTÃO INICIAR TREINO DIÁRIO -->
 
             <!-- BOTÃO FINAL -->
->>>>>>> Stashed changes
             <Button
                 android:id="@+id/btnStartDaily"
                 android:layout_width="match_parent"
