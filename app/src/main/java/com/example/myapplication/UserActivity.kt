@@ -73,7 +73,6 @@ class UserActivity : AppCompatActivity() {
             PICK_IMAGE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     val imageUri = data?.data ?: return
-                    imgUser.setImageURI(imageUri)
                     uploadFotoFirebase(imageUri)
                 }
             }
@@ -121,19 +120,48 @@ class UserActivity : AppCompatActivity() {
 
         storageRef.putFile(imageUri)
             .addOnSuccessListener {
-                storageRef.downloadUrl.addOnSuccessListener { url ->
-                    val updates = UserProfileChangeRequest.Builder().setPhotoUri(url).build()
+                storageRef.downloadUrl.addOnSuccessListener { downloadUrl ->
+
+                    // Atualiza o Auth
+                    val updates = UserProfileChangeRequest.Builder()
+                        .setPhotoUri(downloadUrl)
+                        .build()
                     auth.currentUser?.updateProfile(updates)
-                    firestore.collection("PersonalData").document(uid).update("photoUrl", url.toString())
-                    carregarFoto()
+
+                    // Atualiza o Firestore
+                    firestore.collection("PersonalData").document(uid)
+                        .update("photoUrl", downloadUrl.toString())
+                        .addOnSuccessListener {
+                            carregarFoto() // recarrega imagem na hora
+                        }
                 }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao enviar foto", Toast.LENGTH_SHORT).show()
             }
     }
 
+
     private fun carregarFoto() {
-        val foto = auth.currentUser?.photoUrl
-        Glide.with(this).load(foto).placeholder(R.drawable.ic_user_placeholder).into(imgUser)
+        val uid = auth.currentUser?.uid ?: return
+
+        firestore.collection("PersonalData").document(uid)
+            .get()
+            .addOnSuccessListener { doc ->
+                val fotoUrl = doc.getString("photoUrl")
+
+                Glide.with(this)
+                    .load(fotoUrl)
+                    .placeholder(R.drawable.ic_user_placeholder)
+                    .into(imgUser)
+            }
+            .addOnFailureListener {
+                Glide.with(this)
+                    .load(R.drawable.ic_user_placeholder)
+                    .into(imgUser)
+            }
     }
+
 
     private fun carregarNomeDoAuth() {
         txtUserName.text = auth.currentUser?.displayName ?: "Usuário"

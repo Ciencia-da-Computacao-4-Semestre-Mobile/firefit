@@ -30,7 +30,7 @@ class CardioIntensityActivity : AppCompatActivity() {
         // CLICK NOS ITENS
         listView.setOnItemClickListener { _, _, pos, _ ->
             val selected = intensities[pos]
-            val i = Intent(this, CardioDurationActivity::class.java)
+            val i = Intent(this, CardioStartActivity::class.java)
             i.putExtra("tipoCardio", tipo)
             i.putExtra("intensity", selected)
             startActivity(i)

@@ -9,7 +9,10 @@ import android.view.animation.LinearInterpolator
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+
+import com.bumptech.glide.Glide
 
 class CardioStartActivity : AppCompatActivity() {
 
@@ -20,6 +23,7 @@ class CardioStartActivity : AppCompatActivity() {
     private lateinit var btnStartPause: Button
     private lateinit var btnReset: Button
     private lateinit var tvCurrentPhase: TextView
+    private lateinit var gifImage: ImageView
 
     private var pulseAnimator: ObjectAnimator? = null
 
@@ -27,6 +31,9 @@ class CardioStartActivity : AppCompatActivity() {
     private val phases = mutableListOf<Phase>()
     private var currentPhaseIndex = 0
     private var timeLeftMillis: Long = 0L
+
+    // ⭐ Salvar o tipo para usar em updateGif()
+    private var tipoCardio: String = ""
 
     data class Phase(
         val name: String,
@@ -37,26 +44,29 @@ class CardioStartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cardio_start)
 
-        val tipo = intent.getStringExtra("tipoCardio") ?: "Cardio"
+        val btnBack = findViewById<ImageView>(R.id.btnVoltar)
+        btnBack.setOnClickListener { finish() }
+
+        tipoCardio = intent.getStringExtra("tipoCardio") ?: "Cardio"
         val intensity = intent.getStringExtra("intensity") ?: "Moderado"
         val durationStr = intent.getStringExtra("duration") ?: "30 minutos"
 
-        findViewById<TextView>(R.id.txtCardioTitle).text = "$tipo — $intensity"
+        findViewById<TextView>(R.id.txtCardioTitle).text = "$tipoCardio — $intensity"
         findViewById<TextView>(R.id.txtCardioInfo).text = "Duração: $durationStr"
 
         tvTimer = findViewById(R.id.tvTimer)
         btnStartPause = findViewById(R.id.btnStartPause)
         btnReset = findViewById(R.id.btnReset)
+        gifImage = findViewById(R.id.gifExercicio)
 
-        // 🔥 NOVO: Texto da fase atual
         tvCurrentPhase = TextView(this).apply {
             textSize = 20f
             setTextColor(resources.getColor(R.color.fire_text, null))
             text = "Aquecimento"
         }
+
         findViewById<LinearLayout>(R.id.exerciseList).addView(tvCurrentPhase, 0)
 
-        // animação pulse
         pulseAnimator = ObjectAnimator.ofFloat(tvTimer, View.SCALE_X, 1f, 1.08f).apply {
             duration = 600
             repeatMode = ObjectAnimator.REVERSE
@@ -65,14 +75,13 @@ class CardioStartActivity : AppCompatActivity() {
         }
         pulseAnimator?.addUpdateListener { tvTimer.scaleY = tvTimer.scaleX }
 
-        // 🔥 MONTA LISTA DE FASES DE ACORDO COM O TIPO
-        setupPhases(tipo)
+        setupPhases(tipoCardio)
 
-        // 🔥 COMEÇA NA FASE 0
         currentPhaseIndex = 0
         timeLeftMillis = phases[0].durationMillis
-        updateTimerText()
         updatePhaseText()
+        updateTimerText()
+        updateGif()
 
         btnStartPause.setOnClickListener {
             if (isRunning) pauseTimer() else startTimer()
@@ -83,7 +92,35 @@ class CardioStartActivity : AppCompatActivity() {
         }
     }
 
-    // 🔥 CONFIGURA AS FASES DO TREINO
+    // ⭐ GIF só aparece em corrida e caminhada
+    private fun updateGif() {
+        val tipo = tipoCardio.lowercase()
+
+        // ❌ Não é corrida nem caminhada → esconde o GIF
+        if (tipo != "corrida" && tipo != "caminhada") {
+            gifImage.visibility = View.GONE
+            return
+        }
+
+        // ✔ É corrida ou caminhada → exibe
+        gifImage.visibility = View.VISIBLE
+
+        val fase = phases[currentPhaseIndex].name.lowercase()
+
+        val gifRes = when {
+            fase.contains("aquecimento") -> R.drawable.running
+            fase.contains("moderada") || fase.contains("corrida") -> R.drawable.running
+            fase.contains("sprint") || fase.contains("forte") -> R.drawable.running
+            fase.contains("alongamento") -> R.drawable.running
+            else -> R.drawable.running
+        }
+
+        Glide.with(this)
+            .asGif()
+            .load(gifRes)
+            .into(gifImage)
+    }
+
     private fun setupPhases(tipo: String) {
         phases.clear()
 
@@ -103,26 +140,10 @@ class CardioStartActivity : AppCompatActivity() {
                 phases += Phase("Alongamento final", 5 * 60_000)
             }
 
-            "bicicleta" -> {
-                phases += Phase("Aquecimento — Leve", 5 * 60_000)
-                phases += Phase("Subida 1/4", 4 * 60_000)
-                phases += Phase("Subida 2/4", 4 * 60_000)
-                phases += Phase("Subida 3/4", 4 * 60_000)
-                phases += Phase("Subida 4/4", 4 * 60_000)
-                phases += Phase("Pedalada forte 1/3", 3 * 60_000)
-                phases += Phase("Pedalada forte 2/3", 3 * 60_000)
-                phases += Phase("Pedalada forte 3/3", 3 * 60_000)
-                phases += Phase("Ritmo leve", 5 * 60_000)
-                phases += Phase("Alongamento final", 5 * 60_000)
-            }
-
             "caminhada" -> {
-                phases += Phase("Caminhada leve", 7 * 60_000)
-                phases += Phase("Caminhada inclinada", 5 * 60_000)
-                phases += Phase("Caminhada rápida 1/3", 3 * 60_000)
-                phases += Phase("Caminhada rápida 2/3", 3 * 60_000)
-                phases += Phase("Caminhada rápida 3/3", 3 * 60_000)
-                phases += Phase("Caminhada leve — Recuperação", 5 * 60_000)
+                phases += Phase("Aquecimento", 5 * 60_000)
+                phases += Phase("Caminhada moderada", 10 * 60_000)
+                phases += Phase("Caminhada rápida", 10 * 60_000)
                 phases += Phase("Alongamento final", 5 * 60_000)
             }
 
@@ -134,12 +155,10 @@ class CardioStartActivity : AppCompatActivity() {
         }
     }
 
-    // 🔥 ATUALIZA TEXTO DA FASE ATUAL
     private fun updatePhaseText() {
         tvCurrentPhase.text = "Fase atual: ${phases[currentPhaseIndex].name}"
     }
 
-    // 🔥 CONTADOR
     private fun startTimer() {
         countDownTimer?.cancel()
 
@@ -172,6 +191,8 @@ class CardioStartActivity : AppCompatActivity() {
         timeLeftMillis = phases[currentPhaseIndex].durationMillis
         updatePhaseText()
         updateTimerText()
+        updateGif()
+
         startTimer()
     }
 
@@ -197,6 +218,7 @@ class CardioStartActivity : AppCompatActivity() {
         timeLeftMillis = phases[0].durationMillis
         updatePhaseText()
         updateTimerText()
+        updateGif()
         findViewById<TextView>(R.id.txtFinished).visibility = View.GONE
     }
 
