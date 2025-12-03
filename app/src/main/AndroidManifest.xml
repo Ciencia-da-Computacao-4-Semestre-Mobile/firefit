@@ -47,15 +47,14 @@
         <activity android:name=".CardioActivity" />
 
 
-        <activity android:name=".TelaCorridaActivity"/>
-        <activity android:name=".TelaBicicletaActivity"/>
-        <activity android:name=".TelaCaminhadaActivity"/>
-
-
         <activity android:name=".PersonalDataActivity"/>
 
         <activity android:name=".ScheduledEventsActivity"/>
         <activity android:name=".ConfirmarEventoActivity"/>
+
+
+        <activity android:name=".MetasActivity" />
+
 
 
     </application>
