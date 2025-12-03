@@ -1,26 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:padding="20dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fire_background">
+    android:padding="24dp"
+    android:background="@color/background">
 
-    <TextView
+    <!-- TOPO COM SETA + TÍTULO -->
+    <LinearLayout
+        android:id="@+id/topBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Escolha a Intensidade"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/fire_text"
-        android:layout_marginTop="20dp"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp">
 
-    <ListView
-        android:id="@+id/listCardioIntensity"
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/txtEscolhaIntensidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escolha a Intensidade"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:letterSpacing="0.05" />
+
+    </LinearLayout>
+
+    <!-- CARD PRINCIPAL -->
+    <LinearLayout
+        android:id="@+id/containerCardioIntensity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:dividerHeight="8dp"
-        android:background="@color/background"/>
+        android:orientation="vertical"
+        android:background="@drawable/card_fire_glow"
+        android:padding="26dp"
+        android:elevation="10dp"
+        android:layout_below="@id/topBar"
+        android:layout_marginTop="30dp">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtSubtituloIntensity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecione uma opção"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="18dp" />
+
+        <ListView
+            android:id="@+id/listCardioIntensity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="#55FF6A00"
+            android:dividerHeight="2dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

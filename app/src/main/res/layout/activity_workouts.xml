@@ -307,17 +307,7 @@
                                 android:textStyle="bold"
                                 style="?android:attr/buttonBarButtonStyle" />
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:paddingHorizontal="14dp"
-                                android:layout_marginStart="10dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:textColor="#FF4F2E"
-                                android:text="@string/ver_mais"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                style="?android:attr/buttonBarButtonStyle" />
+
                         </LinearLayout>
 
                         <ProgressBar
@@ -461,17 +451,6 @@
                                 android:textStyle="bold"
                                 style="?android:attr/buttonBarButtonStyle" />
 
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="48dp"
-                                android:paddingHorizontal="14dp"
-                                android:layout_marginStart="10dp"
-                                android:backgroundTint="#FFFFFF"
-                                android:textColor="#FF4F2E"
-                                android:text="@string/ver_mais"
-                                android:textSize="12sp"
-                                android:textStyle="bold"
-                                style="?android:attr/buttonBarButtonStyle" />
                         </LinearLayout>
 
                         <ProgressBar

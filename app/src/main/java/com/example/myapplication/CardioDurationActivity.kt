@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -14,6 +15,12 @@ class CardioDurationActivity : AppCompatActivity() {
 
         val tipo = intent.getStringExtra("tipoCardio") ?: "cardio"
         val intensity = intent.getStringExtra("intensity") ?: "Moderado"
+
+        // SETA DE VOLTAR
+        val btnBack = findViewById<ImageView>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
 
         // Lista completa com minutos + horas
         val durations = listOf(

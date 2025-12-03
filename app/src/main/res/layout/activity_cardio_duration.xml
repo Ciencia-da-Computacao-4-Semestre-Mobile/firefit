@@ -3,21 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@color/fire_background">
+    android:background="@color/background">
 
-    <!-- TÍTULO -->
-    <TextView
-        android:id="@+id/txtEscolhaDuracao"
+    <!-- TOPO COM SETA + TÍTULO -->
+    <LinearLayout
+        android:id="@+id/topBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Duração"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:letterSpacing="0.05"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:id="@+id/txtEscolhaDuracao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duração"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:letterSpacing="0.05" />
+
+    </LinearLayout>
 
     <!-- CARD PRINCIPAL -->
     <LinearLayout
@@ -28,10 +45,9 @@
         android:background="@drawable/card_fire_glow"
         android:padding="26dp"
         android:elevation="10dp"
-        android:layout_below="@id/txtEscolhaDuracao"
-        android:layout_marginTop="20dp">
+        android:layout_below="@id/topBar"
+        android:layout_marginTop="30dp">
 
-        <!-- SUBTÍTULO -->
         <TextView
             android:id="@+id/txtSubtitulo"
             android:layout_width="wrap_content"
@@ -42,7 +58,6 @@
             android:textStyle="bold"
             android:layout_marginBottom="18dp" />
 
-        <!-- LIST VIEW -->
         <ListView
             android:id="@+id/listCardioDuration"
             android:layout_width="match_parent"

@@ -14,13 +14,24 @@ import androidx.appcompat.app.AppCompatActivity
 class CardioStartActivity : AppCompatActivity() {
 
     private var countDownTimer: CountDownTimer? = null
-    private var timeLeftMillis: Long = 0L
     private var isRunning = false
 
     private lateinit var tvTimer: TextView
     private lateinit var btnStartPause: Button
     private lateinit var btnReset: Button
+    private lateinit var tvCurrentPhase: TextView
+
     private var pulseAnimator: ObjectAnimator? = null
+
+    // 🔥 LISTA DE FASES DO TREINO
+    private val phases = mutableListOf<Phase>()
+    private var currentPhaseIndex = 0
+    private var timeLeftMillis: Long = 0L
+
+    data class Phase(
+        val name: String,
+        val durationMillis: Long
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +44,17 @@ class CardioStartActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.txtCardioTitle).text = "$tipo — $intensity"
         findViewById<TextView>(R.id.txtCardioInfo).text = "Duração: $durationStr"
 
-        timeLeftMillis = parseDurationToMillis(durationStr)
-
         tvTimer = findViewById(R.id.tvTimer)
         btnStartPause = findViewById(R.id.btnStartPause)
         btnReset = findViewById(R.id.btnReset)
 
-        updateTimerText()
-
-        btnStartPause.setOnClickListener {
-            if (isRunning) pauseTimer() else startTimer()
+        // 🔥 NOVO: Texto da fase atual
+        tvCurrentPhase = TextView(this).apply {
+            textSize = 20f
+            setTextColor(resources.getColor(R.color.fire_text, null))
+            text = "Aquecimento"
         }
-
-        btnReset.setOnClickListener {
-            resetTimer()
-        }
+        findViewById<LinearLayout>(R.id.exerciseList).addView(tvCurrentPhase, 0)
 
         // animação pulse
         pulseAnimator = ObjectAnimator.ofFloat(tvTimer, View.SCALE_X, 1f, 1.08f).apply {
@@ -58,87 +65,123 @@ class CardioStartActivity : AppCompatActivity() {
         }
         pulseAnimator?.addUpdateListener { tvTimer.scaleY = tvTimer.scaleX }
 
-        // ==============================
-        // 🔥 AQUI — ADICIONAR LISTA DE EXERCÍCIOS
-        // ==============================
-        val exerciseContainer = findViewById<LinearLayout>(R.id.exerciseList)
-        exerciseContainer.removeAllViews()
+        // 🔥 MONTA LISTA DE FASES DE ACORDO COM O TIPO
+        setupPhases(tipo)
+
+        // 🔥 COMEÇA NA FASE 0
+        currentPhaseIndex = 0
+        timeLeftMillis = phases[0].durationMillis
+        updateTimerText()
+        updatePhaseText()
+
+        btnStartPause.setOnClickListener {
+            if (isRunning) pauseTimer() else startTimer()
+        }
+
+        btnReset.setOnClickListener {
+            resetWorkout()
+        }
+    }
+
+    // 🔥 CONFIGURA AS FASES DO TREINO
+    private fun setupPhases(tipo: String) {
+        phases.clear()
 
         when (tipo.lowercase()) {
+
             "corrida" -> {
-                exerciseContainer.addView(makeTextView("Aquecimento — Corrida leve 5 minutos"))
-                exerciseContainer.addView(makeTextView("Corrida moderada — 3×5 minutos"))
-                exerciseContainer.addView(makeTextView("Sprints — 5×30 segundos"))
-                exerciseContainer.addView(makeTextView("Corrida leve — Recuperação 3 minutos"))
-                exerciseContainer.addView(makeTextView("Alongamento final — 5 minutos"))
+                phases += Phase("Aquecimento — Corrida leve", 5 * 60_000)
+                phases += Phase("Corrida moderada 1/3", 5 * 60_000)
+                phases += Phase("Corrida moderada 2/3", 5 * 60_000)
+                phases += Phase("Corrida moderada 3/3", 5 * 60_000)
+                phases += Phase("Sprints 1/5", 30_000)
+                phases += Phase("Sprints 2/5", 30_000)
+                phases += Phase("Sprints 3/5", 30_000)
+                phases += Phase("Sprints 4/5", 30_000)
+                phases += Phase("Sprints 5/5", 30_000)
+                phases += Phase("Corrida leve — Recuperação", 3 * 60_000)
+                phases += Phase("Alongamento final", 5 * 60_000)
             }
+
             "bicicleta" -> {
-                exerciseContainer.addView(makeTextView("Aquecimento — Pedalada leve 7 minutos"))
-                exerciseContainer.addView(makeTextView("Subidas — 4×4 minutos"))
-                exerciseContainer.addView(makeTextView("Pedalada forte — 3×3 minutos"))
-                exerciseContainer.addView(makeTextView("Ritmo leve — 5 minutos"))
-                exerciseContainer.addView(makeTextView("Alongamento final para pernas — 5 minutos"))
+                phases += Phase("Aquecimento — Leve", 5 * 60_000)
+                phases += Phase("Subida 1/4", 4 * 60_000)
+                phases += Phase("Subida 2/4", 4 * 60_000)
+                phases += Phase("Subida 3/4", 4 * 60_000)
+                phases += Phase("Subida 4/4", 4 * 60_000)
+                phases += Phase("Pedalada forte 1/3", 3 * 60_000)
+                phases += Phase("Pedalada forte 2/3", 3 * 60_000)
+                phases += Phase("Pedalada forte 3/3", 3 * 60_000)
+                phases += Phase("Ritmo leve", 5 * 60_000)
+                phases += Phase("Alongamento final", 5 * 60_000)
             }
+
             "caminhada" -> {
-                exerciseContainer.addView(makeTextView("Caminhada leve — 10 minutos"))
-                exerciseContainer.addView(makeTextView("Caminhada inclinada — 5 minutos"))
-                exerciseContainer.addView(makeTextView("Caminhada rápida — 3×3 minutos"))
-                exerciseContainer.addView(makeTextView("Caminhada leve — Recuperação 5 minutos"))
-                exerciseContainer.addView(makeTextView("Alongamento geral — 5 minutos"))
+                phases += Phase("Caminhada leve", 7 * 60_000)
+                phases += Phase("Caminhada inclinada", 5 * 60_000)
+                phases += Phase("Caminhada rápida 1/3", 3 * 60_000)
+                phases += Phase("Caminhada rápida 2/3", 3 * 60_000)
+                phases += Phase("Caminhada rápida 3/3", 3 * 60_000)
+                phases += Phase("Caminhada leve — Recuperação", 5 * 60_000)
+                phases += Phase("Alongamento final", 5 * 60_000)
             }
+
             else -> {
-                exerciseContainer.addView(makeTextView("Aquecimento — 5 minutos"))
-                exerciseContainer.addView(makeTextView("Treino principal — 20 minutos"))
-                exerciseContainer.addView(makeTextView("Resfriamento — 5 minutos"))
+                phases += Phase("Aquecimento", 5 * 60_000)
+                phases += Phase("Treino principal", 20 * 60_000)
+                phases += Phase("Resfriamento", 5 * 60_000)
             }
         }
     }
 
-    // ==============================
-    // 🔥 FUNÇÃO QUE CRIA TEXTVIEW DOS EXERCÍCIOS
-    // ==============================
-    private fun makeTextView(text: String): TextView {
-        return TextView(this).apply {
-            this.text = text
-            textSize = 15f
-            setTextColor(resources.getColor(R.color.fire_text, null))
-            setPadding(0, 6, 0, 6)
-        }
+    // 🔥 ATUALIZA TEXTO DA FASE ATUAL
+    private fun updatePhaseText() {
+        tvCurrentPhase.text = "Fase atual: ${phases[currentPhaseIndex].name}"
     }
 
-    // ==============================
-    // ⏱ LÓGICA DO TIMER
-    // ==============================
+    // 🔥 CONTADOR
     private fun startTimer() {
         countDownTimer?.cancel()
+
         countDownTimer = object : CountDownTimer(timeLeftMillis, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                timeLeftMillis = millisUntilFinished
+            override fun onTick(ms: Long) {
+                timeLeftMillis = ms
                 updateTimerText()
             }
 
             override fun onFinish() {
-                isRunning = false
-                updateButtons()
-                updateTimerText()
-                pulseAnimator?.cancel()
-
-                try {
-                    val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-                    val ring = RingtoneManager.getRingtone(applicationContext, notification)
-                    ring.play()
-                } catch (_: Exception) { }
-
-                findViewById<View>(R.id.containerStart)
-                    .setBackgroundResource(android.R.color.holo_green_light)
-
-                findViewById<TextView>(R.id.txtFinished).visibility = View.VISIBLE
+                nextPhase()
             }
         }.start()
 
         isRunning = true
         updateButtons()
         pulseAnimator?.start()
+    }
+
+    private fun nextPhase() {
+        currentPhaseIndex++
+
+        if (currentPhaseIndex >= phases.size) {
+            finishWorkout()
+            return
+        }
+
+        playBeep()
+
+        timeLeftMillis = phases[currentPhaseIndex].durationMillis
+        updatePhaseText()
+        updateTimerText()
+        startTimer()
+    }
+
+    private fun finishWorkout() {
+        isRunning = false
+        pulseAnimator?.cancel()
+        updateButtons()
+        tvTimer.text = "00:00"
+        findViewById<TextView>(R.id.txtFinished).visibility = View.VISIBLE
+        playBeep()
     }
 
     private fun pauseTimer() {
@@ -148,17 +191,21 @@ class CardioStartActivity : AppCompatActivity() {
         pulseAnimator?.cancel()
     }
 
-    private fun resetTimer() {
-        countDownTimer?.cancel()
-        val text = findViewById<TextView>(R.id.txtCardioInfo)
-            .text.toString().replace("Duração: ", "")
-        timeLeftMillis = parseDurationToMillis(text)
+    private fun resetWorkout() {
+        pauseTimer()
+        currentPhaseIndex = 0
+        timeLeftMillis = phases[0].durationMillis
+        updatePhaseText()
         updateTimerText()
-        isRunning = false
-        updateButtons()
-        pulseAnimator?.cancel()
-        findViewById<View>(R.id.containerStart).setBackgroundResource(android.R.color.transparent)
         findViewById<TextView>(R.id.txtFinished).visibility = View.GONE
+    }
+
+    private fun playBeep() {
+        try {
+            val notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+            val ring = RingtoneManager.getRingtone(applicationContext, notification)
+            ring.play()
+        } catch (_: Exception) { }
     }
 
     private fun updateButtons() {
@@ -170,11 +217,6 @@ class CardioStartActivity : AppCompatActivity() {
         val min = sec / 60
         val s = sec % 60
         tvTimer.text = String.format("%02d:%02d", min, s)
-    }
-
-    private fun parseDurationToMillis(duration: String): Long {
-        val num = duration.split(" ")[0].toIntOrNull() ?: 30
-        return num * 60L * 1000L
     }
 
     override fun onDestroy() {

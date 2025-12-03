@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import Adapters.EventosAdapter
 import com.example.myapplication.databinding.ActivityScheduledEventsBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ScheduledEventsActivity : AppCompatActivity() {
 
@@ -29,6 +30,7 @@ class ScheduledEventsActivity : AppCompatActivity() {
         }
 
         viewModel.carregarEventos()
+
     }
 
     private fun abrirTelaConfirmacao(evento: Evento) {
@@ -42,5 +44,35 @@ class ScheduledEventsActivity : AppCompatActivity() {
             putExtra("duracao", evento.duracao)
         }
         startActivity(intent)
+    }
+
+    private fun setupBottomNav() {
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        bottomNav.selectedItemId = R.id.nav_events
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.nav_home -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    true
+                }
+                R.id.nav_training -> {
+                    startActivity(Intent(this, WorkoutsActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    true
+                }
+                R.id.nav_events -> true
+                R.id.nav_user -> {
+                    startActivity(Intent(this, UserActivity::class.java))
+                    overridePendingTransition(0, 0)
+                    finish()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 }

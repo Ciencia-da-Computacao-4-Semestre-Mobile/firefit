@@ -42,6 +42,7 @@ class CardioActivity : AppCompatActivity() {
             }
         }
 
+
         // ========= BOTÃO INICIAR =========
         btnIniciar.setOnClickListener {
             val selectedId = groupCardio.checkedRadioButtonId

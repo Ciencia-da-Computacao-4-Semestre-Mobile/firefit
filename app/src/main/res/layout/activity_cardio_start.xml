@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@color/fire_background">
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,6 +59,16 @@
                 android:textColor="@color/fire_text"
                 android:layout_marginTop="6dp" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtFaseAtual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aquecimento"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/fire_text"
+            android:layout_marginTop="16dp" />
 
         <TextView
             android:id="@+id/tvTimer"
