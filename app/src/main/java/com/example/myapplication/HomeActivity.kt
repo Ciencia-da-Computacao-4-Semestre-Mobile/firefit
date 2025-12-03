@@ -42,6 +42,8 @@ class HomeActivity : AppCompatActivity() {
             tvUserName.text = "Usuario"
         }
 
+
+
         // 🔥 NOVOS ELEMENTOS
         val txtDays = findViewById<TextView>(R.id.txtDays)
         val txtMotivation = findViewById<TextView>(R.id.txtMotivation)
@@ -104,6 +106,13 @@ class HomeActivity : AppCompatActivity() {
 
         tvSeeAllEvents.setOnClickListener {
             val intent = Intent(this, ScheduledEventsActivity::class.java)
+            startActivity(intent)
+        }
+
+        val txtMetas: TextView = findViewById(R.id.txtMetas)
+
+        txtMetas.setOnClickListener {
+            val intent = Intent(this, MetasActivity::class.java)
             startActivity(intent)
         }
     }
