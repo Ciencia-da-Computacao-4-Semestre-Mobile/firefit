@@ -469,20 +469,6 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
             </FrameLayout>
-
-            <!-- BOTÃO INICIAR TREINO DIÁRIO -->
-
-            <!-- BOTÃO FINAL -->
-            <Button
-                android:id="@+id/btnStartDaily"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="INICIAR TREINO DIÁRIO"
-                android:textColor="#FF6A00"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:background="@drawable/btn_outline"/>
-
         </LinearLayout>
     </ScrollView>
 

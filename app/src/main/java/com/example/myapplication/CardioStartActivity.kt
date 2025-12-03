@@ -96,21 +96,31 @@ class CardioStartActivity : AppCompatActivity() {
     private fun updateGif() {
         val tipo = tipoCardio.lowercase()
 
-        // ❌ Não é corrida nem caminhada → esconde o GIF
-        if (tipo != "corrida" && tipo != "caminhada") {
+        // ❌ Esconde GIF se não for nenhum dos 3
+        if (tipo != "corrida" && tipo != "caminhada" && tipo != "bicicleta") {
             gifImage.visibility = View.GONE
             return
         }
 
-        // ✔ É corrida ou caminhada → exibe
         gifImage.visibility = View.VISIBLE
 
         val fase = phases[currentPhaseIndex].name.lowercase()
 
+        // ➤ GIF específico da bicicleta
+        if (tipo == "bicicleta") {
+            Glide.with(this)
+                .asGif()
+                .load(R.drawable.bike)
+                .into(gifImage)
+            return
+        }
+
+        // ➤ GIF padrão para corrida e caminhada
         val gifRes = when {
             fase.contains("aquecimento") -> R.drawable.running
-            fase.contains("moderada") || fase.contains("corrida") -> R.drawable.running
-            fase.contains("sprint") || fase.contains("forte") -> R.drawable.running
+            fase.contains("moderada") -> R.drawable.running
+            fase.contains("corrida") -> R.drawable.running
+            fase.contains("sprint") -> R.drawable.running
             fase.contains("alongamento") -> R.drawable.running
             else -> R.drawable.running
         }
@@ -120,6 +130,7 @@ class CardioStartActivity : AppCompatActivity() {
             .load(gifRes)
             .into(gifImage)
     }
+
 
     private fun setupPhases(tipo: String) {
         phases.clear()
@@ -137,6 +148,13 @@ class CardioStartActivity : AppCompatActivity() {
                 phases += Phase("Sprints 4/5", 30_000)
                 phases += Phase("Sprints 5/5", 30_000)
                 phases += Phase("Corrida leve — Recuperação", 3 * 60_000)
+                phases += Phase("Alongamento final", 5 * 60_000)
+            }
+            "bicicleta" -> {
+                phases += Phase("Aquecimento — Pedalada leve", 5 * 60_000)
+                phases += Phase("Pedalada moderada 1/2", 10 * 60_000)
+                phases += Phase("Pedalada moderada 2/2", 10 * 60_000)
+                phases += Phase("Pedalada intensa", 5 * 60_000)
                 phases += Phase("Alongamento final", 5 * 60_000)
             }
 
