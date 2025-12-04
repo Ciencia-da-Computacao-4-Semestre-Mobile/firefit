@@ -54,8 +54,8 @@
                 android:layout_marginBottom="20dp">
 
                 <TextView
-                    android:layout_width="173dp"
-                    android:layout_height="36dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Resumo da Semana"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
@@ -63,7 +63,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:text="Você concluiu 2 de 3 metas 🔥"
                     android:textColor="#AAAAAA"
@@ -86,25 +86,28 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/txtPesoMeta"
                     android:text="Meta: 80 kg"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/txtPesoAtual"
                     android:text="Atual: 85 kg"
                     android:textColor="#AAAAAA"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <ProgressBar
+                    android:id="@+id/progressPeso"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
@@ -130,25 +133,28 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/txtTreinoMeta"
                     android:text="Meta: 5 treinos"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/txtTreinosFeitos"
                     android:text="Realizados: 2"
                     android:textColor="#AAAAAA"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <ProgressBar
+                    android:id="@+id/progressTreinos"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
@@ -174,25 +180,28 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/txtAliMeta"
                     android:text="Meta: dieta semanal"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/txtAlimentacao"
                     android:text="Cumprimento: 20%"
                     android:textColor="#AAAAAA"
                     android:textSize="13sp"
                     android:layout_marginTop="2dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="36dp"/>
+                    android:layout_height="wrap_content"/>
 
                 <ProgressBar
+                    android:id="@+id/progressAlimentacao"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
@@ -210,7 +219,7 @@
                 android:gravity="center"
                 android:layout_marginBottom="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"/>
+                android:layout_height="wrap_content"/>
 
             <!-- ===== BOTÃO ===== -->
             <TextView
