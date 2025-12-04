@@ -24,9 +24,10 @@ class EventosAdapter(
 
             binding.txtNomeEvento.text = evento.nome
             binding.txtProfessorEvento.text = evento.professor
-            binding.txtDataEvento.text = evento.data.toString()
-            binding.txtHoraEvento.text = evento.hora.toString()
+            binding.txtDataEvento.text = evento.data
+            binding.txtHoraEvento.text = evento.hora
 
+            // --- COR DO CARD POR CATEGORIA ---
             val color = when (evento.tipo) {
                 TipoEvento.MUSCULACAO -> binding.root.context.getColor(android.R.color.holo_green_dark)
                 TipoEvento.YOGA -> binding.root.context.getColor(android.R.color.holo_blue_light)
@@ -40,42 +41,38 @@ class EventosAdapter(
                 .placeholder(com.example.myapplication.R.drawable.placeholder_evento)
                 .into(binding.imgEvento)
 
-            // --- OVERLAY SUAVE (CORRIGIDO) ---
+            // --- OVERLAY (FINAL E CORRIGIDO) ---
             try {
-                val drawable = ContextCompat.getDrawable(
+                val overlay = ContextCompat.getDrawable(
                     binding.root.context,
                     com.example.myapplication.R.drawable.gradient_red_overlay
                 )
 
-                if (binding.imgOverlay is ImageView) {
-                    (binding.imgOverlay as ImageView).setImageDrawable(drawable)
-                } else {
-                    binding.imgOverlay.background = drawable
-                }
+                binding.imgOverlay.background = overlay
 
             } catch (e: Exception) {
-                Log.e("EventosAdapter", "Erro no imgOverlay: ${e.message}")
+                Log.e("EventosAdapter", "Erro no overlay: ${e.message}")
             }
 
             // --- FAVORITO ---
-            val icon = if (evento.isFavorito) {
+            val icone = if (evento.isFavorito) {
                 com.example.myapplication.R.drawable.ic_favorite_filled
             } else {
                 com.example.myapplication.R.drawable.ic_favorite_outline
             }
-            binding.btnFavorito.setImageResource(icon)
+            binding.btnFavorito.setImageResource(icone)
 
             binding.btnFavorito.setOnClickListener {
                 evento.isFavorito = !evento.isFavorito
-                val newIcon = if (evento.isFavorito) {
-                    com.example.myapplication.R.drawable.ic_favorite_filled
-                } else {
-                    com.example.myapplication.R.drawable.ic_favorite_outline
-                }
-                binding.btnFavorito.setImageResource(newIcon)
+                binding.btnFavorito.setImageResource(
+                    if (evento.isFavorito)
+                        com.example.myapplication.R.drawable.ic_favorite_filled
+                    else
+                        com.example.myapplication.R.drawable.ic_favorite_outline
+                )
             }
 
-            // --- BOTÃO ABRIR ---
+            // --- BOTÕES ---
             binding.btnAbrir.setOnClickListener { onClick(evento) }
             binding.root.setOnClickListener { onClick(evento) }
         }

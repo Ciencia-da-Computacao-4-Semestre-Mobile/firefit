@@ -30,12 +30,13 @@
                 android:id="@+id/imgEvento"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/crossfit"
                 android:background="@drawable/roundedd_image"
                 android:clipToOutline="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/crossfit" />
+                android:outlineProvider="background"/>
 
-            <!-- GRADIENTE LATERAL -->
+            <!-- GRADIENTE LATERAL por cima -->
             <View
                 android:id="@+id/imgOverlay"
                 android:layout_width="match_parent"
@@ -54,7 +55,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/orange" />
 
-        <!-- FAVORITO (CORAÇÃO) -->
+        <!-- FAVORITO -->
         <ImageView
             android:id="@+id/btnFavorito"
             android:layout_width="30dp"
