@@ -233,12 +233,9 @@
                             android:text="Cardio Matinal"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp"
-<<<<<<< Updated upstream
                             android:layout_weight="1"/>
-=======
-                            tools:ignore="MissingConstraints" />
 
->>>>>>> Stashed changes
+                            tools:ignore="MissingConstraints" />
 
                         <TextView
                             android:id="@+id/sub2"
