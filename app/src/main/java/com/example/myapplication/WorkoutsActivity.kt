@@ -57,11 +57,20 @@ class WorkoutsActivity : AppCompatActivity() {
         val savedValue = prefs.getInt("card1_progress", 70)
         progress1?.let { animateProgress(it, savedValue) }
 
+<<<<<<< HEAD
         // Botões
         findViewById<Button>(R.id.btnIniciarCardio)?.setOnClickListener {
             startActivity(Intent(this, CardioActivity::class.java))
         }
         findViewById<Button>(R.id.btnIniciarCardio1)?.setOnClickListener {
+=======
+        // ---------- SEUS BOTÕES ----------
+        findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
+            startActivity(Intent(this, ForcaTotalActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
+>>>>>>> 7a5e6d83e20cc276b0816de2450dc852309083df
             startActivity(Intent(this, CardioActivity::class.java))
         }
     }

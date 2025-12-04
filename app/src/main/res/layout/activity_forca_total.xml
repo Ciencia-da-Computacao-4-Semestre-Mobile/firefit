@@ -40,7 +40,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="HIIT"
+                        android:text="Força Total"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:textColor="@color/fire_text" />
@@ -48,7 +48,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="treino de alta intensidade com intervalos curtos de descanso"
+                        android:text="Treino de muscalação"
                         android:textColor="@color/fire_gray"
                         android:textSize="13sp"
                         android:layout_marginTop="6dp" />
@@ -109,7 +109,7 @@
                     android:id="@+id/rbCorrida"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HIIT Full Body"
+                    android:text="Superior + Musculação"
                     android:textSize="16sp"
                     android:textColor="@color/fire_text" />
 
@@ -117,7 +117,7 @@
                     android:id="@+id/rbBicicleta"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HIIT Inferior"
+                    android:text="Superior"
                     android:textSize="16sp"
                     android:textColor="@color/fire_text" />
 
@@ -125,7 +125,7 @@
                     android:id="@+id/rbCaminhada"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HIIT Superior"
+                    android:text="Inferior"
                     android:textSize="16sp"
                     android:textColor="@color/fire_text" />
             </RadioGroup>

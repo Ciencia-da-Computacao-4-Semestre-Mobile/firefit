@@ -32,7 +32,6 @@ class ScheduledEventsActivity : AppCompatActivity() {
         viewModel.listaEventos.observe(this) { eventos ->
             adapter.submitList(eventos)
         }
-
         viewModel.carregarEventos()
     }
 
@@ -57,7 +56,6 @@ class ScheduledEventsActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-
     private fun setupBottomNav() {
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
         bottomNav.selectedItemId = R.id.nav_events

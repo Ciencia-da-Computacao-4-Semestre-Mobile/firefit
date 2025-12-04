@@ -37,9 +37,6 @@
         <activity
             android:name=".WorkoutsActivity"
             android:exported="false" />
-        <activity
-            android:name=".ExerciseActivity"
-            android:exported="false" />
 
         <activity android:name=".CardioIntensityActivity" />
         <activity android:name=".CardioDurationActivity" />
@@ -52,10 +49,11 @@
         <activity android:name=".ScheduledEventsActivity"/>
         <activity android:name=".ConfirmarEventoActivity"/>
 
+        <activity android:name=".ForcaTotalActivity"/>
 
         <activity android:name=".MetasActivity"/>
 
-
+        <activity android:name=".HiitActivity"/>
 
     </application>
 

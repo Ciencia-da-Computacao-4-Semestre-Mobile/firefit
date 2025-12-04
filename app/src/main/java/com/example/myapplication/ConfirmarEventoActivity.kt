@@ -51,4 +51,8 @@ class ConfirmarEventoActivity : AppCompatActivity() {
 
         imgEvento.setImageResource(drawableRes)
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7a5e6d83e20cc276b0816de2450dc852309083df
