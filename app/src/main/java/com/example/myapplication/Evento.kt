@@ -5,10 +5,9 @@ data class Evento(
     val nome: String,
     val professor: String,
     val tipo: TipoEvento,
-    val data: String,
-    val hora: String,
+    val data: String,       // dd/MM/yyyy
+    val hora: String,       // HH:mm
     val duracao: Int,
-    val imagemResId: Int = R.drawable.crossfit, // default drawable
+    val imagemResId: Int = R.drawable.placeholder_evento, // drawable do evento
     var isFavorito: Boolean = false
 )
-

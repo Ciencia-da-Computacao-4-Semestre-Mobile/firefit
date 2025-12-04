@@ -17,34 +17,34 @@ class ScheduledEventsViewModel : ViewModel() {
     fun carregarEventos() {
         _listaEventos.value = listOf(
             Evento(
-                1,
-                "Musculação",
-                "Carlos Andrade",
-                TipoEvento.MUSCULACAO,
-                "05/12/2025",
-                "14:00",
-                60,
-                "https://i.imgur.com/0Z8FjQp.jpeg"
+                id = 1,
+                nome = "Musculação",
+                professor = "Carlos Andrade",
+                tipo = TipoEvento.MUSCULACAO,
+                data = "05/12/2025",
+                hora = "14:00",
+                duracao = 60,
+                imagemResId = R.drawable.crossfit
             ),
             Evento(
-                2,
-                "Yoga",
-                "Larissa Gomes",
-                TipoEvento.YOGA,
-                "06/12/2025",
-                "08:00",
-                60,
-                "https://i.imgur.com/fFeQWkR.jpeg"
+                id = 2,
+                nome = "Yoga",
+                professor = "Larissa Gomes",
+                tipo = TipoEvento.YOGA,
+                data = "06/12/2025",
+                hora = "08:00",
+                duracao = 60,
+                imagemResId = R.drawable.yoga
             ),
             Evento(
-                3,
-                "Funcional",
-                "Pedro Souza",
-                TipoEvento.FUNCIONAL,
-                "07/12/2025",
-                "09:30",
-                45,
-                "https://i.imgur.com/pIm2itA.jpeg"
+                id = 3,
+                nome = "Funcional",
+                professor = "Pedro Souza",
+                tipo = TipoEvento.FUNCIONAL,
+                data = "07/12/2025",
+                hora = "09:30",
+                duracao = 45,
+                imagemResId = R.drawable.event1
             )
         )
     }
@@ -52,8 +52,8 @@ class ScheduledEventsViewModel : ViewModel() {
     fun filtrarEventosFuturos(): List<Evento> {
         val hoje = Calendar.getInstance().time
         return _listaEventos.value?.filter {
-            val dataConvertida = dateFormat.parse(it.data)
-            dataConvertida != null && (dataConvertida.after(hoje) || dataConvertida == hoje)
+            val dataEvento = dateFormat.parse(it.data)
+            dataEvento != null && (dataEvento.after(hoje) || dataEvento == hoje)
         } ?: emptyList()
     }
 

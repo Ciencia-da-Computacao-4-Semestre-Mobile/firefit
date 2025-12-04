@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,39 +12,12 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Título do evento -->
-        <TextView
-            android:id="@+id/txtTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Evento"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif-medium" />
+        <!-- INCLUDE DO CARD DO EVENTO -->
+        <include
+            android:id="@+id/cardEventoConfirmacao"
+            layout="@layout/item_evento" />
 
-        <!-- Card com detalhes do evento -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardDetalhe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/fire_cardd"
-            app:strokeWidth="2dp"
-            app:strokeColor="@color/orange">
-
-            <TextView
-                android:id="@+id/txtInfo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Detalhes do evento"
-                android:textColor="@color/fire_text"
-                android:textSize="16sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Botões usando MaterialButton -->
+        <!-- Botões abaixo do card -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnConfirmar"
             android:layout_width="match_parent"
@@ -55,6 +27,7 @@
             android:paddingVertical="12dp"
             app:backgroundTint="#2E7D32"
             android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="12dp"/>
 
         <com.google.android.material.button.MaterialButton
@@ -77,6 +50,5 @@
             android:paddingVertical="12dp"
             app:backgroundTint="#1976D2"
             android:textColor="#FFFFFF" />
-
     </LinearLayout>
 </ScrollView>
