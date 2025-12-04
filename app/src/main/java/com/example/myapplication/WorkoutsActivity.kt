@@ -103,6 +103,9 @@ class WorkoutsActivity : AppCompatActivity() {
         }
 
         // 🔥 NOVO: Botão HIIT
+        findViewById<Button>(R.id.btnHiit).setOnClickListener {
+            startActivity(Intent(this, HiitActivity::class.java))
+        }
     }
 
     private fun openDetails(title: String) { }
