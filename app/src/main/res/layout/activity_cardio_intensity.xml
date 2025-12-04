@@ -65,7 +65,8 @@
             android:divider="#55FF6A00"
             android:dividerHeight="2dp"
             android:paddingTop="6dp"
-            android:paddingBottom="6dp" />
+            android:paddingBottom="6dp"
+            android:layout_marginTop="6dp"/>
 
     </LinearLayout>
 

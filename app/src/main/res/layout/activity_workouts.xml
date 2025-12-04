@@ -233,9 +233,9 @@
                             android:text="Cardio Matinal"
                             android:textColor="#FFFFFF"
                             android:textSize="26sp"
-                            android:layout_weight="1"/>
-
+                            android:layout_weight="1"
                             tools:ignore="MissingConstraints" />
+
 
                         <TextView
                             android:id="@+id/sub2"

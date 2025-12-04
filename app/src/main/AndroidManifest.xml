@@ -10,54 +10,41 @@
         android:theme="@style/AppTheme"
         android:supportsRtl="true">
 
-
-    <activity
+        <activity
             android:name=".TimerActivity"
             android:exported="false" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" /> <!-- Register -->
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+
+        <activity android:name=".LoginActivity" android:exported="false" />
+        <activity android:name=".RegisterActivity" android:exported="false" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".UserActivity" /> <!-- Home -->
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WorkoutsActivity"
-            android:exported="false" />
+        <activity android:name=".UserActivity" />
+        <activity android:name=".HomeActivity" android:exported="false" />
+        <activity android:name=".WorkoutsActivity" android:exported="false" />
 
         <activity android:name=".CardioIntensityActivity" />
         <activity android:name=".CardioDurationActivity" />
         <activity android:name=".CardioStartActivity" />
         <activity android:name=".CardioActivity" />
 
-        <activity
-            android:name=".PersonalDataActivity"
-            android:exported="false" />
+        <activity android:name=".PersonalDataActivity" android:exported="false" />
 
+        <activity android:name=".ScheduledEventsActivity" />
+        <activity android:name=".ConfirmarEventoActivity" />
 
-        <activity android:name=".PersonalDataActivity"/>
+        <activity android:name=".ForcaTotalActivity" />
 
-        <activity android:name=".ScheduledEventsActivity"/>
-        <activity android:name=".ConfirmarEventoActivity"/>
+        <activity android:name=".MetasActivity" />
 
-        <activity android:name=".ForcaTotalActivity"/>
-
-        <activity android:name=".MetasActivity"/>
-
-        <activity android:name=".HiitActivity"/>
+        <activity android:name=".HiitActivity" />
 
     </application>
 

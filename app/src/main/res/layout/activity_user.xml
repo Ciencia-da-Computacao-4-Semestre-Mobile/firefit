@@ -60,7 +60,7 @@
                             android:textColor="#FFFFFF"
                             android:textSize="20sp"
                             android:textStyle="bold"
-                            android:layout_marginTop="17dp" />
+                            android:layout_marginTop="10dp" />
 
                         <TextView
                             android:id="@+id/txtAlterarImg"
@@ -103,7 +103,6 @@
                         android:textSize="12sp"
                         android:layout_marginTop="4dp" />
                 </LinearLayout>
-
             </LinearLayout>
 
             <View
@@ -131,8 +130,7 @@
                 android:orientation="horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:background="#151515"
-                android:backgroundTint="@color/background2">
+                android:background="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -165,8 +163,7 @@
                 android:paddingRight="10dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginTop="6dp"
-                android:background="#151515"
-                android:backgroundTint="@color/background2">
+                android:background="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -199,8 +196,7 @@
                 android:paddingRight="10dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginTop="5dp"
-                android:background="#151515"
-                android:backgroundTint="@color/background2">
+                android:background="@color/background2">
 
                 <ImageView
                     android:layout_width="22dp"
@@ -234,7 +230,6 @@
                 android:layout_marginTop="30dp" />
 
         </LinearLayout>
-
     </ScrollView>
 
     <!-- BOTTOM NAV FIXO -->

@@ -13,8 +13,7 @@ data class Evento(
     @DrawableRes val imagemResId: Int = R.drawable.placeholder_evento,
     var isFavorito: Boolean = false,
     val imagemUrl: String?
-<<<<<<< HEAD
 )
-=======
-)
->>>>>>> 7a5e6d83e20cc276b0816de2450dc852309083df
+
+
+

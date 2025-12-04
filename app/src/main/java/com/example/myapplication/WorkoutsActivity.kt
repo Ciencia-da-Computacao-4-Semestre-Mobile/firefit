@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ProgressBar
-import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
@@ -57,22 +56,19 @@ class WorkoutsActivity : AppCompatActivity() {
         val savedValue = prefs.getInt("card1_progress", 70)
         progress1?.let { animateProgress(it, savedValue) }
 
-<<<<<<< HEAD
-        // Botões
+        // BOTÕES DO SEU CÓDIGO (ambos unificados)
         findViewById<Button>(R.id.btnIniciarCardio)?.setOnClickListener {
             startActivity(Intent(this, CardioActivity::class.java))
         }
+
         findViewById<Button>(R.id.btnIniciarCardio1)?.setOnClickListener {
-=======
-        // ---------- SEUS BOTÕES ----------
-        findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
             startActivity(Intent(this, ForcaTotalActivity::class.java))
         }
 
-        findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
->>>>>>> 7a5e6d83e20cc276b0816de2450dc852309083df
-            startActivity(Intent(this, CardioActivity::class.java))
+        findViewById<Button>(R.id.btnHiit)?.setOnClickListener {
+            startActivity(Intent(this, HiitActivity::class.java))
         }
+
     }
 
     private fun startActivitySafe(activityClass: Class<*>) {
@@ -83,7 +79,9 @@ class WorkoutsActivity : AppCompatActivity() {
         }
     }
 
-    private fun openDetails(title: String) { /* TODO: abrir detalhes */ }
+    private fun openDetails(title: String) {
+        // TODO: abrir detalhes futuramente
+    }
 
     private fun animateCard(card: FrameLayout) {
         card.alpha = 0f

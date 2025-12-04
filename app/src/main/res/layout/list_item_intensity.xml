@@ -6,4 +6,4 @@
     android:padding="16dp"
     android:textSize="18sp"
     android:textColor="@color/white"
-    android:background="@color/background2"/>
+    android:background="@drawable/bg_radius"/>

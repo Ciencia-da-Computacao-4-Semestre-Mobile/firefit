@@ -105,76 +105,130 @@
                     android:layout_height="wrap_content">
 
                     <!-- EVENTO 1 -->
-                    <LinearLayout
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardEvent1"
                         android:layout_width="180dp"
                         android:layout_height="195dp"
-                        android:orientation="vertical"
-                        android:background="@drawable/card_bg"
-                        android:layout_marginEnd="12dp">
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
 
-                        <ImageView
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:background="@drawable/rounded_image_home"
-                            android:scaleType="centerCrop"
-                            android:clipToOutline="true"
-                            android:src="@drawable/event1"/>
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:background="@color/background2">
 
-                        <TextView
-                            android:text="21:45 | 11 DEZ."
-                            android:textColor="@color/fire_gray"
-                            android:textSize="12sp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:clipToOutline="true"
+                                android:src="@drawable/event1" />
 
-                        <TextView
-                            android:text="STOP BIKE"
-                            android:textStyle="bold"
-                            android:textColor="@color/fire_text"
-                            android:textSize="15sp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"/>
+                            <TextView
+                                android:text="09:30 | 07 DEZ."
+                                android:textColor="@color/fire_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
 
-                    </LinearLayout>
+                            <TextView
+                                android:text="Funcional"
+                                android:textStyle="bold"
+                                android:textColor="@color/fire_text"
+                                android:textSize="15sp"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                     <!-- EVENTO 2 -->
-                    <LinearLayout
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardEvent2"
                         android:layout_width="180dp"
                         android:layout_height="195dp"
-                        android:orientation="vertical"
-                        android:background="@drawable/card_bg">
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
 
-                        <ImageView
+                        <LinearLayout
+                            android:orientation="vertical"
                             android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:background="@drawable/rounded_image_home"
-                            android:scaleType="centerCrop"
-                            android:clipToOutline="true"
-                            android:src="@drawable/event2" />
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:background="@color/background2">
 
-                        <TextView
-                            android:text="22:00 | 14 DEZ."
-                            android:textColor="@color/fire_gray"
-                            android:textSize="12sp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:clipToOutline="true"
+                                android:src="@drawable/yoga" />
 
-                        <TextView
-                            android:text="FIT DANCE"
-                            android:textStyle="bold"
-                            android:textColor="@color/fire_text"
-                            android:textSize="15sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="6dp"/>
-                    </LinearLayout>
+                            <TextView
+                                android:text="08:00 | 06 DEZ."
+                                android:textColor="@color/fire_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:text="Yoga"
+                                android:textStyle="bold"
+                                android:textColor="@color/fire_text"
+                                android:textSize="15sp"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- EVENTO 3 -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardEvent3"
+                        android:layout_width="180dp"
+                        android:layout_height="195dp"
+                        android:layout_marginEnd="12dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp">
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:background="@color/background2">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="120dp"
+                                android:scaleType="centerCrop"
+                                android:clipToOutline="true"
+                                android:src="@drawable/crossfit" />
+
+                            <TextView
+                                android:text="14:00 | 05 DEZ."
+                                android:textColor="@color/fire_gray"
+                                android:textSize="12sp"
+                                android:layout_marginTop="8dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:text="Musculação"
+                                android:textStyle="bold"
+                                android:textColor="@color/fire_text"
+                                android:textSize="15sp"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
 
                 </LinearLayout>
             </HorizontalScrollView>

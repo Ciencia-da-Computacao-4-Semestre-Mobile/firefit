@@ -65,8 +65,6 @@ class CardioStartActivity : AppCompatActivity() {
             text = "Aquecimento"
         }
 
-        findViewById<LinearLayout>(R.id.exerciseList).addView(tvCurrentPhase, 0)
-
         pulseAnimator = ObjectAnimator.ofFloat(tvTimer, View.SCALE_X, 1f, 1.08f).apply {
             duration = 600
             repeatMode = ObjectAnimator.REVERSE

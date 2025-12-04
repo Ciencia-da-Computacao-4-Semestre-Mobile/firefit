@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-<<<<<<< Updated upstream
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -10,7 +9,4 @@ class EventsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_confirmar_evento)
     }
 }
-=======
-class EventsActivity {
-}
->>>>>>> Stashed changes
+

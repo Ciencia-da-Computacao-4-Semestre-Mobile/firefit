@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-    android:color="@color/orange_pressed"> <!-- cor de clique -->
+    android:color="@color/orange"> <!-- cor do clique -->
 
     <item>
         <shape android:shape="rectangle">
@@ -11,14 +11,15 @@
             <corners android:radius="14dp" />
 
             <!-- sombra leve (opcional) -->
-            <padding android:left="8dp"
+            <padding
+                android:left="8dp"
                 android:top="6dp"
                 android:right="8dp"
                 android:bottom="6dp" />
 
             <stroke
                 android:width="1dp"
-                android:color="@color/orange_dark"/>
+                android:color="@color/orange"/> <!-- cor da borda -->
         </shape>
     </item>
 </ripple>

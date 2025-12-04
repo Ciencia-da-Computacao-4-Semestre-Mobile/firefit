@@ -88,7 +88,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="24dp"
-                android:layout_marginTop="3dp">
+                android:layout_marginTop="3dp"
+                android:background="@drawable/card_bg_top">
 
                 <!-- Nome fase -->
                 <TextView
@@ -122,7 +123,7 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnStartPause"
                         android:layout_width="0dp"
                         android:layout_height="58dp"
@@ -132,20 +133,23 @@
                         android:textStyle="bold"
                         android:textColor="#FFFFFF"
                         android:textSize="17sp"
-                        android:background="@drawable/bg_button_orange"/>
+                        app:backgroundTint="@color/orange"
+                        app:cornerRadius="14dp"
+                        android:layout_margin="10dp"/>
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnReset"
                         android:layout_width="0dp"
                         android:layout_height="58dp"
-                        android:layout_marginStart="12dp"
                         android:layout_weight="1"
                         android:text="↺ Resetar"
                         android:textAllCaps="false"
                         android:textStyle="bold"
                         android:textColor="#FFFFFF"
                         android:textSize="17sp"
-                        android:background="@drawable/bg_button_orange"/>
+                        app:backgroundTint="@color/orange"
+                        app:cornerRadius="14dp"
+                        android:layout_margin="10dp"/>
                 </LinearLayout>
 
                 <TextView

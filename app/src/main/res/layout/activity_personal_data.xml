@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="@color/fire_background">
+    android:background="@color/background">
 
     <LinearLayout
         android:orientation="vertical"
@@ -39,7 +38,7 @@
                 android:paddingEnd="28dp"/>
         </LinearLayout>
 
-        <!-- NOME + EMAIL -->
+        <!-- ======================== CAMPOS 1ª LINHA ======================== -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +104,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- NASCIMENTO + TELEFONE -->
+        <!-- CAMPOS LINHA 2 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +112,7 @@
             android:weightSum="2"
             android:layout_marginBottom="25dp">
 
-            <!-- Nascimento -->
+            <!-- Data de Nascimento -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -172,7 +171,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- CARDS: IDADE - PESO - ALTURA -->
+        <!-- CARDS DE IDADE/PESO/ALTURA -->
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"

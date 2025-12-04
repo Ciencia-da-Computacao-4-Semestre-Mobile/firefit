@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1E1E1E"
+    android:background="@color/background"
     android:padding="16dp">
 
     <LinearLayout
@@ -11,6 +11,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal">
+
+        <!-- BOTÃO VOLTAR -->
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Voltar"
+            android:layout_gravity="start"
+            android:padding="8dp"
+            android:tint="@android:color/white"/>
 
         <!-- CARD DO EVENTO -->
         <com.google.android.material.card.MaterialCardView
@@ -32,20 +43,20 @@
                     android:id="@+id/imgEvento"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:scaleType="centerCrop"
                     android:background="@drawable/roundedd_image"
                     android:clipToOutline="true"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/crossfit" />
 
                 <TextView
                     android:id="@+id/txtNomeEvento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Nome do Evento"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"
                     android:textSize="18sp"
-                    android:layout_marginTop="8dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtProfessorEvento"
@@ -53,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:text="Professor: "
                     android:textColor="#CFCFCF"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/txtDataEvento"
@@ -61,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="Data: "
                     android:textColor="#BDBDBD"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/txtHoraEvento"
@@ -69,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:text="Hora: "
                     android:textColor="#BDBDBD"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/txtDuracaoEvento"
@@ -77,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:text="Duração: "
                     android:textColor="#BDBDBD"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/btnFavorito"
