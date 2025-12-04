@@ -1,17 +1,21 @@
 package com.example.myapplication
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class PersonalDataActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var dbFirestore: FirebaseFirestore
+    private lateinit var db: FirebaseFirestore
 
     private lateinit var btnBack: ImageView
     private lateinit var btnSalvar: Button
@@ -24,16 +28,18 @@ class PersonalDataActivity : AppCompatActivity() {
     private lateinit var inputPeso: EditText
     private lateinit var inputAltura: EditText
 
+    // Handler para fallback (evita "SALVANDO..." infinito)
+    private val handler = Handler(Looper.getMainLooper())
+    private var timeoutRunnable: Runnable? = null
+    private val TIMEOUT_MS = 15000L // 15 segundos
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_data)
 
         auth = FirebaseAuth.getInstance()
-        dbFirestore = FirebaseFirestore.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        // ==============================
-        // FINDVIEWBYS
-        // ==============================
         btnBack = findViewById(R.id.btnBack)
         btnSalvar = findViewById(R.id.btnSalvar)
 
@@ -46,75 +52,142 @@ class PersonalDataActivity : AppCompatActivity() {
         inputAltura = findViewById(R.id.inputAltura)
 
         val user = auth.currentUser
-
-        // ==============================
-        // PREENCHE CAMPOS EXISTENTES
-        // ==============================
         inputNome.setText(user?.displayName ?: "")
         inputEmail.setText(user?.email ?: "")
 
         carregarDadosExtras()
 
-        // BTN VOLTAR
         btnBack.setOnClickListener { finish() }
-
-        // BTN SALVAR
-        btnSalvar.setOnClickListener { salvarDados() }
+        btnSalvar.setOnClickListener { salvarFirestore() }
     }
 
-    // ==============================
-    // CARREGA DADOS DO REALTIME DATABASE
-    // ==============================
     private fun carregarDadosExtras() {
         val uid = auth.currentUser?.uid ?: return
 
-        val ref = FirebaseDatabase.getInstance().getReference("users").child(uid)
+        db.collection("PersonalData").document(uid)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    inputNascimento.setText(document.getString("nascimento") ?: "")
+                    inputTelefone.setText(document.getString("telefone") ?: "")
 
-        ref.get().addOnSuccessListener { snapshot ->
-            if (snapshot.exists()) {
-                inputNascimento.setText(snapshot.child("nascimento").value?.toString() ?: "")
-                inputTelefone.setText(snapshot.child("telefone").value?.toString() ?: "")
-                inputIdade.setText(snapshot.child("idade").value?.toString() ?: "")
-                inputPeso.setText(snapshot.child("peso").value?.toString() ?: "")
-                inputAltura.setText(snapshot.child("altura").value?.toString() ?: "")
+                    val idade = (document.get("idade") as? Number)?.toInt()
+                        ?: (document.get("idade") as? String)?.toIntOrNull()
+
+                    val peso = (document.get("peso") as? Number)?.toDouble()
+                        ?: (document.get("peso") as? String)?.toDoubleOrNull()
+
+                    val altura = (document.get("altura") as? Number)?.toDouble()
+                        ?: (document.get("altura") as? String)?.toDoubleOrNull()
+
+                    inputIdade.setText(idade?.toString() ?: "")
+                    inputPeso.setText(peso?.toString() ?: "")
+                    inputAltura.setText(altura?.toString() ?: "")
+                }
             }
-        }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Erro ao carregar dados: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
-    // ==============================
-    // SALVA OS DADOS
-    // ==============================
-    private fun salvarDados() {
-        val user = auth.currentUser ?: return
+    private fun salvarFirestore() {
+        val user = auth.currentUser ?: run {
+            Toast.makeText(this, "Usuário não autenticado", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-        val nome = inputNome.text.toString()
-        val nascimento = inputNascimento.text.toString()
-        val telefone = inputTelefone.text.toString()
-        val idade = inputIdade.text.toString()
-        val peso = inputPeso.text.toString()
-        val altura = inputAltura.text.toString()
+        val nome = inputNome.text.toString().trim()
+        val nascimento = inputNascimento.text.toString().trim()
+        val telefone = inputTelefone.text.toString().trim()
+        val idade = inputIdade.text.toString().toIntOrNull()
+        val peso = inputPeso.text.toString().toDoubleOrNull()
+        val altura = inputAltura.text.toString().toDoubleOrNull()
 
-        // Atualiza nome no Firebase Auth
+        if (nome.isEmpty()) {
+            Toast.makeText(this, "Preencha o nome", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Desativa botão e mostra estado
+        setSavingState(true)
+
+        // Inicia timeout fallback: garante que botão será reativado se algo congelar
+        startTimeoutFallback()
+
         val profileUpdate = UserProfileChangeRequest.Builder()
             .setDisplayName(nome)
             .build()
 
+        // Atualiza o perfil do FirebaseAuth
         user.updateProfile(profileUpdate)
+            .addOnSuccessListener {
+                // Preparar dados
+                val dados = mutableMapOf<String, Any>(
+                    "nascimento" to nascimento,
+                    "telefone" to telefone
+                )
+                idade?.let { dados["idade"] = it }
+                peso?.let { dados["peso"] = it }
+                altura?.let { dados["altura"] = it }
 
-        // Atualiza dados extras no Realtime Database
-        val uid = user.uid
-        val ref = FirebaseDatabase.getInstance().getReference("users").child(uid)
+                // Salva no Firestore
+                db.collection("PersonalData").document(user.uid)
+                    .set(dados, SetOptions.merge())
+                    .addOnCompleteListener { task ->
+                        // cancela fallback
+                        cancelTimeoutFallback()
 
-        val dados = mapOf(
-            "nascimento" to nascimento,
-            "telefone" to telefone,
-            "idade" to idade,
-            "peso" to peso,
-            "altura" to altura
-        )
+                        if (task.isSuccessful) {
+                            // Prepara intent de resultado para voltar com dados já atualizados
+                            val resultIntent = Intent().apply {
+                                putExtra("name", nome)
+                                idade?.let { putExtra("idade", it) }
+                                peso?.let { putExtra("peso", it) }
+                                altura?.let { putExtra("altura", it) }
+                            }
 
-        ref.updateChildren(dados).addOnCompleteListener {
-            Toast.makeText(this, "Dados atualizados!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show()
+                            setSavingState(false) // não essencial, pois finish() abaixo, mas deixa consistente
+                            setResult(Activity.RESULT_OK, resultIntent)
+                            finish()
+                        } else {
+                            // Falha ao salvar no Firestore
+                            setSavingState(false)
+                            val ex = task.exception
+                            Toast.makeText(this, "Erro ao salvar: ${ex?.message ?: "Desconhecido"}", Toast.LENGTH_LONG).show()
+                        }
+                    }
+            }
+            .addOnFailureListener { e ->
+                // Falha ao atualizar nome no auth
+                cancelTimeoutFallback()
+                setSavingState(false)
+                Toast.makeText(this, "Erro ao atualizar nome: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun setSavingState(isSaving: Boolean) {
+        btnSalvar.isEnabled = !isSaving
+        btnSalvar.text = if (isSaving) "SALVANDO..." else "SALVAR"
+    }
+
+    private fun startTimeoutFallback() {
+        cancelTimeoutFallback()
+        timeoutRunnable = Runnable {
+            // fallback executado após TIMEOUT_MS
+            setSavingState(false)
+            Toast.makeText(this, "Tempo de salvamento esgotado. Verifique conexão / permissões.", Toast.LENGTH_LONG).show()
         }
+        handler.postDelayed(timeoutRunnable!!, TIMEOUT_MS)
+    }
+
+    private fun cancelTimeoutFallback() {
+        timeoutRunnable?.let { handler.removeCallbacks(it) }
+        timeoutRunnable = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancelTimeoutFallback()
     }
 }
