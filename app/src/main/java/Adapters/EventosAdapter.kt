@@ -3,7 +3,6 @@ package Adapters
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -17,11 +16,12 @@ class EventosAdapter(
     private val onClick: (Evento) -> Unit
 ) : ListAdapter<Evento, EventosAdapter.EventoViewHolder>(EventoDiffCallback()) {
 
-    inner class EventoViewHolder(val binding: ItemEventoBinding) :
+    inner class EventoViewHolder(private val binding: ItemEventoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(evento: Evento) {
 
+            // --- Dados do evento ---
             binding.txtNomeEvento.text = evento.nome
             binding.txtProfessorEvento.text = evento.professor
             binding.txtDataEvento.text = evento.data
@@ -29,52 +29,46 @@ class EventosAdapter(
 
             // --- COR DO CARD POR CATEGORIA ---
             val color = when (evento.tipo) {
-                TipoEvento.MUSCULACAO -> binding.root.context.getColor(android.R.color.holo_green_dark)
-                TipoEvento.YOGA -> binding.root.context.getColor(android.R.color.holo_blue_light)
-                TipoEvento.FUNCIONAL -> binding.root.context.getColor(android.R.color.holo_orange_light)
+                TipoEvento.MUSCULACAO -> ContextCompat.getColor(binding.root.context, android.R.color.holo_green_dark)
+                TipoEvento.YOGA -> ContextCompat.getColor(binding.root.context, android.R.color.holo_blue_light)
+                TipoEvento.FUNCIONAL -> ContextCompat.getColor(binding.root.context, android.R.color.holo_orange_light)
             }
             binding.cardEvento.setCardBackgroundColor(color)
 
-            // --- FOTO DO EVENTO ---
+            // --- FOTO DO EVENTO (Drawable) ---
             Glide.with(binding.root.context)
-                .load(evento.imagemUrl)
+                .load(evento.imagemResId) // drawable local
                 .placeholder(com.example.myapplication.R.drawable.placeholder_evento)
                 .into(binding.imgEvento)
 
-            // --- OVERLAY (FINAL E CORRIGIDO) ---
+            // --- OVERLAY ---
             try {
-                val overlay = ContextCompat.getDrawable(
-                    binding.root.context,
-                    com.example.myapplication.R.drawable.gradient_red_overlay
-                )
-
+                val overlay = ContextCompat.getDrawable(binding.root.context, com.example.myapplication.R.drawable.gradient_red_overlay)
                 binding.imgOverlay.background = overlay
-
             } catch (e: Exception) {
                 Log.e("EventosAdapter", "Erro no overlay: ${e.message}")
             }
 
             // --- FAVORITO ---
+            atualizarIconeFavorito(evento)
+
+            binding.btnFavorito.setOnClickListener {
+                evento.isFavorito = !evento.isFavorito
+                atualizarIconeFavorito(evento)
+            }
+
+            // --- CLIQUE PARA ABRIR CONFIRMAR EVENTO ---
+            binding.btnAbrir.setOnClickListener { onClick(evento) }
+            binding.root.setOnClickListener { onClick(evento) }
+        }
+
+        private fun atualizarIconeFavorito(evento: Evento) {
             val icone = if (evento.isFavorito) {
                 com.example.myapplication.R.drawable.ic_favorite_filled
             } else {
                 com.example.myapplication.R.drawable.ic_favorite_outline
             }
             binding.btnFavorito.setImageResource(icone)
-
-            binding.btnFavorito.setOnClickListener {
-                evento.isFavorito = !evento.isFavorito
-                binding.btnFavorito.setImageResource(
-                    if (evento.isFavorito)
-                        com.example.myapplication.R.drawable.ic_favorite_filled
-                    else
-                        com.example.myapplication.R.drawable.ic_favorite_outline
-                )
-            }
-
-            // --- BOTÕES ---
-            binding.btnAbrir.setOnClickListener { onClick(evento) }
-            binding.root.setOnClickListener { onClick(evento) }
         }
     }
 
