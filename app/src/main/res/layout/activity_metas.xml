@@ -16,7 +16,7 @@
             android:id="@+id/btnVoltar"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/meta_ig" />
+            android:src="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/txtTitulo"
