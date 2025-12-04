@@ -5,43 +5,130 @@
     android:id="@+id/cardEvento"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="16dp"
-    app:strokeWidth="2dp">
+    android:layout_margin="12dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/orange"
+    android:backgroundTint="#1A1A1A">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        android:padding="12dp">
 
+        <!-- FOTO + GRADIENTE -->
+        <FrameLayout
+            android:id="@+id/frameImagem"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgEvento"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/roundedd_image"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/crossfit" />
+
+            <!-- GRADIENTE LATERAL -->
+            <View
+                android:id="@+id/imgOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_red_overlay" />
+        </FrameLayout>
+
+        <!-- ÍCONE DA CATEGORIA -->
+        <ImageView
+            android:id="@+id/imgCategoria"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_training"
+            app:layout_constraintStart_toEndOf="@id/frameImagem"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/orange" />
+
+        <!-- FAVORITO (CORAÇÃO) -->
+        <ImageView
+            android:id="@+id/btnFavorito"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_bookmark"
+            app:layout_constraintEnd_toStartOf="@id/btnAbrir"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@android:color/holo_orange_dark" />
+
+        <!-- NOME -->
         <TextView
             android:id="@+id/txtNomeEvento"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Nome do Evento"
+            android:layout_marginTop="4dp"
+            android:text="Musculação Intensiva"
+            android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:textColor="@android:color/white"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btnAbrir"
+            app:layout_constraintStart_toStartOf="@id/imgCategoria"
+            app:layout_constraintTop_toBottomOf="@id/imgCategoria" />
 
+        <!-- PROFESSOR -->
         <TextView
             android:id="@+id/txtProfessorEvento"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Professor"
-            android:textColor="@android:color/white"/>
+            android:text="Com: Carlos Andrade"
+            android:textColor="#CFCFCF"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/btnAbrir"
+            app:layout_constraintStart_toStartOf="@id/txtNomeEvento"
+            app:layout_constraintTop_toBottomOf="@id/txtNomeEvento" />
 
+        <!-- DATA -->
         <TextView
             android:id="@+id/txtDataEvento"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Data"
-            android:textColor="@android:color/white"/>
+            android:text="05 Dez 2025"
+            android:textColor="#BDBDBD"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/btnAbrir"
+            app:layout_constraintStart_toStartOf="@id/txtNomeEvento"
+            app:layout_constraintTop_toBottomOf="@id/txtProfessorEvento" />
 
+        <!-- HORA -->
         <TextView
             android:id="@+id/txtHoraEvento"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hora"
-            android:textColor="@android:color/white"/>
-    </LinearLayout>
+            android:text="14:00"
+            android:textColor="#BDBDBD"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/btnAbrir"
+            app:layout_constraintStart_toStartOf="@id/txtNomeEvento"
+            app:layout_constraintTop_toBottomOf="@id/txtDataEvento" />
+
+        <!-- BOTÃO LATERAL -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAbrir"
+            android:layout_width="48dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/orange"
+            android:text="→"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            app:cornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.535" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </com.google.android.material.card.MaterialCardView>
