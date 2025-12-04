@@ -12,14 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import android.widget.ImageView
 
 class WorkoutsActivity : AppCompatActivity() {
 
-    private lateinit var card1: FrameLayout
-    private lateinit var card2: FrameLayout
-    private lateinit var progress1: ProgressBar
-    private lateinit var scrollView: ScrollView
+    private var card1: FrameLayout? = null
+    private var card2: FrameLayout? = null
+    private var progress1: ProgressBar? = null
     private lateinit var prefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,48 +28,15 @@ class WorkoutsActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_workouts)
 
+        // Bottom navigation
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-        bottomNav.selectedItemId = R.id.nav_training
-
-        bottomNav.setOnItemSelectedListener { item ->
+        bottomNav?.selectedItemId = R.id.nav_training
+        bottomNav?.setOnItemSelectedListener { item ->
             when (item.itemId) {
-
-                R.id.nav_home -> {
-                    if (this !is HomeActivity) {
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                R.id.nav_training -> {
-                    if (this !is WorkoutsActivity) {
-                        startActivity(Intent(this, WorkoutsActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                R.id.nav_user -> {
-                    if (this !is UserActivity) {
-                        startActivity(Intent(this, UserActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
-                R.id.nav_events -> {
-                    if (this !is ScheduledEventsActivity) {
-                        startActivity(Intent(this, ScheduledEventsActivity::class.java))
-                        overridePendingTransition(0, 0)
-                        finish()
-                    }
-                    true
-                }
-
+                R.id.nav_home -> { startActivitySafe(HomeActivity::class.java); true }
+                R.id.nav_training -> { startActivitySafe(WorkoutsActivity::class.java); true }
+                R.id.nav_user -> { startActivitySafe(UserActivity::class.java); true }
+                R.id.nav_events -> { startActivitySafe(ScheduledEventsActivity::class.java); true }
                 else -> false
             }
         }
@@ -80,35 +45,36 @@ class WorkoutsActivity : AppCompatActivity() {
         card1 = findViewById(R.id.card1)
         card2 = findViewById(R.id.card2)
 
-        card1.setOnClickListener { openDetails("Treino A") }
-        card2.setOnClickListener { openDetails("Treino B") }
+        card1?.setOnClickListener { openDetails("Treino A") }
+        card2?.setOnClickListener { openDetails("Treino B") }
 
-        animateCard(card1)
-        animateCard(card2)
+        card1?.let { animateCard(it) }
+        card2?.let { animateCard(it) }
 
         // Progresso
         progress1 = findViewById(R.id.progresso)
-
         prefs = getSharedPreferences("progresso", MODE_PRIVATE)
         val savedValue = prefs.getInt("card1_progress", 70)
-        animateProgress(progress1, savedValue)
+        progress1?.let { animateProgress(it, savedValue) }
 
-        // ---------- SEUS BOTÕES ----------
-        findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
+        // Botões
+        findViewById<Button>(R.id.btnIniciarCardio)?.setOnClickListener {
             startActivity(Intent(this, CardioActivity::class.java))
         }
-
-        findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
+        findViewById<Button>(R.id.btnIniciarCardio1)?.setOnClickListener {
             startActivity(Intent(this, CardioActivity::class.java))
-        }
-
-        // 🔥 NOVO: Botão HIIT
-        findViewById<Button>(R.id.btnHiit).setOnClickListener {
-            startActivity(Intent(this, HiitActivity::class.java))
         }
     }
 
-    private fun openDetails(title: String) { }
+    private fun startActivitySafe(activityClass: Class<*>) {
+        if (!this::class.java.isAssignableFrom(activityClass)) {
+            startActivity(Intent(this, activityClass))
+            overridePendingTransition(0, 0)
+            finish()
+        }
+    }
+
+    private fun openDetails(title: String) { /* TODO: abrir detalhes */ }
 
     private fun animateCard(card: FrameLayout) {
         card.alpha = 0f
