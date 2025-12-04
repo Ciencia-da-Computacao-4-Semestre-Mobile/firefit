@@ -11,5 +11,6 @@ data class Evento(
     val hora: String,       // HH:mm
     val duracao: Int,
     @DrawableRes val imagemResId: Int = R.drawable.placeholder_evento,
-    var isFavorito: Boolean = false
+    var isFavorito: Boolean = false,
+    val imagemUrl: String?
 )

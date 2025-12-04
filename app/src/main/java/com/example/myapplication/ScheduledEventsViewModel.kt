@@ -17,22 +17,34 @@ class ScheduledEventsViewModel : ViewModel() {
     fun carregarEventos() {
         _listaEventos.value = listOf(
             Evento(
-                1, "Musculação", "Carlos Andrade", TipoEvento.MUSCULACAO,
-                "05/12/2025", "14:00", 60,
-                imagemResId = R.drawable.crossfit,
-                isFavorito = false
+                id = 1,
+                nome = "Musculação",
+                professor = "Carlos Andrade",
+                tipo = TipoEvento.MUSCULACAO,
+                data = "05/12/2025",
+                hora = "14:00",
+                duracao = 60,
+                imagemUrl = "crossfit.webp"
             ),
             Evento(
-                2, "Yoga", "Larissa Gomes", TipoEvento.YOGA,
-                "06/12/2025", "08:00", 60,
-                imagemResId = R.drawable.yoga,
-                isFavorito = false
+                id = 2,
+                nome = "Yoga",
+                professor = "Larissa Gomes",
+                tipo = TipoEvento.YOGA,
+                data = "06/12/2025",
+                hora = "08:00",
+                duracao = 60,
+                imagemUrl = "yoga.webp"
             ),
             Evento(
-                3, "Funcional", "Pedro Souza", TipoEvento.FUNCIONAL,
-                "07/12/2025", "09:30", 45,
-                imagemResId = R.drawable.event1,
-                isFavorito = false
+                id = 3,
+                nome = "Funcional",
+                professor = "Pedro Souza",
+                tipo = TipoEvento.FUNCIONAL,
+                data = "07/12/2025",
+                hora = "09:30",
+                duracao = 45,
+                imagemUrl = "event1.webp"
             )
         )
     }

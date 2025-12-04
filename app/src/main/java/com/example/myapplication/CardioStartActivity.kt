@@ -96,39 +96,64 @@ class CardioStartActivity : AppCompatActivity() {
     private fun updateGif() {
         val tipo = tipoCardio.lowercase()
 
-        // ❌ Esconde GIF se não for nenhum dos 3
-        if (tipo != "corrida" && tipo != "caminhada" && tipo != "bicicleta") {
-            gifImage.visibility = View.GONE
+        // Caminhada / Corrida / Bike (já existia)
+        if (tipo == "corrida" || tipo == "caminhada" || tipo == "bicicleta") {
+            gifImage.visibility = View.VISIBLE
+
+            if (tipo == "bicicleta") {
+                Glide.with(this).asGif().load(R.drawable.bike).into(gifImage)
+                return
+            }
+
+            val fase = phases[currentPhaseIndex].name.lowercase()
+            val gifRes = when {
+                fase.contains("aquecimento") -> R.drawable.running
+                fase.contains("moderada") -> R.drawable.running
+                fase.contains("corrida") -> R.drawable.running
+                fase.contains("sprint") -> R.drawable.running
+                fase.contains("alongamento") -> R.drawable.running
+                else -> R.drawable.running
+            }
+
+            Glide.with(this).asGif().load(gifRes).into(gifImage)
             return
         }
 
-        gifImage.visibility = View.VISIBLE
+        // ⭐ NOVOS TIPOS — NÃO REMOVE NADA DO EXISTENTE:
+        when (tipo) {
 
-        val fase = phases[currentPhaseIndex].name.lowercase()
+            // SUPERIOR COMPLETO
+            "superior total", "superior_total", "superior +" -> {
+                gifImage.visibility = View.VISIBLE
+                Glide.with(this)
+                    .asGif()
+                    .load(R.drawable.superior_total)
+                    .into(gifImage)
+            }
 
-        // ➤ GIF específico da bicicleta
-        if (tipo == "bicicleta") {
-            Glide.with(this)
-                .asGif()
-                .load(R.drawable.bike)
-                .into(gifImage)
-            return
+            // SUPERIOR
+            "superior" -> {
+                gifImage.visibility = View.VISIBLE
+                Glide.with(this)
+                    .asGif()
+                    .load(R.drawable.superior)
+                    .into(gifImage)
+            }
+
+            // INFERIOR
+            "inferior" -> {
+                gifImage.visibility = View.VISIBLE
+                Glide.with(this)
+                    .asGif()
+                    .load(R.drawable.inferior)
+                    .into(gifImage)
+            }
+
+            // QUALQUER OUTRO — ESCONDE (igual já fazia)
+            else -> {
+                gifImage.visibility = View.GONE
+            }
         }
-
-        // ➤ GIF padrão para corrida e caminhada
-        val gifRes = when {
-            fase.contains("aquecimento") -> R.drawable.running
-            fase.contains("moderada") -> R.drawable.running
-            fase.contains("corrida") -> R.drawable.running
-            fase.contains("sprint") -> R.drawable.running
-            fase.contains("alongamento") -> R.drawable.running
-            else -> R.drawable.running
-        }
-
-        Glide.with(this)
-            .asGif()
-            .load(gifRes)
-            .into(gifImage)
     }
 
 

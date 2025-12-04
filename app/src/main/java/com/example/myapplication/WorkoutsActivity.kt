@@ -94,18 +94,15 @@ class WorkoutsActivity : AppCompatActivity() {
         animateProgress(progress1, savedValue)
 
         // ---------- SEUS BOTÕES ----------
+        findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
+            startActivity(Intent(this, ForcaTotalActivity::class.java))
+        }
+
         findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
             startActivity(Intent(this, CardioActivity::class.java))
         }
 
-        findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
-            startActivity(Intent(this, CardioActivity::class.java))
-        }
-
         // 🔥 NOVO: Botão HIIT
-        findViewById<Button>(R.id.btnHiit).setOnClickListener {
-            startActivity(Intent(this, HiitActivity::class.java))
-        }
     }
 
     private fun openDetails(title: String) { }
