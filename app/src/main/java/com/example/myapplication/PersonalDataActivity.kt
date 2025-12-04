@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+<<<<<<< Updated upstream
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -11,11 +12,21 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+=======
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+>>>>>>> Stashed changes
 
 class PersonalDataActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+<<<<<<< Updated upstream
     private lateinit var db: FirebaseFirestore
+=======
+>>>>>>> Stashed changes
 
     private lateinit var btnBack: ImageView
     private lateinit var btnSalvar: Button
@@ -28,17 +39,28 @@ class PersonalDataActivity : AppCompatActivity() {
     private lateinit var inputPeso: EditText
     private lateinit var inputAltura: EditText
 
+<<<<<<< Updated upstream
     // Handler para fallback (evita "SALVANDO..." infinito)
     private val handler = Handler(Looper.getMainLooper())
     private var timeoutRunnable: Runnable? = null
     private val TIMEOUT_MS = 15000L // 15 segundos
 
+=======
+>>>>>>> Stashed changes
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_data)
 
         auth = FirebaseAuth.getInstance()
+<<<<<<< Updated upstream
         db = FirebaseFirestore.getInstance()
+=======
+        val user = auth.currentUser
+
+        // ==============================
+        // FINDVIEWBYS
+        // ==============================
+>>>>>>> Stashed changes
 
         btnBack = findViewById(R.id.btnBack)
         btnSalvar = findViewById(R.id.btnSalvar)
@@ -51,12 +73,20 @@ class PersonalDataActivity : AppCompatActivity() {
         inputPeso = findViewById(R.id.inputPeso)
         inputAltura = findViewById(R.id.inputAltura)
 
+<<<<<<< Updated upstream
         val user = auth.currentUser
+=======
+        // ==============================
+        // PREENCHE CAMPOS EXISTENTES
+        // ==============================
+
+>>>>>>> Stashed changes
         inputNome.setText(user?.displayName ?: "")
         inputEmail.setText(user?.email ?: "")
 
         carregarDadosExtras()
 
+<<<<<<< Updated upstream
         btnBack.setOnClickListener { finish() }
         btnSalvar.setOnClickListener { salvarFirestore() }
     }
@@ -189,5 +219,77 @@ class PersonalDataActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         cancelTimeoutFallback()
+=======
+        // ==============================
+        // BOTÃO VOLTAR
+        // ==============================
+        btnBack.setOnClickListener {
+            finish()
+        }
+
+        // ==============================
+        // BOTÃO SALVAR
+        // ==============================
+        btnSalvar.setOnClickListener {
+            salvarDados()
+        }
+    }
+
+    // ==============================
+    // CARREGA DADOS DO FIREBASE
+    // ==============================
+    private fun carregarDadosExtras() {
+        val uid = auth.currentUser?.uid ?: return
+        val db = FirebaseDatabase.getInstance().getReference("users").child(uid)
+
+        db.get().addOnSuccessListener { snapshot ->
+            if (snapshot.exists()) {
+
+                inputNascimento.setText(snapshot.child("nascimento").value?.toString() ?: "")
+                inputTelefone.setText(snapshot.child("telefone").value?.toString() ?: "")
+                inputIdade.setText(snapshot.child("idade").value?.toString() ?: "")
+                inputPeso.setText(snapshot.child("peso").value?.toString() ?: "")
+                inputAltura.setText(snapshot.child("altura").value?.toString() ?: "")
+            }
+        }
+    }
+
+    // ==============================
+    // SALVA NO FIREBASE
+    // ==============================
+    private fun salvarDados() {
+
+        val user = auth.currentUser ?: return
+
+        val nome = inputNome.text.toString()
+        val nascimento = inputNascimento.text.toString()
+        val telefone = inputTelefone.text.toString()
+        val idade = inputIdade.text.toString()
+        val peso = inputPeso.text.toString()
+        val altura = inputAltura.text.toString()
+
+        // Atualiza nome no Firebase Auth
+        val profileUpdate = com.google.firebase.auth.UserProfileChangeRequest.Builder()
+            .setDisplayName(nome)
+            .build()
+
+        user.updateProfile(profileUpdate)
+
+        // Atualiza dados extras no Realtime Database
+        val uid = user.uid
+        val db = FirebaseDatabase.getInstance().getReference("users").child(uid)
+
+        val dados = mapOf(
+            "nascimento" to nascimento,
+            "telefone" to telefone,
+            "idade" to idade,
+            "peso" to peso,
+            "altura" to altura
+        )
+
+        db.updateChildren(dados).addOnCompleteListener {
+            Toast.makeText(this, "Dados atualizados!", Toast.LENGTH_SHORT).show()
+        }
+>>>>>>> Stashed changes
     }
 }

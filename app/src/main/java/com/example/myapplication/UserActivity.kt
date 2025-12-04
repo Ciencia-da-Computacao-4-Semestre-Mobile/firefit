@@ -4,7 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+<<<<<<< Updated upstream
 import android.widget.*
+=======
+import android.widget.LinearLayout
+import android.widget.TextView
+>>>>>>> Stashed changes
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -31,15 +36,28 @@ class UserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
 
+<<<<<<< Updated upstream
+=======
+        // ==========================
+        // FIREBASE
+        // ==========================
+>>>>>>> Stashed changes
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
+<<<<<<< Updated upstream
+=======
+        // ==========================
+        // TEXTVIEW DO NOME
+        // ==========================
+>>>>>>> Stashed changes
         txtUserName = findViewById(R.id.txtUserName)
         imgUser = findViewById(R.id.imgUser)
         txtAlterarImg = findViewById(R.id.txtAlterarImg)
         txtImcValor = findViewById(R.id.txtImcValor)
         txtImcStatus = findViewById(R.id.txtImcStatus)
 
+<<<<<<< Updated upstream
         carregarFoto()
         carregarNomeDoAuth()
         carregarImcDoFirestore()
@@ -49,12 +67,60 @@ class UserActivity : AppCompatActivity() {
         setupBottomNav()
 
         findViewById<TextView>(R.id.txtDesconectar).setOnClickListener {
+=======
+        val user = auth.currentUser
+        val nome = user?.displayName
+
+        txtUserName.text = if (!nome.isNullOrEmpty()) nome else "Usuário"
+
+        // ==========================
+        // BOTTOM NAV
+        // ==========================
+        val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
+        val btnLogout = findViewById<TextView>(R.id.txtDesconectar)
+
+        bottomNav.selectedItemId = R.id.nav_user
+
+        bottomNav.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+
+                R.id.nav_home -> {
+                    if (this !is HomeActivity) {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
+                }
+
+                R.id.nav_training -> {
+                    if (this !is WorkoutsActivity) {
+                        startActivity(Intent(this, WorkoutsActivity::class.java))
+                        overridePendingTransition(0, 0)
+                        finish()
+                    }
+                    true
+                }
+
+                R.id.nav_user -> true
+
+                else -> false
+            }
+        }
+
+        // ==========================
+        // LOGOUT
+        // ==========================
+        btnLogout.setOnClickListener {
+>>>>>>> Stashed changes
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
             startActivity(intent)
         }
 
+<<<<<<< Updated upstream
         findViewById<LinearLayout>(R.id.cardPersonalData).setOnClickListener {
             val intent = Intent(this, PersonalDataActivity::class.java)
             startActivityForResult(intent, PERSONAL_DATA_REQUEST)
@@ -229,6 +295,25 @@ class UserActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+=======
+        // ==========================
+        // CARDS CLICÁVEIS
+        // ==========================
+        val cardDadosPessoais = findViewById<LinearLayout>(R.id.cardPersonalData)
+        val cardTreinos = findViewById<LinearLayout>(R.id.cardWorkouts)
+        val cardEventos = findViewById<LinearLayout>(R.id.cardEvents)
+
+        cardDadosPessoais.setOnClickListener {
+            startActivity(Intent(this, PersonalDataActivity::class.java))
+        }
+
+        cardTreinos.setOnClickListener {
+            startActivity(Intent(this, WorkoutsSavedActivity::class.java))
+        }
+
+        cardEventos.setOnClickListener {
+            startActivity(Intent(this, MyEventsActivity::class.java))
+>>>>>>> Stashed changes
         }
     }
 }

@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< Updated upstream
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> Stashed changes
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+<<<<<<< Updated upstream
     android:background="@color/background">
+=======
+    android:background="@color/fire_background">
+>>>>>>> Stashed changes
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -38,7 +50,11 @@
                 android:paddingEnd="28dp"/>
         </LinearLayout>
 
+<<<<<<< Updated upstream
         <!-- CAMPOS LINHA 1 -->
+=======
+        <!-- ======================== CAMPOS 1ª LINHA ======================== -->
+>>>>>>> Stashed changes
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,6 +62,10 @@
             android:weightSum="2"
             android:layout_marginBottom="20dp">
 
+<<<<<<< Updated upstream
+=======
+            <!-- Nome -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,8 +74,11 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
+<<<<<<< Updated upstream
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+=======
+>>>>>>> Stashed changes
                     android:text="NOME COMPLETO"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -73,6 +96,10 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
+<<<<<<< Updated upstream
+=======
+            <!-- Email -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -81,8 +108,11 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+<<<<<<< Updated upstream
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+=======
+>>>>>>> Stashed changes
                     android:text="E-MAIL"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -100,9 +130,16 @@
                     android:textColorHint="@color/fire_gray"
                     android:textSize="15sp" />
             </LinearLayout>
+<<<<<<< Updated upstream
         </LinearLayout>
 
         <!-- CAMPOS LINHA 2 -->
+=======
+
+        </LinearLayout>
+
+        <!-- ======================== CAMPOS 2ª LINHA ======================== -->
+>>>>>>> Stashed changes
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -110,6 +147,10 @@
             android:weightSum="2"
             android:layout_marginBottom="25dp">
 
+<<<<<<< Updated upstream
+=======
+            <!-- Data de Nascimento -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -118,8 +159,11 @@
                 android:layout_marginRight="10dp">
 
                 <TextView
+<<<<<<< Updated upstream
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+=======
+>>>>>>> Stashed changes
                     android:text="DATA DE NASCIMENTO"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -132,12 +176,21 @@
                     android:background="@drawable/input_bg"
                     android:padding="12dp"
                     android:hint="DD/MM/AAAA"
+<<<<<<< Updated upstream
                     android:textColorHint="@color/fire_gray"
                     android:textColor="@color/fire_text"
+=======
+                    android:textColor="@color/fire_text"
+                    android:textColorHint="@color/fire_gray"
+>>>>>>> Stashed changes
                     android:inputType="date"
                     android:textSize="15sp" />
             </LinearLayout>
 
+<<<<<<< Updated upstream
+=======
+            <!-- Telefone -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -146,8 +199,11 @@
                 android:layout_marginLeft="10dp">
 
                 <TextView
+<<<<<<< Updated upstream
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+=======
+>>>>>>> Stashed changes
                     android:text="TELEFONE"
                     android:textColor="@color/fire_gray"
                     android:textSize="12sp"
@@ -160,6 +216,7 @@
                     android:background="@drawable/input_bg"
                     android:padding="12dp"
                     android:hint="(11) 99999-9999"
+<<<<<<< Updated upstream
                     android:inputType="phone"
                     android:textColorHint="@color/fire_gray"
                     android:textColor="@color/fire_text"
@@ -168,6 +225,17 @@
         </LinearLayout>
 
         <!-- CARDS DE IDADE/PESO/ALTURA -->
+=======
+                    android:textColor="@color/fire_text"
+                    android:textColorHint="@color/fire_gray"
+                    android:inputType="phone"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ======================== CARDS EDITÁVEIS ======================== -->
+>>>>>>> Stashed changes
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -175,6 +243,10 @@
             android:weightSum="3"
             android:gravity="center">
 
+<<<<<<< Updated upstream
+=======
+            <!-- Idade -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="90dp"
@@ -191,13 +263,22 @@
                     android:hint="Idade"
                     android:gravity="center"
                     android:inputType="number"
+<<<<<<< Updated upstream
                     android:textColor="@color/light_gray1"
                     android:textColorHint="@color/light_gray1"
+=======
+                    android:textColorHint="@color/light_gray1"
+                    android:textColor="@color/light_gray1"
+>>>>>>> Stashed changes
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:background="@android:color/transparent"/>
             </LinearLayout>
 
+<<<<<<< Updated upstream
+=======
+            <!-- Peso -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="90dp"
@@ -222,6 +303,10 @@
                     android:background="@android:color/transparent"/>
             </LinearLayout>
 
+<<<<<<< Updated upstream
+=======
+            <!-- Altura -->
+>>>>>>> Stashed changes
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="90dp"
@@ -259,5 +344,9 @@
             android:background="@drawable/btn_secondary"
             android:layout_marginTop="30dp"
             app:backgroundTint="@null"/>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     </LinearLayout>
 </ScrollView>

@@ -50,7 +50,15 @@
                         android:orientation="vertical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
                         android:gravity="center_vertical">
+=======
+                        android:text="ALTERAR FOTO"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF6A00"
+                        android:layout_marginTop="4dp" />
+>>>>>>> Stashed changes
 
                         <TextView
                             android:id="@+id/txtUserName"
@@ -154,6 +162,10 @@
                     app:tint="#FFFFFF" />
             </LinearLayout>
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             <LinearLayout
                 android:id="@+id/cardWorkouts"
                 android:layout_width="match_parent"

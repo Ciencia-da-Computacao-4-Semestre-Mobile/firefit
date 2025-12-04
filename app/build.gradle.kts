@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+<<<<<<< Updated upstream
     implementation(libs.androidx.recyclerview)
 
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
@@ -70,6 +71,9 @@ dependencies {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+=======
+    implementation("com.google.firebase:firebase-database-ktx")
+>>>>>>> Stashed changes
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
