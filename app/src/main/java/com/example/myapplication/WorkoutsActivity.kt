@@ -25,18 +25,14 @@ class WorkoutsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-        // 🔥 Remove a barra branca do Android (navigation bar)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.fire_background)
 
         setContentView(R.layout.activity_workouts)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNav)
-
         bottomNav.selectedItemId = R.id.nav_training
 
-        // 🔥 Deixar o item "Treinos" selecionado
         bottomNav.setOnItemSelectedListener { item ->
             when (item.itemId) {
 
@@ -90,7 +86,6 @@ class WorkoutsActivity : AppCompatActivity() {
         animateCard(card1)
         animateCard(card2)
 
-
         // Progresso
         progress1 = findViewById(R.id.progresso)
 
@@ -98,24 +93,22 @@ class WorkoutsActivity : AppCompatActivity() {
         val savedValue = prefs.getInt("card1_progress", 70)
         animateProgress(progress1, savedValue)
 
-        // ✅ Botão iniciar cardio → abre CardioActivity + layout activity_cardio
+        // ---------- SEUS BOTÕES ----------
         findViewById<Button>(R.id.btnIniciarCardio).setOnClickListener {
-            val intent = Intent(this, CardioActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CardioActivity::class.java))
         }
 
-        // ✅ Botão iniciar cardio → abre CardioActivity + layout activity_cardio
         findViewById<Button>(R.id.btnIniciarCardio1).setOnClickListener {
-            val intent = Intent(this, CardioActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CardioActivity::class.java))
         }
 
-
+        // 🔥 NOVO: Botão HIIT
+        findViewById<Button>(R.id.btnHiit).setOnClickListener {
+            startActivity(Intent(this, HiitActivity::class.java))
+        }
     }
 
-    private fun openDetails(title: String) {
-        // TODO: criar tela de detalhes futuramente
-    }
+    private fun openDetails(title: String) { }
 
     private fun animateCard(card: FrameLayout) {
         card.alpha = 0f
@@ -133,4 +126,3 @@ class WorkoutsActivity : AppCompatActivity() {
         anim.start()
     }
 }
-
