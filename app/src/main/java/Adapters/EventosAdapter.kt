@@ -21,47 +21,43 @@ class EventosAdapter(
 
         fun bind(evento: Evento) {
 
-            // --- Dados do evento ---
+            // Dados do evento
             binding.txtNomeEvento.text = evento.nome
             binding.txtProfessorEvento.text = evento.professor
             binding.txtDataEvento.text = evento.data
             binding.txtHoraEvento.text = evento.hora
 
-            // --- FOTO DO EVENTO COM GLIDE (drawable) ---
+            // Foto do evento
             Glide.with(binding.root.context)
                 .load(evento.imagemResId)
-                .placeholder(com.example.myapplication.R.drawable.placeholder_evento)
                 .into(binding.imgEvento)
 
-            // --- OVERLAY ---
+            // Overlay
             try {
-                val overlay = ContextCompat.getDrawable(
-                    binding.root.context,
-                    com.example.myapplication.R.drawable.gradient_red_overlay
-                )
+                val overlay = ContextCompat.getDrawable(binding.root.context, com.example.myapplication.R.drawable.gradient_red_overlay)
                 binding.imgOverlay.background = overlay
             } catch (e: Exception) {
                 Log.e("EventosAdapter", "Erro no overlay: ${e.message}")
             }
 
-            // --- FAVORITO ---
+            // Favorito
             atualizarIconeFavorito(evento)
             binding.btnFavorito.setOnClickListener {
                 evento.isFavorito = !evento.isFavorito
                 atualizarIconeFavorito(evento)
             }
 
-            // --- CLIQUE PARA ABRIR CONFIRMAR EVENTO ---
-            binding.btnAbrir.setOnClickListener { onClick(evento) }
-            binding.root.setOnClickListener { onClick(evento) }
-
-            // --- COR DO CARD POR CATEGORIA ---
-            val corCard = when (evento.tipo) {
+            // Cor do card (opcional, se quiser destacar tipo)
+            val color = when (evento.tipo) {
                 TipoEvento.MUSCULACAO -> ContextCompat.getColor(binding.root.context, android.R.color.holo_green_dark)
                 TipoEvento.YOGA -> ContextCompat.getColor(binding.root.context, android.R.color.holo_blue_light)
                 TipoEvento.FUNCIONAL -> ContextCompat.getColor(binding.root.context, android.R.color.holo_orange_light)
             }
-            binding.cardEvento.setCardBackgroundColor(corCard)
+            binding.cardEvento.setCardBackgroundColor(color)
+
+            // Clique para abrir ConfirmarEventoActivity
+            binding.btnAbrir.setOnClickListener { onClick(evento) }
+            binding.root.setOnClickListener { onClick(evento) }
         }
 
         private fun atualizarIconeFavorito(evento: Evento) {
